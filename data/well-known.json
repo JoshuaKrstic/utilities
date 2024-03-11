@@ -1,0 +1,34 @@
+{
+  "issuer": "https://storage.googleapis.com/aws_token_bucket/aws_token_testing",
+  "jwks_uri": "https://storage.googleapis.com/aws_token_bucket/aws_token_testing/jwk",
+  "subject_types_supported": [
+    "public"
+  ],
+  "response_types_supported": [
+    "id_token"
+  ],
+  "claims_supported": [
+    "sub",
+    "aud",
+    "exp",
+    "iat",
+    "iss",
+    "jti",
+    "nbf",
+    "dbgstat",
+    "eat_nonce",
+    "google_service_accounts",
+    "hwmodel",
+    "oemid",
+    "secboot",
+    "submods",
+    "swname",
+    "swversion"
+  ],
+  "id_token_signing_alg_values_supported": [
+    "RS256"
+  ],
+  "scopes_supported": [
+    "openid"
+  ]
+}
