@@ -13,4 +13,6 @@ LABEL "tee.launch_policy.log_redirect"="always"
 
 WORKDIR /test
 COPY tls /test
+COPY server.crt /test/server.crt
+COPY server.key /test/server.key
 ENTRYPOINT ["/test/tls"]
