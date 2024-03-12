@@ -79,20 +79,11 @@ func doNothing(writer http.ResponseWriter, r *http.Request) {
 // Handler creates a multiplexer for the server.
 func Handler() http.Handler {
 	mux := http.NewServeMux()
-	// to test default token: curl --unix-socket <socket> http://localhost/v1/token
-	// to test custom token:
-	// curl -d '{"audience":"<aud>", "nonces":["<nonce1>"]}' -H "Content-Type: application/json" -X POST
-	//   --unix-socket /tmp/container_launcher/teeserver.sock http://localhost/v1/token
-
 	mux.HandleFunc("/tlstest", doNothing)
 	return mux
 }
 
 func main() {
-
-	// router := mux.NewRouter()
-	// router.Methods(http.MethodGet).Path("/get").HandlerFunc(gethandler)
-
 	var err error
 	tlsConfig := &tls.Config{}
 
@@ -105,5 +96,4 @@ func main() {
 	fmt.Println("Starting Server..")
 	err = server.ListenAndServeTLS("../certs/server.crt", "../certs/server.key")
 	fmt.Printf("Unable to start Server %v", err)
-
 }

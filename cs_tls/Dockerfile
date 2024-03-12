@@ -5,9 +5,7 @@
 # gcloud builds submit --tag asia-east1-docker.pkg.dev/jkrstic-test-project/testing/tlsekm
 #
 # Deploy Confidential Space machine
-#  gcloud compute instances create --confidential-compute --shielded-secure-boot --maintenance-policy=TERMINATE --scopes=cloud-platform --zone=asia-east1-a\
-# --image-project=confidential-space-images --image-family=confidential-space\
-# --metadata ^~^tee-image-reference=<locationOfYourImage>~tee-container-log-redirect=true <nameOfYourVM>
+# gcloud compute instances create --confidential-compute --shielded-secure-boot --maintenance-policy=TERMINATE --scopes=cloud-platform --zone=asia-east1-a --image-project=confidential-space-images --image-family=confidential-space --metadata ^~^tee-image-reference=asia-east1-docker.pkg.dev/jkrstic-test-project/testing/tlsekm:latest~tee-container-log-redirect=true tlstestvm
 FROM alpine:latest
 EXPOSE 8081
 
