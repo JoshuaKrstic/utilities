@@ -62,7 +62,7 @@ func getCustomToken(nonce string) {
 	fmt.Println(string(claimsString))
 }
 
-func doNothing(writer http.ResponseWriter, r *http.Request) {
+func getToken(writer http.ResponseWriter, r *http.Request) {
 	ekm, err := r.TLS.ExportKeyingMaterial("testing_nonce", nil, 32)
 	if err != nil {
 		fmt.Println("failed to get EKM from inbound http request")
@@ -79,7 +79,7 @@ func doNothing(writer http.ResponseWriter, r *http.Request) {
 // Handler creates a multiplexer for the server.
 func Handler() http.Handler {
 	mux := http.NewServeMux()
-	mux.HandleFunc("/tlstest", doNothing)
+	mux.HandleFunc("/tlstest", getToken)
 	return mux
 }
 
