@@ -45,12 +45,12 @@ type wellKnown struct {
 }
 
 type Validator struct {
-	ExpectedIssuer string // "https://storage.googleapis.com/aws_token_bucket/aws_token_testing"
+	expectedIssuer string // "https://storage.googleapis.com/aws_token_bucket/aws_token_testing"
 }
 
 func (v Validator) getWellKnownFile() (wellKnown, error) {
 	httpClient := http.Client{}
-	resp, err := httpClient.Get(v.ExpectedIssuer + wellKnownPath)
+	resp, err := httpClient.Get(v.expectedIssuer + wellKnownPath)
 	if err != nil {
 		return wellKnown{}, fmt.Errorf("failed to get raw .well-known response: %w", err)
 	}
@@ -168,4 +168,8 @@ func (v Validator) DecodeAndValidateToken(tokenBytes []byte) (*jwt.Token, error)
 	}
 
 	return nil, fmt.Errorf("couldn't handle this token or couldn't read a validation error: %v", err)
+}
+
+func NewValidator(issuer string) Validator {
+	return Validator{expectedIssuer: issuer}
 }
