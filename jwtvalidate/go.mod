@@ -1,4 +1,4 @@
-module jwtvalidate
+module github.com/joshuakrstic/utilities/jwtvalidate
 
 go 1.21.0
 
