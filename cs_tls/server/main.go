@@ -29,6 +29,18 @@ var upgrader = websocket.Upgrader{
 	},
 }
 
+func GetOutboundIP() net.IP {
+	conn, err := net.Dial("udp", "8.8.8.8:80")
+	if err != nil {
+		panic(err)
+	}
+	defer conn.Close()
+
+	localAddr := conn.LocalAddr().(*net.UDPAddr)
+
+	return localAddr.IP
+}
+
 func getCustomToken(nonce string) ([]byte, error) {
 	httpClient := http.Client{
 		Transport: &http.Transport{
@@ -73,6 +85,8 @@ func getCustomToken(nonce string) ([]byte, error) {
 }
 
 func handleConnectionRequest(w http.ResponseWriter, r *http.Request) {
+	fmt.Println("")
+
 	// Upgrade HTTP Connection to a websocket
 	conn, err := upgrader.Upgrade(w, r, nil)
 	if err != nil {
@@ -136,6 +150,8 @@ func Handler() http.Handler {
 func main() {
 	var err error
 	tlsConfig := &tls.Config{}
+
+	fmt.Printf("#####----- IP Address is %v -----#####\n", GetOutboundIP())
 
 	server := &http.Server{
 		Addr:      ":8081",
