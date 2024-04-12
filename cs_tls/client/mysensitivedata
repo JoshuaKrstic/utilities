@@ -1,0 +1,9 @@
+{
+    "meal_preferences": {
+        "josh": "lasagna",
+        "bob": "laziji",
+        "alice": "green beans",
+        "frank": "chicken",
+        "sue": "bok choy"
+    }
+}

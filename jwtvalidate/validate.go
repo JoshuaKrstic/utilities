@@ -1,4 +1,4 @@
-package main
+package jwtvalidate
 
 import (
 	"crypto/rsa"
@@ -14,9 +14,7 @@ import (
 )
 
 const (
-	socketPath     = "/run/container_launcher/teeserver.sock"
-	expectedIssuer = "https://storage.googleapis.com/aws_token_bucket/aws_token_testing"
-	wellKnownPath  = "/.well-known/openid-configuration"
+	wellKnownPath = "/.well-known/openid-configuration"
 )
 
 type jwksFile struct {
@@ -46,9 +44,13 @@ type wellKnown struct {
 	// Scopes_supported                      string `json:"scopes_supported"`                      // [ "openid" ]
 }
 
-func getWellKnownFile() (wellKnown, error) {
+type Validator struct {
+	ExpectedIssuer string // "https://storage.googleapis.com/aws_token_bucket/aws_token_testing"
+}
+
+func (v Validator) getWellKnownFile() (wellKnown, error) {
 	httpClient := http.Client{}
-	resp, err := httpClient.Get(expectedIssuer + wellKnownPath)
+	resp, err := httpClient.Get(v.ExpectedIssuer + wellKnownPath)
 	if err != nil {
 		return wellKnown{}, fmt.Errorf("failed to get raw .well-known response: %w", err)
 	}
@@ -63,8 +65,8 @@ func getWellKnownFile() (wellKnown, error) {
 	return wk, nil
 }
 
-func getJWKFile() (jwksFile, error) {
-	wk, err := getWellKnownFile()
+func (v Validator) getJWKFile() (jwksFile, error) {
+	wk, err := v.getWellKnownFile()
 	if err != nil {
 		return jwksFile{}, fmt.Errorf("failed to get .well-known json: %w", err)
 	}
@@ -104,8 +106,8 @@ func base64urlUIntDecode(s string) (*big.Int, error) {
 	return z, nil
 }
 
-func getRSAPublicKeyFromJWKsFile(t *jwt.Token) (any, error) {
-	keysfile, err := getJWKFile()
+func (v Validator) getRSAPublicKeyFromJWKsFile(t *jwt.Token) (any, error) {
+	keysfile, err := v.getJWKFile()
 	if err != nil {
 		return nil, fmt.Errorf("failed to fetch the JWK file: %w", err)
 	}
@@ -141,10 +143,10 @@ func getRSAPublicKeyFromJWKsFile(t *jwt.Token) (any, error) {
 	return nil, fmt.Errorf("failed to find key with kid '%v' from well-known endpoint", kid)
 }
 
-func decodeAndValidateToken(tokenBytes []byte, keyFunc func(t *jwt.Token) (any, error)) (*jwt.Token, error) {
+func (v Validator) DecodeAndValidateToken(tokenBytes []byte) (*jwt.Token, error) {
 	var err error
 	fmt.Println("Unmarshalling token and checking its validity...")
-	token, err := jwt.NewParser().Parse(string(tokenBytes), keyFunc)
+	token, err := jwt.NewParser().Parse(string(tokenBytes), v.getRSAPublicKeyFromJWKsFile)
 
 	fmt.Printf("Token valid: %v\n", token.Valid)
 	fmt.Printf("Token method: %v\n", token.Method)
@@ -166,25 +168,4 @@ func decodeAndValidateToken(tokenBytes []byte, keyFunc func(t *jwt.Token) (any, 
 	}
 
 	return nil, fmt.Errorf("couldn't handle this token or couldn't read a validation error: %v", err)
-}
-
-func main() {
-	// Get a token from a workload running in Confidential Space
-	tokenbytes := []byte("eyJhbGciOiJSUzI1NiIsImtpZCI6IjEyMzQ1IiwidHlwIjoiSldUIn0.eyJhdWQiOiJodHRwczovL2pvc2h0ZXN0YXVkaWVuY2UiLCJleHAiOjE3MDk5MzQyNTQsImh0dHBzOi8vYXdzLmFtYXpvbi5jb20vdGFncyI6eyJwcmluY2lwYWxfdGFncyI6eyJjb25maWRlbnRpYWxfc3BhY2Uuc3VwcG9ydF9hdHRyaWJ1dGVzIjpbIkxBVEVTVD1TVEFCTEU9VVNBQkxFIl0sImNvbnRhaW5lci5hcmdzIjpbImZvbyJdLCJjb250YWluZXIuZW52LmZvbyI6WyJiYXIiXSwiY29udGFpbmVyLmltYWdlX2RpZ2VzdCI6WyJzaGEyNTY6YWJjZGVmLi4uIl0sImNvbnRhaW5lci5pbWFnZV9zaWduYXR1cmVzIjpbIjEyMzo0NTYiXSwiZGJnc3RhdCI6WyJlbmFibGVkIl0sImdjZS5pbnN0YW5jZV9pZCI6WyIyMTc0ODk2MjI0MDczMzk3MTAxIl0sImdvb2dsZV9zZXJ2aWNlX2FjY291bnRzIjpbIjYyMDQzODU0NTg4OS1jb21wdXRlQGRldmVsb3Blci5nc2VydmljZWFjY291bnQuY29tPTYyMDQzODU0NTg4OS1jb21wdXRlQGRldmVsb3Blci5nc2VydmljZWFjY291bnQuY29tIl0sImh3bW9kZWwiOlsiR0NQX0FNRF9TRVYiXSwic2VjYm9vdCI6WyJ0cnVlIl0sInN3bmFtZSI6WyJDT05GSURFTlRJQUxfU1BBQ0UiXX19LCJpYXQiOjE3MDc5MzQyNTQsImlzcyI6Imh0dHBzOi8vc3RvcmFnZS5nb29nbGVhcGlzLmNvbS9hd3NfdG9rZW5fYnVja2V0L2F3c190b2tlbl90ZXN0aW5nIiwic3ViIjoiUG9uZ3JlZWJhZGVlbkRpbmgifQ.NcMwpEVqS1Bys1VoBRpBeBrxXteNURJVgLmdh5xyk59mtkZ9wcI09VR6AgeomAjVWQABvQIout18r85sOhI4Ea5puLICnxowKc047UG6c4q5W1NrmQ5WvTsdIMRfrwDuaTzqKc5rPn-TWvhVRk840wCjiOxJmcbZUfEhC4Oysh2P2tc3wvM_wGB5EpLdNxlVlQllay2UALN54TUn4r_UtVIgLaJgm3MG4SC5-ZDbV6ILx67P_CsS1BHQFcktZCgTcVSpC29Gn-XyYJH26LpLV_XbpMTZA2gOxebV0YkdQ6nqh_UIjAvKBqUqx-s_t2pEQLJzSopudAkjpT4BSNYgpw")
-
-	// Write a method to return a public key from the well-known endpoint
-	keyFunc := getRSAPublicKeyFromJWKsFile
-
-	// Verify properties of the original Confidential Space workload that generated the attestation
-	// using the token claims.
-	token, err := decodeAndValidateToken(tokenbytes, keyFunc)
-	if err != nil {
-		panic(err)
-	}
-
-	claimsString, err := json.MarshalIndent(token.Claims, "", "  ")
-	if err != nil {
-		panic(err)
-	}
-	fmt.Println(string(claimsString))
 }
