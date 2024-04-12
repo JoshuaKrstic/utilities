@@ -1,0 +1,8 @@
+# Compiled Go files
+*.o
+*.a
+*.out
+
+# Go Build Files
+go.mod
+go.sum
