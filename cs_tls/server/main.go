@@ -4,6 +4,7 @@ import (
 	"context"
 	"crypto/sha256"
 	"crypto/tls"
+	"encoding/base64"
 	"fmt"
 	"io"
 	"net"
@@ -103,9 +104,8 @@ func handleConnectionRequest(w http.ResponseWriter, r *http.Request) {
 
 	sha := sha256.New()
 	sha.Write(ekm)
-	hash := string(sha.Sum(nil))
+	hash := base64.StdEncoding.EncodeToString(sha.Sum(nil))
 
-	// base 64 encode?
 	fmt.Printf("EKM: %v\nSHA hash: %v", ekm, hash)
 
 	// Request token with TLS EKM hashed and return to requestor
