@@ -5,6 +5,7 @@ import (
 	"crypto/tls"
 	"fmt"
 	"os"
+	"time"
 
 	"github.com/golang-jwt/jwt/v4"
 	"github.com/gorilla/websocket"
@@ -64,15 +65,19 @@ func getEKMHashFromRequest(c *websocket.Conn) ([]byte, error) {
 
 // TODO - add runtime flag to get URL dynamically
 func main() {
-	url := "wss://10.140.0.13:8081/connection"
+	url := "wss://10.140.0.18:8081/connection"
+
+	fmt.Println("Initializing client...")
 
 	tlsconfig := &tls.Config{
 		InsecureSkipVerify: true,
 	}
-
 	dialer := websocket.Dialer{
-		TLSClientConfig: tlsconfig,
+		TLSClientConfig:  tlsconfig,
+		HandshakeTimeout: 10 * time.Second,
 	}
+
+	fmt.Printf("Attempting to dial to url %v...\n", url)
 
 	conn, resp, err := dialer.Dial(url, nil)
 	if err != nil {
@@ -98,6 +103,8 @@ func main() {
 			conn.WriteMessage(0, []byte("bye"))
 			break
 		}
+
+		fmt.Printf("Content from the server: %v\n", content)
 
 		// Check that the content contains the expected nonce. Content is an OIDC token.
 		token, err := v.DecodeAndValidateToken(content)
