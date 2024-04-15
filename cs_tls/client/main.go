@@ -62,19 +62,32 @@ func getEKMHashFromRequest(c *websocket.Conn) ([]byte, error) {
 	return hash, nil
 }
 
+// TODO - add runtime flag to get URL dynamically
 func main() {
-	// todo - get IP address from a flag
-	url := "https://10.140.0.13:8081/connection"
-	c, _, err := websocket.DefaultDialer.Dial(url, nil)
-	if err != nil {
-		fmt.Printf("Error connecting to WebSocket server: %v\n", err)
+	url := "wss://10.140.0.13:8081/connection"
+
+	tlsconfig := &tls.Config{
+		InsecureSkipVerify: true,
 	}
-	defer c.Close()
+
+	dialer := websocket.Dialer{
+		TLSClientConfig: tlsconfig,
+	}
+
+	conn, resp, err := dialer.Dial(url, nil)
+	if err != nil {
+		fmt.Printf("Failed to dial to url %s, err %v\n", url, err)
+		return
+	}
+
+	defer conn.Close()
+
+	fmt.Printf("Got a reply %v\n", resp)
 
 	v := jwtvalidate.NewValidator("https://confidentialcomputing.googleapis.com/")
 
 	for {
-		messageType, content, err := c.ReadMessage()
+		messageType, content, err := conn.ReadMessage()
 		if err != nil {
 			fmt.Printf("failed to read message from the connection: %v\n", err)
 			break
@@ -82,7 +95,7 @@ func main() {
 
 		if messageType == 0 {
 			fmt.Println("Received EOL message type")
-			c.WriteMessage(0, []byte("bye"))
+			conn.WriteMessage(0, []byte("bye"))
 			break
 		}
 
@@ -95,7 +108,7 @@ func main() {
 
 		fmt.Println("Token validated. Checking nonce for EKM....")
 
-		ekm, err := getEKMHashFromRequest(c)
+		ekm, err := getEKMHashFromRequest(conn)
 		if err != nil {
 			fmt.Printf("failed to get EKM from outbound request: %v", err)
 			return
@@ -109,4 +122,5 @@ func main() {
 
 		fmt.Println("Validated the nonce with the expected EKM. Sending sensitive data")
 	}
+
 }

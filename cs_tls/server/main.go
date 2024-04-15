@@ -85,8 +85,6 @@ func getCustomToken(nonce string) ([]byte, error) {
 }
 
 func handleConnectionRequest(w http.ResponseWriter, r *http.Request) {
-	fmt.Println("")
-
 	// Upgrade HTTP Connection to a websocket
 	conn, err := upgrader.Upgrade(w, r, nil)
 	if err != nil {
