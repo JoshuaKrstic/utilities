@@ -53,14 +53,17 @@ func getCustomToken(nonce string) ([]byte, error) {
 	// token IPC endpoint
 	url := tokenEndpoint
 	body := fmt.Sprintf(`{
-		"audience": "https://sts.amazon.com",
-		"nonces": [%s]
+		"audience": "https://tlstesting.com",
+		"nonces": [%v]
 	}`, nonce)
 
 	resp, err := httpClient.Post(url, contentType, strings.NewReader(body))
 	if err != nil {
 		return nil, err
 	}
+
+	fmt.Printf("Response from launcher: %v\n", resp)
+
 	tokenbytes, err := io.ReadAll(resp.Body)
 	if err != nil {
 		return nil, err
@@ -100,7 +103,10 @@ func handleConnectionRequest(w http.ResponseWriter, r *http.Request) {
 
 	sha := sha256.New()
 	sha.Write(ekm)
-	hash := sha.Sum(nil)
+	hash := string(sha.Sum(nil))
+
+	// base 64 encode?
+	fmt.Printf("EKM: %v\nSHA hash: %v", ekm, hash)
 
 	// Request token with TLS EKM hashed and return to requestor
 	token, err := getCustomToken(string(hash))
