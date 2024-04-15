@@ -4,14 +4,12 @@ import (
 	"context"
 	"crypto/sha256"
 	"crypto/tls"
-	"encoding/json"
 	"fmt"
 	"io"
 	"net"
 	"net/http"
 	"strings"
 
-	"github.com/golang-jwt/jwt/v4"
 	"golang.org/x/net/http2"
 
 	"github.com/gorilla/websocket"
@@ -68,19 +66,19 @@ func getCustomToken(nonce string) ([]byte, error) {
 		return nil, err
 	}
 
-	fmt.Println(string(tokenbytes))
+	fmt.Printf("tokenbytes: %v\n", string(tokenbytes))
 
-	mapClaims := jwt.MapClaims{}
-	_, _, err = jwt.NewParser().ParseUnverified(string(tokenbytes), mapClaims)
-	if err != nil {
-		return nil, err
-	}
-	claimsString, err := json.MarshalIndent(mapClaims, "", "  ")
-	if err != nil {
-		return nil, err
-	}
+	// mapClaims := jwt.MapClaims{}
+	// _, _, err = jwt.NewParser().ParseUnverified(string(tokenbytes), mapClaims)
+	// if err != nil {
+	// 	return nil, err
+	// }
+	// claimsString, err := json.MarshalIndent(mapClaims, "", "  ")
+	// if err != nil {
+	// 	return nil, err
+	// }
 
-	fmt.Printf("fetched token from the Attestation Service: %v\n", string(claimsString))
+	//fmt.Printf("fetched token from the Attestation Service: %v\n", string(claimsString))
 	return tokenbytes, nil
 }
 
