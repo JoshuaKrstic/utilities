@@ -7,6 +7,7 @@ import (
 	"encoding/base64"
 	"fmt"
 	"io"
+	"io/ioutil"
 	"net"
 	"net/http"
 	"strings"
@@ -55,7 +56,7 @@ func getCustomToken(nonce string) ([]byte, error) {
 	url := tokenEndpoint
 	body := fmt.Sprintf(`{
 		"audience": "https://tlstesting.com",
-		"nonces": [%v]
+		"nonces": [%s]
 	}`, nonce)
 
 	resp, err := httpClient.Post(url, contentType, strings.NewReader(body))
@@ -64,13 +65,18 @@ func getCustomToken(nonce string) ([]byte, error) {
 	}
 
 	fmt.Printf("Response from launcher: %v\n", resp)
+	text, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		fmt.Printf("Failed to read resp.Body: %v", err)
+	}
+	fmt.Printf("Content: %s\n", text)
 
 	tokenbytes, err := io.ReadAll(resp.Body)
 	if err != nil {
 		return nil, err
 	}
 
-	fmt.Printf("tokenbytes: %v\n", string(tokenbytes))
+	fmt.Printf("tokenbytes: %s\n", string(tokenbytes))
 
 	// mapClaims := jwt.MapClaims{}
 	// _, _, err = jwt.NewParser().ParseUnverified(string(tokenbytes), mapClaims)
