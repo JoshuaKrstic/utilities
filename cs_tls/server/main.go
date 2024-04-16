@@ -56,7 +56,8 @@ func getCustomToken(nonce string) ([]byte, error) {
 	url := tokenEndpoint
 	body := fmt.Sprintf(`{
 		"audience": "https://tlstesting.com",
-		"nonces": ["%s"]
+		"nonces": ["%s"],
+		"token_type": "OIDC",
 	}`, nonce)
 
 	resp, err := httpClient.Post(url, contentType, strings.NewReader(body))
