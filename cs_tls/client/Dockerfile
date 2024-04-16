@@ -3,8 +3,9 @@
 #
 # Upload to an artifact registry
 # gcloud builds submit --tag asia-east1-docker.pkg.dev/jkrstic-test-project/testing/tlsekm-client
-#
-# Deploy Confidential Space machine
+
+### USE THIS COMMAND TO DEPLOY ###
+# Be sure to replace the IP with the IP of the remote server you deployed.
 # gcloud compute instances create --confidential-compute --shielded-secure-boot --maintenance-policy=TERMINATE --scopes=cloud-platform --zone=asia-east1-a --image-project=confidential-space-images --image-family=confidential-space --metadata ^~^tee-image-reference=asia-east1-docker.pkg.dev/jkrstic-test-project/testing/tlsekm-client:latest~tee-container-log-redirect=true~tee-env-remote_ip_addr=<remote_server_ip> tlsekm-client
 FROM alpine:latest
 
