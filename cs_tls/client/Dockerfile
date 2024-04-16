@@ -13,4 +13,5 @@ LABEL "tee.launch_policy.allow_env_override"="remote_ip_addr"
 
 WORKDIR /test
 COPY tls /test
+COPY mysensitivedata /test
 ENTRYPOINT ["/test/tls"]
