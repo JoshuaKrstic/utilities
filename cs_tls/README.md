@@ -25,9 +25,11 @@ To try this out yourself simply deploy the server using the command in the comme
 
 Once the VM is started, you should see the output that contains the IP address of the server:
 
+```
 NAME           ZONE          MACHINE_TYPE    PREEMPTIBLE  INTERNAL_IP      EXTERNAL_IP     STATUS
 
 tlsekm-client  asia-east1-a  n2d-standard-2               xxx.xxx.xxx.xxx  xxx.xxx.xxx.xx  RUNNING
+```
 
 Copy the external IP address.
 
