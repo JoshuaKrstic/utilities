@@ -105,33 +105,18 @@ func handleConnectionRequest(w http.ResponseWriter, r *http.Request) {
 
 	conn.WriteMessage(1, token)
 
-commLoop:
-	for {
-		messageType, content, err := conn.ReadMessage()
-		if err != nil {
-			fmt.Printf("failed to read message from the connection: %v\n", err)
-			break
-		}
-
-		switch messageType {
-		case 0:
-			fmt.Println("Received EOL message type")
-			conn.WriteMessage(0, []byte("bye"))
-			fmt.Println("Sent bye")
-			break commLoop
-		default:
-			fmt.Printf("Receieved content from other side, %v\n", content)
-
-			err = conn.WriteMessage(messageType, []byte("ok"))
-			if err != nil {
-				fmt.Printf("failed to send ack to client: %v\n", err)
-				break commLoop
-			}
-			fmt.Println("Sent ACK")
-		}
+	_, content, err := conn.ReadMessage()
+	if err != nil {
+		fmt.Printf("failed to read message from the connection: %v\n", err)
 	}
 
+	fmt.Printf("Receieved content from other side, %v\n", content)
+
 	fmt.Println("terminating connection")
+	err = conn.Close()
+	if err != nil {
+		fmt.Printf("Failed to close the conn. Not failing. err: %v\n", err)
+	}
 }
 
 // Handler creates a multiplexer for the server.
