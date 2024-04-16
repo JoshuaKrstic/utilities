@@ -105,6 +105,7 @@ func handleConnectionRequest(w http.ResponseWriter, r *http.Request) {
 
 	conn.WriteMessage(1, token)
 
+commLoop:
 	for {
 		messageType, content, err := conn.ReadMessage()
 		if err != nil {
@@ -112,18 +113,21 @@ func handleConnectionRequest(w http.ResponseWriter, r *http.Request) {
 			break
 		}
 
-		if messageType == 0 {
+		switch messageType {
+		case 0:
 			fmt.Println("Received EOL message type")
 			conn.WriteMessage(0, []byte("bye"))
-			break
-		}
+			fmt.Println("Sent bye")
+			break commLoop
+		default:
+			fmt.Printf("Receieved content from other side, %v\n", content)
 
-		fmt.Printf("Receieved content from other side, %v\n", content)
-
-		err = conn.WriteMessage(messageType, []byte("ok"))
-		if err != nil {
-			fmt.Printf("failed to send ack to client: %v\n", err)
-			break
+			err = conn.WriteMessage(messageType, []byte("ok"))
+			if err != nil {
+				fmt.Printf("failed to send ack to client: %v\n", err)
+				break commLoop
+			}
+			fmt.Println("Sent ACK")
 		}
 	}
 
