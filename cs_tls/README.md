@@ -17,6 +17,8 @@ The server starts up an http server with TLS using the provided key and crt and 
 2. Regenerating the hashed EKM to compare to the one inside the eat_nonce of the token
 3. Validating other claims, such as the container digest (not shown)
 
+The client then sends its sensitive data to the server before terminating the connection.
+
 ## Use
 
 To try this out yourself simply deploy the server using the command in the comment block at the top of the Dockerfile in the server directory. You may need to build and upload the container to a separate artifact registry yourself.
@@ -24,6 +26,7 @@ To try this out yourself simply deploy the server using the command in the comme
 Once the VM is started, you should see the output that contains the IP address of the server:
 
 NAME           ZONE          MACHINE_TYPE    PREEMPTIBLE  INTERNAL_IP      EXTERNAL_IP     STATUS
+
 tlsekm-client  asia-east1-a  n2d-standard-2               xxx.xxx.xxx.xxx  xxx.xxx.xxx.xx  RUNNING
 
 Copy the external IP address.
