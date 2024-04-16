@@ -13,8 +13,9 @@ import (
 	"github.com/joshuakrstic/utilities/jwtvalidate"
 )
 
-var (
+const (
 	mySensitiveDataFile = "./mysensitivedata"
+	ip_addr_env_var     = "remote_ip_addr"
 )
 
 func readSensitveData() ([]byte, error) {
@@ -93,8 +94,6 @@ func handleTokenMessageType(conn *websocket.Conn, content []byte) error {
 
 // TODO - add runtime flag to get URL dynamically
 func main() {
-	url := "wss://34.81.131.47:8081/connection"
-
 	fmt.Println("Initializing client...")
 
 	tlsconfig := &tls.Config{
@@ -105,8 +104,10 @@ func main() {
 		HandshakeTimeout: 5 * time.Second,
 	}
 
-	fmt.Printf("Attempting to dial to url %v...\n", url)
+	ip_addr := os.Getenv(ip_addr_env_var)
+	url := fmt.Sprintf("wss://%s:8081/connection", ip_addr)
 
+	fmt.Printf("Attempting to dial to url %v...\n", url)
 	conn, _, err := dialer.Dial(url, nil)
 	if err != nil {
 		fmt.Printf("Failed to dial to url %s, err %v\n", url, err)
