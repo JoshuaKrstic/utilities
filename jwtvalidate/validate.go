@@ -73,7 +73,6 @@ func (v Validator) getJWKFile() (jwksFile, error) {
 
 	// Get JWK URI from .wellknown
 	uri := wk.JwksURI
-	fmt.Printf("jwks URI: %v\n", uri)
 
 	httpClient := http.Client{}
 	resp, err := httpClient.Get(uri)
@@ -129,8 +128,6 @@ func (v Validator) getRSAPublicKeyFromJWKsFile(t *jwt.Token) (any, error) {
 			return nil, fmt.Errorf("failed to decode key.E %w", err)
 		}
 
-		fmt.Printf("N and E: %v\n, %v\n", n, e)
-
 		// The parser expects an rsa.PublicKey: https://github.com/golang-jwt/jwt/blob/main/rsa.go#L53
 		// or an array of keys. We chose to show passing a single key in this example as its possible
 		// not all validators accept multiple keys for validation.
@@ -145,11 +142,8 @@ func (v Validator) getRSAPublicKeyFromJWKsFile(t *jwt.Token) (any, error) {
 
 func (v Validator) DecodeAndValidateToken(tokenBytes []byte) (*jwt.Token, error) {
 	var err error
-	fmt.Println("Unmarshalling token and checking its validity...")
 	token, err := jwt.NewParser().Parse(string(tokenBytes), v.getRSAPublicKeyFromJWKsFile)
 
-	fmt.Printf("Token valid: %v\n", token.Valid)
-	fmt.Printf("Token method: %v\n", token.Method)
 	if token.Valid {
 		return token, nil
 	}

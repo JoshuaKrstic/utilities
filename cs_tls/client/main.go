@@ -3,6 +3,7 @@ package main
 import (
 	"crypto/sha256"
 	"crypto/tls"
+	"encoding/base64"
 	"fmt"
 	"os"
 	"time"
@@ -44,28 +45,55 @@ func checkTokenNonce(t *jwt.Token, ekm string) error {
 	return nil
 }
 
-func getEKMHashFromRequest(c *websocket.Conn) ([]byte, error) {
+func getEKMHashFromConn(c *websocket.Conn) (string, error) {
 	conn, ok := c.NetConn().(*tls.Conn)
 	if !ok {
-		return nil, fmt.Errorf("failed to cast NetConn to *tls.Conn")
+		return "", fmt.Errorf("failed to cast NetConn to *tls.Conn")
 	}
 
 	state := conn.ConnectionState()
 	ekm, err := state.ExportKeyingMaterial("testing_nonce", nil, 32)
 	if err != nil {
-		return nil, fmt.Errorf("failed to get EKM from TLS connection: %w", err)
+		return "", fmt.Errorf("failed to get EKM from TLS connection: %w", err)
 	}
 
 	sha := sha256.New()
 	sha.Write(ekm)
-	hash := sha.Sum(nil)
+	hash := base64.StdEncoding.EncodeToString(sha.Sum(nil))
 
 	return hash, nil
 }
 
+func handleTokenMessageType(conn *websocket.Conn, content []byte) error {
+	v := jwtvalidate.NewValidator("https://confidentialcomputing.googleapis.com/")
+
+	// Check that the content contains the expected nonce. Content is an OIDC token.
+	token, err := v.DecodeAndValidateToken(content)
+	if err != nil {
+		err := fmt.Errorf("failed to decode and validate token: %w\n. Token: %v", err, token)
+		return err
+	}
+
+	fmt.Println("Token validated. Checking nonce for EKM....")
+
+	ekm, err := getEKMHashFromConn(conn)
+	if err != nil {
+		err := fmt.Errorf("failed to get EKM from outbound request: %w", err)
+		return err
+	}
+
+	err = checkTokenNonce(token, string(ekm))
+	if err != nil {
+		err := fmt.Errorf("failed to validate the token nonce. Not sending sensitive data. err: %w", err)
+		return err
+	}
+
+	return nil
+}
+
 // TODO - add runtime flag to get URL dynamically
 func main() {
-	url := "wss://10.140.0.18:8081/connection"
+	url := "wss://34.81.131.47:8081/connection"
 
 	fmt.Println("Initializing client...")
 
@@ -74,12 +102,12 @@ func main() {
 	}
 	dialer := websocket.Dialer{
 		TLSClientConfig:  tlsconfig,
-		HandshakeTimeout: 10 * time.Second,
+		HandshakeTimeout: 5 * time.Second,
 	}
 
 	fmt.Printf("Attempting to dial to url %v...\n", url)
 
-	conn, resp, err := dialer.Dial(url, nil)
+	conn, _, err := dialer.Dial(url, nil)
 	if err != nil {
 		fmt.Printf("Failed to dial to url %s, err %v\n", url, err)
 		return
@@ -87,47 +115,19 @@ func main() {
 
 	defer conn.Close()
 
-	fmt.Printf("Got a reply %v\n", resp)
-
-	v := jwtvalidate.NewValidator("https://confidentialcomputing.googleapis.com/")
-
-	for {
-		messageType, content, err := conn.ReadMessage()
-		if err != nil {
-			fmt.Printf("failed to read message from the connection: %v\n", err)
-			break
-		}
-
-		if messageType == 0 {
-			fmt.Println("Received EOL message type")
-			conn.WriteMessage(0, []byte("bye"))
-			break
-		}
-
-		fmt.Printf("Content from the server: %v\n", content)
-
-		// Check that the content contains the expected nonce. Content is an OIDC token.
-		token, err := v.DecodeAndValidateToken(content)
-		if err != nil {
-			fmt.Printf("failed to decode and validate token: %v\n. Token: %v\n", err, token)
-			return
-		}
-
-		fmt.Println("Token validated. Checking nonce for EKM....")
-
-		ekm, err := getEKMHashFromRequest(conn)
-		if err != nil {
-			fmt.Printf("failed to get EKM from outbound request: %v", err)
-			return
-		}
-
-		err = checkTokenNonce(token, string(ekm))
-		if err != nil {
-			fmt.Println("failed to validate the token nonce. Not sending sensitive data")
-			return
-		}
-
-		fmt.Println("Validated the nonce with the expected EKM. Sending sensitive data")
+	_, content, err := conn.ReadMessage()
+	if err != nil {
+		fmt.Printf("failed to read message from the connection: %v\n", err)
 	}
 
+	handleTokenMessageType(conn, content)
+	fmt.Println("Validated the nonce with the expected EKM. Sending sensitive data")
+
+	data, err := readSensitveData()
+	if err != nil {
+		fmt.Printf("Failed to read data from the file: %v\n", err)
+	}
+	conn.WriteMessage(2, data)
+	fmt.Println("Sent payload. Closing the connection")
+	conn.Close()
 }
