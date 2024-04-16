@@ -35,7 +35,7 @@ func Handler() http.Handler {
 	return mux
 }
 
-func GetInboundIPs() (local net.IP, remote net.IP) {
+func GetInboundIP() net.IP {
 	conn, err := net.Dial("udp", "8.8.8.8:80")
 	if err != nil {
 		panic(err)
@@ -43,9 +43,8 @@ func GetInboundIPs() (local net.IP, remote net.IP) {
 	defer conn.Close()
 
 	localAddr := conn.LocalAddr().(*net.UDPAddr)
-	remoteAddr := conn.RemoteAddr().(*net.UDPAddr)
 
-	return localAddr.IP, remoteAddr.IP
+	return localAddr.IP
 }
 
 func getCustomToken(nonce string) ([]byte, error) {
@@ -141,9 +140,8 @@ func main() {
 	var err error
 	tlsConfig := &tls.Config{}
 
-	local, remote := GetInboundIPs()
+	local := GetInboundIP()
 	fmt.Printf("#####----- Local IP Address is %v -----#####\n", local)
-	fmt.Printf("#####----- Remote IP Address is %v -----#####\n", remote)
 
 	server := &http.Server{
 		Addr:      ":8081",
