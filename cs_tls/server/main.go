@@ -7,7 +7,6 @@ import (
 	"encoding/base64"
 	"fmt"
 	"io"
-	"io/ioutil"
 	"net"
 	"net/http"
 	"strings"
@@ -66,31 +65,13 @@ func getCustomToken(nonce string) ([]byte, error) {
 	}
 
 	fmt.Printf("Response from launcher: %v\n", resp)
-	text, err := ioutil.ReadAll(resp.Body)
+	text, err := io.ReadAll(resp.Body)
 	if err != nil {
 		fmt.Printf("Failed to read resp.Body: %v", err)
 	}
-	fmt.Printf("Content: %s\n", text)
+	fmt.Printf("Token from the attestation service: %s\n", text)
 
-	tokenbytes, err := io.ReadAll(resp.Body)
-	if err != nil {
-		return nil, err
-	}
-
-	fmt.Printf("tokenbytes: %s\n", string(tokenbytes))
-
-	// mapClaims := jwt.MapClaims{}
-	// _, _, err = jwt.NewParser().ParseUnverified(string(tokenbytes), mapClaims)
-	// if err != nil {
-	// 	return nil, err
-	// }
-	// claimsString, err := json.MarshalIndent(mapClaims, "", "  ")
-	// if err != nil {
-	// 	return nil, err
-	// }
-
-	//fmt.Printf("fetched token from the Attestation Service: %v\n", string(claimsString))
-	return tokenbytes, nil
+	return text, nil
 }
 
 func handleConnectionRequest(w http.ResponseWriter, r *http.Request) {
