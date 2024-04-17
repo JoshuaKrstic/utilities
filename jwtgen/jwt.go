@@ -15,19 +15,17 @@ func main() {
 		"aud": "https://meal.corp",
 		"iss": "https://storage.googleapis.com/aws_token_bucket/aws_token_testing",
 		"sub": "thisisatestsub",
-		"iat": 1712857253,
-		"exp": 1719857253,
+		"iat": 1713310733,
+		"exp": 1719310733,
 		"https://aws.amazon.com/tags": jwt.MapClaims{
 			"principal_tags": jwt.MapClaims{
 				"swname":                                []string{"CONFIDENTIAL_SPACE"},
 				"hwmodel":                               []string{"GCP_AMD_SEV"},
-				"confidential_space.support_attributes": []string{"{LATEST,STABLE,USABLE,}"},
+				"confidential_space.support_attributes": []string{"LATEST=STABLE=USABLE="},
 				"container.image_digest":                []string{"sha256:notthesamehash9949d43fd51dde2a5b66db9b695ef5bfe525cf8576d54ffaa9"},
 				"swversion":                             []string{"230902"},
 				"gce.zone":                              []string{"us-east4-c"},
-				"gce.project_id":                        []string{"this-is-a-long-project-id"},
 			},
-			// "transitive_tag_keys": []string{"secboot"},
 		},
 	})
 
