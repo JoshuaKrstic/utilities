@@ -49,29 +49,38 @@ func getCustomTokenBytes(body string) (string, error) {
 			},
 		},
 	}
+
 	resp, err := httpClient.Post(tokenEndpoint, contentType, strings.NewReader(body))
 	if err != nil {
 		return "", fmt.Errorf("failed to get raw custom token response: %w", err)
 	}
+
 	defer resp.Body.Close()
+
 	if resp.StatusCode != http.StatusOK {
 		return "", fmt.Errorf("failed to get a valid attestation token, status code: %v", resp.StatusCode)
 	}
+
 	tokenbytes, err := io.ReadAll(resp.Body)
 	if err != nil {
 		return "", fmt.Errorf("failed to read custom token body: %w", err)
 	}
+
 	return string(tokenbytes), nil
 }
+
 func writeTokenToPath(token string, tokenPath string) {
 	os.WriteFile(tokenPath, []byte(token), 0644)
 }
+
 func fetchBlobFromS3(s *session.Session, provider credentials.Provider) ([]byte, error) {
 	myBucket := "corporation-corp-employee-data"
 	myString := "ciphertext"
+
 	client := s3.New(s, &aws.Config{
 		Credentials: credentials.NewCredentials(provider),
 	})
+
 	input := &s3.GetObjectInput{
 		Bucket: aws.String(myBucket),
 		Key:    aws.String(myString),
@@ -80,44 +89,56 @@ func fetchBlobFromS3(s *session.Session, provider credentials.Provider) ([]byte,
 	if err != nil {
 		return nil, err
 	}
+
 	buf := new(strings.Builder)
 	n, err := io.Copy(buf, result.Body)
 	if err != nil {
 		return nil, fmt.Errorf("failed to read from result response body: %w", err)
 	}
+
 	fmt.Printf("downloaded blob from AWS at location '%v/%v'\n", myBucket, myString)
 	fmt.Printf("blob length: %v bytes\n\n", n)
+
 	return []byte(buf.String()), nil
 }
+
 func main() {
 	// Get LIMITED_AWS token
 	body := tokenRequest{
 		Audience:  audience,
 		TokenType: tokenType,
 	}
+
 	val, err := json.Marshal(body)
 	if err != nil {
 		err = fmt.Errorf("failed to marshal custom request into a request body. Attempted to marshal '%v', got err: %w", body, err)
 		panic(err)
 	}
+
 	token, err := getCustomTokenBytes(string(val))
 	if err != nil {
 		panic(err)
 	}
+
 	fmt.Println("Token recieved: %v", token)
+
 	// AWS Module requires a token path for some reason
 	writeTokenToPath(token, tokenPath)
+
 	sess, _ := session.NewSession(&aws.Config{
 		Region: aws.String(awsRegion)})
 	sts := sts.New(sess)
+
 	// Assume the role with the token we just wrote to disk
 	roleProvider := stscreds.NewWebIdentityRoleProviderWithOptions(sts, roleARN, awsSessionName, stscreds.FetchTokenPath(tokenPath))
+
 	// Download data from AWS
 	blobFromS3, err := fetchBlobFromS3(sess, roleProvider)
 	if err != nil {
 		fmt.Printf("failed to fetch blob from S3: %v\n", err)
 		return
 	}
+
 	// Call Decrypt
 	svc := kms.New(sess, &aws.Config{
 		Credentials: credentials.NewCredentials(roleProvider),
@@ -127,10 +148,12 @@ func main() {
 		KeyId:          aws.String(awsKmsKeyID),
 		CiphertextBlob: []byte(blobFromS3),
 	}
+
 	result, err := svc.Decrypt(input)
 	if err != nil {
 		fmt.Printf("Decrypt Failed: %v\n", err)
 		return
 	}
+
 	fmt.Printf("Decrypt Succeeded: %v\n", result)
 }
