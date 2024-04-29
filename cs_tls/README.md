@@ -1,4 +1,4 @@
-# Confidetial Space Attested TLS Example
+# Confidential Space Attested TLS Example
 
 This folder contains an example server built to run in Google Confidential Space that uses TLS to provide a secure, attested channel for distributing sensitve data.
 
