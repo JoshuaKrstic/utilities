@@ -5,18 +5,20 @@ import (
 	"encoding/pem"
 	"fmt"
 	"os"
+	"time"
 
 	"github.com/golang-jwt/jwt/v4"
 )
 
 func main() {
+	t := time.Now().Unix() - 1 // -1 second to avoid tokens being used before their issued time
 	signingMethod := jwt.SigningMethodRS256
 	token := jwt.NewWithClaims(signingMethod, jwt.MapClaims{
 		"aud":     "https://meal.corp",
 		"iss":     "https://storage.googleapis.com/aws_token_bucket/aws_token_testing",
 		"sub":     "https://www.googleapis.com/compute/v1/projects/TESTPROJECTID/zones/us-central1-a/instances/TESTSUB",
-		"iat":     1713310733,
-		"exp":     1719310733,
+		"iat":     t,
+		"exp":     t + 60*60,
 		"dbgstat": "disabled-since-boot",
 		"eat_nonce": []string{
 			"NONCE1abcdef",
