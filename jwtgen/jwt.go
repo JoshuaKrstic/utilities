@@ -10,15 +10,33 @@ import (
 	"github.com/golang-jwt/jwt/v4"
 )
 
+// Shell command here:
+// awstest () {
+// 	aws sts assume-role-with-web-identity --role-arn arn:aws:iam::232510754029:role/mealcorp-keyaccess --role-session-name 101 --web-identity-token $1
+//   }
+
 func main() {
 	t := time.Now().Unix() - 1 // -1 second to avoid tokens being used before their issued time
 	signingMethod := jwt.SigningMethodRS256
 	token := jwt.NewWithClaims(signingMethod, jwt.MapClaims{
-		"aud":     "https://meal.corp",
-		"iss":     "https://storage.googleapis.com/aws_token_bucket/aws_token_testing",
-		"sub":     "https://www.googleapis.com/compute/v1/projects/TESTPROJECTID/zones/us-central1-a/instances/TESTSUB",
-		"iat":     t,
-		"exp":     t + 60*60,
+		"aud": "https://meal.corp",
+		"iss": "https://storage.googleapis.com/aws_token_bucket/aws_token_testing",
+		"sub": "https://www.googleapis.com/compute/v1/projects/TESTPROJECTID/zones/us-central1-a/instances/TESTSUB",
+		"iat": t,
+		"exp": t + 60*60,
+		"https://aws.amazon.com/tags": jwt.MapClaims{
+			"principal_tags": jwt.MapClaims{
+				"dbgstat":            []string{"enabled"},
+				"hwmodel":            []string{"GCP_INTEL_TDX"},
+				"iss":                []string{"https://confidentialcomputing.googleapis.com"},
+				"secboot":            []string{"true"},
+				"swname":             []string{"CONFIDENTIAL_SPACE"},
+				"swversion":          []string{"240900"},
+				"support_attributes": []string{"LATEST=STABLE=USABLE"},
+				"gce.project_id":     []string{"projectidpaddedto30chars0000000000000000000"},
+				"key_fingerprint":    []string{"6b1f357b59e9407fb017ca0e3e783b2bd5acbfea6c83dd82971a4150df5b25f9=551f357b59e9407fb017ca0e3e783b2bd5acbfea6c83dd82971a4150df5b2555"},
+			},
+		},
 		"dbgstat": "disabled-since-boot",
 		"eat_nonce": []string{
 			"NONCE1abcdef",
@@ -62,17 +80,17 @@ func main() {
 				"image_id":        "sha256:fffffc90d343cbcb01a5032edac86db5998c536cd0a366514121a45c6723765c",
 				"image_reference": "docker.io/library/nginx:latest",
 				"image_signatures": []jwt.MapClaims{
-					jwt.MapClaims{
+					{
 						"key_id":              "<hexadecimal-sha256-fingerprint-public-key1>",
 						"signature":           "<base64-encoded-signature>",
 						"signature_algorithm": "RSASSA_PSS_SHA256",
 					},
-					jwt.MapClaims{
+					{
 						"key_id":              "<hexadecimal-sha256-fingerprint-public-key2>",
 						"signature":           "<base64-encoded-signature>",
 						"signature_algorithm": "RSASSA_PSS_SHA256",
 					},
-					jwt.MapClaims{
+					{
 						"key_id":              "<hexadecimal-sha256-fingerprint-public-key3>",
 						"signature":           "<base64-encoded-signature>",
 						"signature_algorithm": "ECDSA_P256_SHA256",
