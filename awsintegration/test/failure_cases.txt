@@ -1,0 +1,7 @@
+1. Trying to use a non-standard OIDC claim in policy:
+    "storage.googleapis.com/aws_token_bucket/aws_token_testing:dbgstat": "disabled-since-boot",
+
+    Error (which is vauge and incredibly unclear)
+    An error occurred (AccessDenied) when calling the AssumeRoleWithWebIdentity operation: Not authorized to perform sts:AssumeRoleWithWebIdentity
+
+    

@@ -26,15 +26,15 @@ func main() {
 		"exp": t + 60*60,
 		"https://aws.amazon.com/tags": jwt.MapClaims{
 			"principal_tags": jwt.MapClaims{
-				"dbgstat":            []string{"enabled"},
-				"hwmodel":            []string{"GCP_INTEL_TDX"},
-				"iss":                []string{"https://confidentialcomputing.googleapis.com"},
-				"secboot":            []string{"true"},
-				"swname":             []string{"CONFIDENTIAL_SPACE"},
-				"swversion":          []string{"240900"},
-				"support_attributes": []string{"LATEST=STABLE=USABLE"},
-				"gce.project_id":     []string{"projectidpaddedto30chars0000000000000000000"},
-				"key_fingerprint":    []string{"6b1f357b59e9407fb017ca0e3e783b2bd5acbfea6c83dd82971a4150df5b25f9=551f357b59e9407fb017ca0e3e783b2bd5acbfea6c83dd82971a4150df5b2555"},
+				"dbgstat":               []string{"enabled"},
+				"hwmodel":               []string{"GCP_INTEL_TDX"},
+				"iss":                   []string{"https://confidentialcomputing.googleapis.com"},
+				"secboot":               []string{"true"},
+				"swname":                []string{"CONFIDENTIAL_SPACE"},
+				"swversion":             []string{"240900"},
+				"support_attr":          []string{"LATEST=STABLE=USABLE"},
+				"gce.project_id":        []string{"projectidpaddedto30chars0000000000000000000"},
+				"container.sig.key_ids": []string{"6b1f357b59e9407fb017ca0e3e783b2bd5acbfea6c83dd82971a4150df5b25f9=551f357b59e9407fb017ca0e3e783b2bd5acbfea6c83dd82971a4150df5b2555"},
 			},
 		},
 		"dbgstat": "disabled-since-boot",
@@ -81,18 +81,18 @@ func main() {
 				"image_reference": "docker.io/library/nginx:latest",
 				"image_signatures": []jwt.MapClaims{
 					{
-						"key_id":              "<hexadecimal-sha256-fingerprint-public-key1>",
-						"signature":           "<base64-encoded-signature>",
+						"key_id":              "ABCD057b59e9407fb017ca0e3e783b2bd5acbfea6c83dd82971a4150df5b25f9",
+						"signature":           "ABCD0BhMA8g6xgWDLtr/RbHRdpv26wVos8VuZ/aRZ2uhQldRAiEAgDA4kROlJJ298p1wrmJWiuxpiznWr7c1qHVbMsL02a0=",
+						"signature_algorithm": "ECDSA_P256_SHA256",
+					},
+					{
+						"key_id":              "EFGH057b59e9407fb017ca0e3e783b2bd5acbfea6c83dd82971a4150df5b25f9",
+						"signature":           "EFGH0BhMA8g6xgWDLtr/RbHRdpv26wVos8VuZ/aRZ2uhQldRAiEAgDA4kROlJJ298p1wrmJWiuxpiznWr7c1qHVbMsL02a0=",
 						"signature_algorithm": "RSASSA_PSS_SHA256",
 					},
 					{
-						"key_id":              "<hexadecimal-sha256-fingerprint-public-key2>",
-						"signature":           "<base64-encoded-signature>",
-						"signature_algorithm": "RSASSA_PSS_SHA256",
-					},
-					{
-						"key_id":              "<hexadecimal-sha256-fingerprint-public-key3>",
-						"signature":           "<base64-encoded-signature>",
+						"key_id":              "IJKL057b59e9407fb017ca0e3e783b2bd5acbfea6c83dd82971a4150df5b25f9",
+						"signature":           "IJKL0BhMA8g6xgWDLtr/RbHRdpv26wVos8VuZ/aRZ2uhQldRAiEAgDA4kROlJJ298p1wrmJWiuxpiznWr7c1qHVbMsL02a0=",
 						"signature_algorithm": "ECDSA_P256_SHA256",
 					},
 				},
@@ -131,9 +131,7 @@ func main() {
 		fmt.Printf("failed to parse private key: %v\n", err)
 		return
 	}
-	//fmt.Printf("Parsed RSA key: %v\n", key)
 
-	//pbytes := []byte(p.Bytes)
 	tokenstring, err := token.SignedString(key)
 
 	if err != nil {
@@ -141,17 +139,5 @@ func main() {
 		return
 	}
 
-	//fmt.Println("Token signed successfully")
 	fmt.Println(tokenstring)
 }
-
-// "https://aws.amazon.com/tags": jwt.MapClaims {
-// 	"principal_tags": jwt.MapClaims {
-// 		"swname":                                []string{"CONFIDENTIAL_SPACE"},
-// 		"hwmodel":                               []string{"GCP_AMD_SEV"},
-// 		"confidential_space.support_attributes": []string{"LATEST=STABLE=USABLE="},
-// 		"container.image_digest":                []string{"sha256:notthesamehash9949d43fd51dde2a5b66db9b695ef5bfe525cf8576d54ffaa9"},
-// 		"swversion":                             []string{"230902"},
-// 		"gce.zone":                              []string{"us-east4-c"},
-// 	},
-// },
