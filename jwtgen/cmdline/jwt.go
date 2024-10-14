@@ -11,9 +11,9 @@ import (
 )
 
 // Shell command here:
-// awstest () {
-// 	aws sts assume-role-with-web-identity --role-arn arn:aws:iam::232510754029:role/mealcorp-keyaccess --role-session-name 101 --web-identity-token $1
-//   }
+awstest () {
+	aws sts assume-role-with-web-identity --role-arn arn:aws:iam::232510754029:role/mealcorp-keyaccess --role-session-name 101 --web-identity-token $1
+  }
 
 func main() {
 	t := time.Now().Unix() - 1 // -1 second to avoid tokens being used before their issued time
@@ -114,7 +114,7 @@ func main() {
 
 	token.Header["kid"] = "12345"
 
-	privateKey, err := os.ReadFile("mykey.pem")
+	privateKey, err := os.ReadFile("../data/mykey.pem")
 	if err != nil {
 		fmt.Printf("failed to read keyfile: %v\n", err)
 		return
