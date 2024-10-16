@@ -211,6 +211,42 @@ func TestTokens(t *testing.T) {
 				},
 			}),
 		},
+		{
+			name:        "Token that works on the command line, one char shorter than the breaking token",
+			wantFailure: false,
+			roleArn:     "arn:aws:iam::232510754029:role/mealcorp-keyaccess",
+			claims: baseTokenMergedWith(jwt.MapClaims{
+				"https://aws.amazon.com/tags": jwt.MapClaims{
+					"principal_tags": jwt.MapClaims{
+						"hwmodel":                               []string{"GCP_INTEL_TDX"},
+						"swname":                                []string{"CONFIDENTIAL_SPACE"},
+						"swversion":                             []string{"240900"},
+						"confidential_space.support_attributes": []string{"LATEST=STABLE=USABLE"},
+						"gce.project_id":                        []string{"projectidpaddedto30chars0000000000000000000"},
+						"gce.zone":                              []string{"northamerica-northeast1-a"},
+						"container.signatures.key_ids":          []string{"6b1f357b59e9407fb017ca0e3e783b2bd5acbfea6c83dd82971a4150df5b25f9=551f357b59e9407fb017ca0e3e783b2bd5acbfea6c83dd82971a4150df5b2555=551f357b59e940000000"},
+					},
+				},
+			}),
+		},
+		{
+			name:        "Token that breaks the command line, one character longer than the breaking token",
+			wantFailure: false,
+			roleArn:     "arn:aws:iam::232510754029:role/mealcorp-keyaccess",
+			claims: baseTokenMergedWith(jwt.MapClaims{
+				"https://aws.amazon.com/tags": jwt.MapClaims{
+					"principal_tags": jwt.MapClaims{
+						"hwmodel":                               []string{"GCP_INTEL_TDX"},
+						"swname":                                []string{"CONFIDENTIAL_SPACE"},
+						"swversion":                             []string{"240900"},
+						"confidential_space.support_attributes": []string{"LATEST=STABLE=USABLE"},
+						"gce.project_id":                        []string{"projectidpaddedto30chars0000000000000000000"},
+						"gce.zone":                              []string{"northamerica-northeast1-a"},
+						"container.signatures.key_ids":          []string{"6b1f357b59e9407fb017ca0e3e783b2bd5acbfea6c83dd82971a4150df5b25f9=551f357b59e9407fb017ca0e3e783b2bd5acbfea6c83dd82971a4150df5b2555=551f357b59e9400000000"},
+					},
+				},
+			}),
+		},
 	}
 
 	for _, tc := range testcases {
