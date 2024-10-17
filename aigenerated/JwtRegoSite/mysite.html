@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JWT Validator</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="button-container">
+    <button id="run-policy">Run Policy</button>
+  </div>
+  <div class="container">
+    <div class="box">
+      <label for="jwt-input">JWT</label>
+      <textarea id="jwt-input" placeholder="Paste your JWT here">
+{
+  "aud": "AUDIENCE_NAME",
+  "dbgstat": "disabled-since-boot",
+  "eat_nonce": [
+    "NONCE_1",
+    "NONCE_2"
+  ],
+  "eat_profile": "https://cloud.google.com/confidential-computing/confidential-space/docs/reference/token-claims",
+  "exp": 1721330075,
+  "google_service_accounts": [
+    "PROJECT_ID-compute@developer.gserviceaccount.com"
+  ],
+  "hwmodel": "GCP_AMD_SEV",
+  "iat": 1721326475,
+  "iss": "https://confidentialcomputing.googleapis.com",
+  "nbf": 1721326475,
+  "oemid": 11129,
+  "secboot": true,
+  "sub": "https://www.googleapis.com/compute/v1/projects/PROJECT_ID/zones/us-central1-a/instances/INSTANCE_NAME",
+  "submods": {
+    "confidential_space": {
+      "monitoring_enabled": {
+        "memory": false
+      },
+      "support_attributes": [
+        "LATEST",
+        "STABLE",
+        "USABLE"
+      ]
+    },
+    "container": {
+      "args": [
+        "/customnonce",
+        "/docker-entrypoint.sh",
+        "nginx",
+        "-g",
+        "daemon off;"
+      ],
+      "env": {
+        "HOSTNAME": "HOST_NAME",
+        "NGINX_VERSION": "1.27.0",
+        "NJS_RELEASE": "2~bookworm",
+        "NJS_VERSION": "0.8.4",
+        "PATH": "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+        "PKG_RELEASE": "2~bookworm"
+      },
+      "image_digest": "sha256:67682bda769fae1ccf5183192b8daf37b64cae99c6c3302650f6f8bf5f0f95df",
+      "image_id": "sha256:fffffc90d343cbcb01a5032edac86db5998c536cd0a366514121a45c6723765c",
+      "image_reference": "docker.io/library/nginx:latest",
+      "image_signatures": [
+      {
+      "key_id": "6b1f357b59e9407fb017ca0e3e783b2bd5acbfea6c83dd82971a4150df5b25f9",
+      "signature": "MEUCIBhMA8g6xgWDLtr/RbHRdpv26wVos8VuZ/aRZ2uhQldRAiEAgDA4kROlJJ298p1wrmJWiuxpiznWr7c1qHVbMsL02a0=",
+      "signature_algorithm": "ECDSA_P256_SHA256"
+      }
+      ],
+      "restart_policy": "Never"
+    },
+    "gce": {
+      "instance_id": "INSTANCE_ID",
+      "instance_name": "INSTANCE_NAME",
+      "project_id": "PROJECT_ID",
+      "project_number": "PROJECT_NUMBER",
+      "zone": "us-central1-a"
+    }
+  },
+  "swname": "CONFIDENTIAL_SPACE",
+  "swversion": [
+    "240500"
+  ]
+}
+      </textarea>
+      <pre id="jwt-claims"></pre>
+    </div>
+    <div class="box">
+      <label for="rego-input">Rego</label>
+      <textarea id="rego-input">
+package jwt_validation
+
+# The input to this policy will be the decoded JWT payload
+default allow = false
+
+# Allow if the following conditions are met
+allow {
+    input.swname == "CONFIDENTIAL_SPACE"
+    valid_image_digest(input.submods.container.image_digest)
+}
+
+# Helper rule to check if the image_digest is one of the allowed values
+valid_image_digest(digest) {
+    digest == "sha256:67682bda769fae1ccf5183192b8daf37b64cae99c6c3302650f6f8bf5f0f95df"
+} {
+    digest == "sha256:123123123339fae1ccf5183192b8daf37b64cae99c6c3302650f6f8bf5f0f95df"
+}
+</textarea>
+    </div>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>

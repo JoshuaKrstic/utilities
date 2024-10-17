@@ -1,0 +1,17 @@
+package jwt_validation
+
+# The input to this policy will be the decoded JWT payload
+default allow = false
+
+# Allow if the following conditions are met
+allow {
+    input.swname == "CONFIDENTIAL_SPACE"
+    valid_image_digest(input.submods.container.image_digest)
+}
+
+# Helper rule to check if the image_digest is one of the allowed values
+valid_image_digest(digest) {
+    digest == "sha256:67682bda769fae1ccf5183192b8daf37b64cae99c6c3302650f6f8bf5f0f95df"
+} {
+    digest == "sha256:123123123339fae1ccf5183192b8daf37b64cae99c6c3302650f6f8bf5f0f95df"
+}

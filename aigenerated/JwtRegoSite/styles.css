@@ -1,0 +1,80 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  background-color: #f4f4f4;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  width: 100%; /* Ensure it spans the full width */
+  margin-bottom: 20px; /* Add space between button and boxes */
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 1.2rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  width: 100%; /* Ensure it spans the full width */
+  max-width: 1400px; /* Max width of the container */
+}
+
+.box {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  padding: 20px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+}
+
+label {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+textarea {
+  width: 100%;
+  height: 300px;
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fafafa;
+  resize: none;
+  box-sizing: border-box;
+}
+
+pre {
+  display: none;
+  width: 100%;
+  height: 300px;
+  padding: 0;
+  font-size: 1rem;
+  background-color: transparent;
+  border: none;
+  overflow: auto;
+  box-sizing: border-box;
+}
