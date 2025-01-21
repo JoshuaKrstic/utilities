@@ -20,23 +20,45 @@ import (
 	"github.com/aws/aws-sdk-go/service/sts"
 )
 
-var (
-	socketPath     = "/run/container_launcher/teeserver.sock"
-	tokenEndpoint  = "http://localhost/v1/token"
-	contentType    = "application/json"
-	audience       = "https://integration.test"
-	roleARN        = "arn:aws:iam::232510754029:role/cs_integration_test"
+const (
+	// Token Request Constants
+	socketPath    = "/run/container_launcher/teeserver.sock"
+	tokenEndpoint = "http://localhost/v1/token"
+	contentType   = "application/json"
+	tokenPath     = "./token"
+	tokenType     = "AWS_PRINCIPALTAGS"
+	unixNetwork   = "unix"
+
+	// AWS Config Constants
+	roleARN        = "arn:aws:iam::232510754029:role/testingRoleForWebIdentity"
 	awsKmsKeyID    = "arn:aws:kms:us-east-2:232510754029:key/32e9c399-58ef-4b89-96ec-46473d53cd6f"
-	tokenPath      = "./token"
-	tokenType      = "LIMITED_AWS"
 	awsRegion      = "us-east-2"
 	awsSessionName = "integration_test"
+	myBucket       = "corporation-corp-employee-data"
+	myString       = "ciphertext"
+
+	// Workload Metadata Constants
+	customAudienceVariable = "custom_audience"
+	sigsVariable           = "container_sigs"
 )
 
 type tokenRequest struct {
-	Audience  string   `json:"audience"`
-	Nonces    []string `json:"nonces"`
-	TokenType string   `json:"token_type"`
+	Audience     string       `json:"audience"`
+	Nonces       []string     `json:"nonces"`
+	TokenType    string       `json:"token_type"`
+	TokenOptions tokenOptions `json:"token_options"`
+}
+
+type tokenOptions struct {
+	AllowedPrincipalTags allowedPrincipalTags `json:"allowed_principal_tags"`
+}
+
+type allowedPrincipalTags struct {
+	ContainerImageSignatures containerImageSignatures `json:"container_image_signatures"`
+}
+
+type containerImageSignatures struct {
+	Key_ids []string `json:"key_ids"`
 }
 
 func getCustomTokenBytes(body string) (string, error) {
@@ -45,7 +67,7 @@ func getCustomTokenBytes(body string) (string, error) {
 			// Set the DialContext field to a function that creates
 			// a new network connection to a Unix domain socket
 			DialContext: func(_ context.Context, _, _ string) (net.Conn, error) {
-				return net.Dial("unix", socketPath)
+				return net.Dial(unixNetwork, socketPath)
 			},
 		},
 	}
@@ -69,14 +91,7 @@ func getCustomTokenBytes(body string) (string, error) {
 	return string(tokenbytes), nil
 }
 
-func writeTokenToPath(token string, tokenPath string) {
-	os.WriteFile(tokenPath, []byte(token), 0644)
-}
-
 func fetchBlobFromS3(s *session.Session, provider credentials.Provider) ([]byte, error) {
-	myBucket := "corporation-corp-employee-data"
-	myString := "ciphertext"
-
 	client := s3.New(s, &aws.Config{
 		Credentials: credentials.NewCredentials(provider),
 	})
@@ -102,11 +117,33 @@ func fetchBlobFromS3(s *session.Session, provider credentials.Provider) ([]byte,
 	return []byte(buf.String()), nil
 }
 
+func cleanup() {
+	os.Remove(tokenPath)
+}
+
 func main() {
-	// Get LIMITED_AWS token
+	audience, ok := os.LookupEnv(customAudienceVariable)
+	if !ok {
+		panic(fmt.Errorf("unable to find the custom audience variable. A variable with the name %v is required for this workload", customAudienceVariable))
+	}
+
+	rawSigs, ok := os.LookupEnv(sigsVariable)
+	if !ok {
+		panic(fmt.Errorf("unable to find the container image signature variable. A variable with the name %v is required for this workload", sigsVariable))
+	}
+	sigs := strings.Split(rawSigs, ",")
+
+	// Get token from the launcher
 	body := tokenRequest{
 		Audience:  audience,
 		TokenType: tokenType,
+		TokenOptions: tokenOptions{
+			AllowedPrincipalTags: allowedPrincipalTags{
+				ContainerImageSignatures: containerImageSignatures{
+					Key_ids: sigs,
+				},
+			},
+		},
 	}
 
 	val, err := json.Marshal(body)
@@ -119,17 +156,15 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
+	fmt.Printf("Token recieved: %v", token)
 
-	fmt.Println("Token recieved: %v", token)
+	// AWS Module reads the token from a file
+	os.WriteFile(tokenPath, []byte(token), 0644)
 
-	// AWS Module requires a token path for some reason
-	writeTokenToPath(token, tokenPath)
-
+	// Assume the role with the token we just wrote to disk
 	sess, _ := session.NewSession(&aws.Config{
 		Region: aws.String(awsRegion)})
 	sts := sts.New(sess)
-
-	// Assume the role with the token we just wrote to disk
 	roleProvider := stscreds.NewWebIdentityRoleProviderWithOptions(sts, roleARN, awsSessionName, stscreds.FetchTokenPath(tokenPath))
 
 	// Download data from AWS
@@ -156,4 +191,6 @@ func main() {
 	}
 
 	fmt.Printf("Decrypt Succeeded: %v\n", result)
+
+	cleanup()
 }

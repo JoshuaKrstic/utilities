@@ -6,10 +6,11 @@
 
 FROM alpine
 
-COPY main /
+COPY awsint /
 
 LABEL "tee.launch_policy.allow_env_override"="ALLOWED_OVERRIDE"
 LABEL "tee.launch_policy.allow_cmd_override"="true"
 LABEL "tee.launch_policy.log_redirect"="always"
+LABEL "tee.launch_policy.allow_env_override"="att_service_address,custom_audience,container_sigs"
 
-ENTRYPOINT ["/main"]
+ENTRYPOINT ["/awsint"]
