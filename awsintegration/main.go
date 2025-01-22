@@ -43,13 +43,13 @@ const (
 )
 
 type tokenRequest struct {
-	Audience     string       `json:"audience"`
-	Nonces       []string     `json:"nonces"`
-	TokenType    string       `json:"token_type"`
-	TokenOptions tokenOptions `json:"token_options"`
+	Audience     string           `json:"audience"`
+	Nonces       []string         `json:"nonces"`
+	TokenType    string           `json:"token_type"`
+	TokenOptions tokenTypeOptions `json:"token_type_options"`
 }
 
-type tokenOptions struct {
+type tokenTypeOptions struct {
 	AllowedPrincipalTags allowedPrincipalTags `json:"allowed_principal_tags"`
 }
 
@@ -137,7 +137,7 @@ func main() {
 	body := tokenRequest{
 		Audience:  audience,
 		TokenType: tokenType,
-		TokenOptions: tokenOptions{
+		TokenOptions: tokenTypeOptions{
 			AllowedPrincipalTags: allowedPrincipalTags{
 				ContainerImageSignatures: containerImageSignatures{
 					Key_ids: sigs,
