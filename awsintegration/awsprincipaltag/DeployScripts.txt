@@ -1,0 +1,16 @@
+Deploy-- 
+    gcloud compute instances create --project=jkrstic-test-project --confidential-compute --shielded-secure-boot --maintenance-policy=TERMINATE --scopes=cloud-platform --zone=us-west1-a --image-project=confidential-space-images-dev --image=confidential-space-hardened-0-dev-9c8fac3 --metadata ^~^tee-image-reference=asia-east1-docker.pkg.dev/jkrstic-test-project/testing/principaltags:latest~tee-container-log-redirect=true~tee-env-custom_audience=https://meal.corp~tee-env-container_sigs=MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEUkOYhUBORQ4d/4whngHVqEDPiWd7bdZT41icl8G4ctJRgc1yvDrlUmP+wo5PczsGqhWrUxJUy++FD7lB4J4jPA==~tee-signed-image-repos=asia-east1-docker.pkg.dev/jkrstic-test-project/testing/principaltags~tee-attestation-service-endpoint=autopush-confidentialcomputing.sandbox.googleapis.com --service-account=mealcorpsvc@jkrstic-test-project.iam.gserviceaccount.com josh-hardned
+
+Sign --
+    cosign sign --key cosign.key $IMAGE_REFERENCE -a dev.cosignproject.cosign/sigalg=ECDSA_P256_SHA256 -a dev.cosignproject.cosign/pub=$PUB
+    PUB=$(cat pub.pem | openssl base64)
+    PUB=$(echo $PUB | tr -d '[:space:]' | sed 's/[=]*$//')
+    IMAGE_REFERENCE=asia-east1-docker.pkg.dev/jkrstic-test-project/testing/principaltags@sha256:702753ea62b711fd7cd401adce8b35d7fe77c32ae3e1ad190a52c618a5c1f0c8
+
+Docker -- 
+    docker build . -t asia-east1-docker.pkg.dev/jkrstic-test-project/testing/principaltags && docker push asia-east1-docker.pkg.dev/jkrstic-test-project/testing/principaltags
+
+
+
+https://pantheon.corp.google.com/apis/library/staging-confidentialcomputing.sandbox.googleapis.com?project=jkrstic-test-project
+https://pantheon.corp.google.com/apis/library/autopush-confidentialcomputing.sandbox.googleapis.com?project=jkrstic-test-project
