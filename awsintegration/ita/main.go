@@ -67,7 +67,8 @@ func main() {
 
 	// Get token from the launcher
 	body := tokenRequest{
-		Audience: audience,
+		Audience:  audience,
+		TokenType: "OIDC",
 	}
 
 	val, err := json.Marshal(body)
