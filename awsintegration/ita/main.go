@@ -47,6 +47,8 @@ func getCustomITATokenBytes(body string) (string, error) {
 
 	defer resp.Body.Close()
 
+	fmt.Printf("Got response from TEE server, code: %v\n", resp.StatusCode)
+
 	if resp.StatusCode != http.StatusOK {
 		return "", fmt.Errorf("failed to get a valid attestation token, status code: %v", resp.StatusCode)
 	}
