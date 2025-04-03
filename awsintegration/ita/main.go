@@ -16,6 +16,7 @@ const (
 	// Token Request Constants
 	socketPath       = "/run/container_launcher/teeserver.sock"
 	itaTokenEndpoint = "http://localhost/v1/intel/token"
+	gcaTokenEndpoint = "http://localhost/v1/token"
 	contentType      = "application/json"
 	unixNetwork      = "unix"
 
@@ -29,7 +30,7 @@ type tokenRequest struct {
 	TokenType string   `json:"token_type"`
 }
 
-func getCustomITATokenBytes(body string) (string, error) {
+func getCustomToken(path string, body string) (string, error) {
 	httpClient := http.Client{
 		Transport: &http.Transport{
 			// Set the DialContext field to a function that creates
@@ -40,7 +41,7 @@ func getCustomITATokenBytes(body string) (string, error) {
 		},
 	}
 
-	resp, err := httpClient.Post(itaTokenEndpoint, contentType, strings.NewReader(body))
+	resp, err := httpClient.Post(path, contentType, strings.NewReader(body))
 	if err != nil {
 		return "", fmt.Errorf("failed to get raw custom token response: %w", err)
 	}
@@ -79,9 +80,17 @@ func main() {
 		panic(err)
 	}
 
-	token, err := getCustomITATokenBytes(string(val))
-	if err != nil {
-		panic(err)
+	itaToken, itaErr := getCustomToken(itaTokenEndpoint, string(val))
+	gcaToken, gcaErr := getCustomToken(gcaTokenEndpoint, string(val))
+	if itaErr != nil {
+		fmt.Printf("failed to get ITA token: %v", itaErr)
+	} else {
+		fmt.Printf("ITA Token recieved: %v", itaToken)
 	}
-	fmt.Printf("Token recieved: %v", token)
+
+	if gcaErr != nil {
+		fmt.Printf("failed to get GCA token: %v", gcaErr)
+	} else {
+		fmt.Printf("ITA Token recieved: %v", gcaToken)
+	}
 }
