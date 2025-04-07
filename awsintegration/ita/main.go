@@ -10,6 +10,9 @@ import (
 	"net/http"
 	"os"
 	"strings"
+
+	"github.com/golang-jwt/jwt/v4"
+	"github.com/google/go-cmp/cmp"
 )
 
 const (
@@ -30,7 +33,7 @@ type tokenRequest struct {
 	TokenType string   `json:"token_type"`
 }
 
-func getCustomToken(path string, body string) (string, error) {
+func getCustomToken(path string, body string) ([]byte, error) {
 	httpClient := http.Client{
 		Transport: &http.Transport{
 			// Set the DialContext field to a function that creates
@@ -43,7 +46,7 @@ func getCustomToken(path string, body string) (string, error) {
 
 	resp, err := httpClient.Post(path, contentType, strings.NewReader(body))
 	if err != nil {
-		return "", fmt.Errorf("failed to get raw custom token response: %w", err)
+		return nil, fmt.Errorf("failed to get raw custom token response: %w", err)
 	}
 
 	defer resp.Body.Close()
@@ -51,15 +54,15 @@ func getCustomToken(path string, body string) (string, error) {
 	fmt.Printf("Got response from TEE server, code: %v\n", resp.StatusCode)
 
 	if resp.StatusCode != http.StatusOK {
-		return "", fmt.Errorf("failed to get a valid attestation token, status code: %v", resp.StatusCode)
+		return nil, fmt.Errorf("failed to get a valid attestation token, status code: %v", resp.StatusCode)
 	}
 
 	tokenbytes, err := io.ReadAll(resp.Body)
 	if err != nil {
-		return "", fmt.Errorf("failed to read custom token body: %w", err)
+		return nil, fmt.Errorf("failed to read custom token body: %w", err)
 	}
 
-	return string(tokenbytes), nil
+	return tokenbytes, nil
 }
 
 func main() {
@@ -83,14 +86,23 @@ func main() {
 	itaToken, itaErr := getCustomToken(itaTokenEndpoint, string(val))
 	gcaToken, gcaErr := getCustomToken(gcaTokenEndpoint, string(val))
 	if itaErr != nil {
-		fmt.Printf("failed to get ITA token: %v", itaErr)
+		fmt.Printf("failed to get ITA token: %v\n", itaErr)
 	} else {
-		fmt.Printf("ITA Token recieved: %v", itaToken)
+		fmt.Printf("ITA Token recieved: %v\n", string(itaToken))
 	}
 
 	if gcaErr != nil {
-		fmt.Printf("failed to get GCA token: %v", gcaErr)
+		fmt.Printf("failed to get GCA token: %v\n", gcaErr)
 	} else {
-		fmt.Printf("ITA Token recieved: %v", gcaToken)
+		fmt.Printf("ITA Token recieved: %v\n", string(gcaToken))
 	}
+
+	structuredItaToken := jwt.MapClaims{}
+	json.Unmarshal(itaToken, &structuredItaToken)
+
+	structuredGcaToken := jwt.MapClaims{}
+	json.Unmarshal(gcaToken, &structuredGcaToken)
+
+	diff := cmp.Diff(structuredItaToken, structuredGcaToken)
+	fmt.Printf("Token Diff: %v\n", diff)
 }
