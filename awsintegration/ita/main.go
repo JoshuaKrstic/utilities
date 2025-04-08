@@ -94,7 +94,7 @@ func main() {
 	if gcaErr != nil {
 		fmt.Printf("failed to get GCA token: %v\n", gcaErr)
 	} else {
-		fmt.Printf("ITA Token recieved: %v\n", string(gcaToken))
+		fmt.Printf("GCA Token recieved: %v\n", string(gcaToken))
 	}
 
 	structuredItaToken := jwt.MapClaims{}
