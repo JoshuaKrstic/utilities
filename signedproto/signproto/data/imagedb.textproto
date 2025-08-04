@@ -1,0 +1,593 @@
+# proto-file: google3/cloud/hosted/confidentialcomputing/clh/service/config/protoconf.proto
+# proto-message:cloud.hosted.confidentialcomputing.clh.service.config.ImageDatabase
+golden_values: [
+  {
+    key: "/syslinux/vmlinuz.B init=/usr/lib/systemd/systemd rootwait ro noresume loglevel=7 console=tty1 console=ttyS0,115200 security=apparmor virtio_net.napi_tx=1 nmi_watchdog=0 csm.disabled=1 loadpin.exclude=kernel-module,firmware modules-load=loadpin_trigger firmware_class.path=/var/lib/nvidia/firmware module.sig_enforce=1 dm_verity.error_behavior=3 dm_verity.max_bios=-1 dm_verity.dev_wait=1 i915.modeset=1 cros_efi systemd.mask=update-engine.service confidential-space.hardened=true systemd.mask=var-lib-toolbox.mount systemd.mask=sshd.service systemd.mask=docker-events-collector-fluent-bit.service systemd.mask=device_policy_manager.service systemd.mask=crash-reporter.service systemd.mask=konlet-startup.service systemd.mask=google-shutdown-scripts.service systemd.mask=google-startup-scripts.service systemd.mask=google-osconfig-agent.service systemd.mask=google-osconfig-init.service systemd.mask=google-guest-agent.service systemd.mask=docker.service systemd.mask=var-lib-docker.mount systemd.unit=cloud-final.service systemd.wants=gcr-online.target systemd.wants=network-online.target systemd.wants=systemd-resolved.service systemd.wants=basic.target systemd.default_timeout_start_sec=900s cos.protected_stateful_partition=m ds=nocloud;s=/usr/share/oem/ root=/dev/dm-0 \"dm-mod.create=vroot,,,ro,0 4077568 verity 0 PARTUUID=7CD0B53E-B968-B449-9959-3434E85827B0 PARTUUID=7CD0B53E-B968-B449-9959-3434E85827B0 4096 4096 509696 509696 sha256 9e8b60b661400d392a9f67258e4acd8fed819e236b59db2588cf0631198f3dcf a2504d02cb693fd1a21e7d2cc765e8952f3d99b2bf06d8715842678fe9b9cea8;oemroot,,,ro,0 1024000 verity 0 PARTUUID=96d8e6b5-db12-f945-9905-cb06e10ce1b1 PARTUUID=96d8e6b5-db12-f945-9905-cb06e10ce1b1 4096 4096 128000 128000 sha256 8aed03968472474626d3f1078a1a2fd02082bcb829accb03e5dc1b03b92c646c 4f8ef988b9329672e167ee7cda215360b151aae85742142b19883e28badbc4e0\""
+    value: {
+      image_release_name: "confidential-space-hardened-0-cgpupreview-c573ee7"
+      is_hardened: true
+      image_base_version: 2
+      swversion: 250500
+      attribute_labels: [EXPERIMENTAL]
+    }
+  },
+  {
+    key: "/syslinux/vmlinuz.B init=/usr/lib/systemd/systemd rootwait ro noresume loglevel=7 console=tty1 console=ttyS0,115200 security=apparmor virtio_net.napi_tx=1 nmi_watchdog=0 csm.disabled=1 loadpin.exclude=kernel-module,firmware modules-load=loadpin_trigger firmware_class.path=/var/lib/nvidia/firmware module.sig_enforce=1 dm_verity.error_behavior=3 dm_verity.max_bios=-1 dm_verity.dev_wait=1 i915.modeset=1 cros_efi systemd.mask=update-engine.service confidential-space.hardened=false systemd.default_timeout_start_sec=900s cos.protected_stateful_partition=m ds=nocloud;s=/usr/share/oem/ root=/dev/dm-0 \"dm-mod.create=vroot,,,ro,0 4077568 verity 0 PARTUUID=7CD0B53E-B968-B449-9959-3434E85827B0 PARTUUID=7CD0B53E-B968-B449-9959-3434E85827B0 4096 4096 509696 509696 sha256 9e8b60b661400d392a9f67258e4acd8fed819e236b59db2588cf0631198f3dcf a2504d02cb693fd1a21e7d2cc765e8952f3d99b2bf06d8715842678fe9b9cea8;oemroot,,,ro,0 1024000 verity 0 PARTUUID=96d8e6b5-db12-f945-9905-cb06e10ce1b1 PARTUUID=96d8e6b5-db12-f945-9905-cb06e10ce1b1 4096 4096 128000 128000 sha256 6a1d1cdf74c4737da762ac07293467209afbf493f833c9283dfbeead71540033 40e8e5fea99d183ef4f649a95cfd28c1e06266f62b40eb72b395cb925a8a2997\""
+    value: {
+      image_release_name: "confidential-space-debug-0-cgpupreview-c573ee7"
+      is_hardened: false
+      image_base_version: 2
+      swversion: 250500
+      attribute_labels: []
+    }
+  },
+  {
+    key: "/syslinux/vmlinuz.B init=/usr/lib/systemd/systemd rootwait ro noresume loglevel=7 console=tty1 console=ttyS0,115200 security=apparmor virtio_net.napi_tx=1 nmi_watchdog=0 csm.disabled=1 loadpin.exclude=kernel-module,firmware modules-load=loadpin_trigger firmware_class.path=/var/lib/nvidia/firmware module.sig_enforce=1 dm_verity.error_behavior=3 dm_verity.max_bios=-1 dm_verity.dev_wait=1 i915.modeset=1 cros_efi systemd.mask=update-engine.service confidential-space.hardened=true systemd.mask=var-lib-toolbox.mount systemd.mask=sshd.service systemd.mask=docker-events-collector-fluent-bit.service systemd.mask=device_policy_manager.service systemd.mask=crash-reporter.service systemd.mask=konlet-startup.service systemd.mask=google-shutdown-scripts.service systemd.mask=google-startup-scripts.service systemd.mask=google-osconfig-agent.service systemd.mask=google-osconfig-init.service systemd.mask=google-guest-agent.service systemd.mask=docker.service systemd.mask=var-lib-docker.mount systemd.unit=cloud-final.service systemd.wants=gcr-online.target systemd.wants=network-online.target systemd.wants=systemd-resolved.service systemd.wants=basic.target systemd.default_timeout_start_sec=900s cos.protected_stateful_partition=m ds=nocloud;s=/usr/share/oem/ root=/dev/dm-0 \"dm-mod.create=vroot,,,ro,0 4077568 verity 0 PARTUUID=3214333B-3277-C64E-A09B-76BA60357243 PARTUUID=3214333B-3277-C64E-A09B-76BA60357243 4096 4096 509696 509696 sha256 c53f4aa15954f35b72ca2d2f50cc609fe649bd45dfc67294e9c507a0a5a47816 b92636bb48c5cf81e4ca05017590b367c6ed536f7ab2dd34fdf7d70239adae7d;oemroot,,,ro,0 1024000 verity 0 PARTUUID=6aebd20f-2494-2e46-aaab-55412e3cb51a PARTUUID=6aebd20f-2494-2e46-aaab-55412e3cb51a 4096 4096 128000 128000 sha256 637ee43d11beefc4b92e7695e87812a97ca0ad23eb9baf6455309680e8d45089 0abda65f0f67a220ddc48fcdd687e7f0d8970ab2b547a93589e379621737c143\""
+    value: {
+      image_release_name: "confidential-space-hardened-0-cgpupreview-c4af8b0"
+      is_hardened: true
+      image_base_version: 1
+      swversion: 250302
+      attribute_labels: [EXPERIMENTAL]
+    }
+  },
+  {
+    key: "/syslinux/vmlinuz.B init=/usr/lib/systemd/systemd rootwait ro noresume loglevel=7 console=tty1 console=ttyS0,115200 security=apparmor virtio_net.napi_tx=1 nmi_watchdog=0 csm.disabled=1 loadpin.exclude=kernel-module,firmware modules-load=loadpin_trigger firmware_class.path=/var/lib/nvidia/firmware module.sig_enforce=1 dm_verity.error_behavior=3 dm_verity.max_bios=-1 dm_verity.dev_wait=1 i915.modeset=1 cros_efi systemd.mask=update-engine.service confidential-space.hardened=false systemd.default_timeout_start_sec=900s cos.protected_stateful_partition=m ds=nocloud;s=/usr/share/oem/ root=/dev/dm-0 \"dm-mod.create=vroot,,,ro,0 4077568 verity 0 PARTUUID=3214333B-3277-C64E-A09B-76BA60357243 PARTUUID=3214333B-3277-C64E-A09B-76BA60357243 4096 4096 509696 509696 sha256 c53f4aa15954f35b72ca2d2f50cc609fe649bd45dfc67294e9c507a0a5a47816 b92636bb48c5cf81e4ca05017590b367c6ed536f7ab2dd34fdf7d70239adae7d;oemroot,,,ro,0 1024000 verity 0 PARTUUID=6aebd20f-2494-2e46-aaab-55412e3cb51a PARTUUID=6aebd20f-2494-2e46-aaab-55412e3cb51a 4096 4096 128000 128000 sha256 52d804c4d396095d24940cf67ea81370440a1a7263e2600167aa5cd5cfcb8166 ac05826e584966c1066c394a269526957c4fd71d495adf685f0421bdecc9e4b4\""
+    value: {
+      image_release_name: "confidential-space-debug-0-cgpupreview-c4af8b0"
+      is_hardened: false
+      image_base_version: 1
+      swversion: 250302
+      attribute_labels: []
+    }
+  },
+  {
+    key: "/syslinux/vmlinuz.B init=/usr/lib/systemd/systemd rootwait ro noresume loglevel=7 console=tty1 console=ttyS0,115200 security=apparmor virtio_net.napi_tx=1 nmi_watchdog=0 csm.disabled=1 loadpin.exclude=kernel-module,firmware modules-load=loadpin_trigger firmware_class.path=/var/lib/nvidia/firmware module.sig_enforce=1 dm_verity.error_behavior=3 dm_verity.max_bios=-1 dm_verity.dev_wait=1 i915.modeset=1 cros_efi systemd.mask=update-engine.service confidential-space.hardened=true systemd.mask=var-lib-toolbox.mount systemd.mask=sshd.service systemd.mask=docker-events-collector-fluent-bit.service systemd.mask=device_policy_manager.service systemd.mask=crash-reporter.service systemd.mask=konlet-startup.service systemd.mask=google-shutdown-scripts.service systemd.mask=google-startup-scripts.service systemd.mask=google-osconfig-agent.service systemd.mask=google-osconfig-init.service systemd.mask=google-guest-agent.service systemd.mask=docker.service systemd.mask=var-lib-docker.mount systemd.unit=cloud-final.service systemd.wants=gcr-online.target systemd.wants=network-online.target systemd.wants=systemd-resolved.service systemd.wants=basic.target systemd.default_timeout_start_sec=900s cos.protected_stateful_partition=m ds=nocloud;s=/usr/share/oem/ root=/dev/dm-0 \"dm-mod.create=vroot,,,ro,0 4077568 verity 0 PARTUUID=3214333B-3277-C64E-A09B-76BA60357243 PARTUUID=3214333B-3277-C64E-A09B-76BA60357243 4096 4096 509696 509696 sha256 c53f4aa15954f35b72ca2d2f50cc609fe649bd45dfc67294e9c507a0a5a47816 b92636bb48c5cf81e4ca05017590b367c6ed536f7ab2dd34fdf7d70239adae7d;oemroot,,,ro,0 1024000 verity 0 PARTUUID=6aebd20f-2494-2e46-aaab-55412e3cb51a PARTUUID=6aebd20f-2494-2e46-aaab-55412e3cb51a 4096 4096 128000 128000 sha256 ac24dad5b8d2a9a45c767f821dd31490ae81874a52947b3c7dec1139b7a133e9 3c9f156be04d1b42a263969e8442b377d0dd9ad8281eb9643ccea1b0b5b30308\""
+    value: {
+      image_release_name: "confidential-space-hardened-250301"
+      is_hardened: true
+      image_base_version: 1
+      swversion: 250301
+      attribute_labels: [LATEST, STABLE, USABLE]
+    }
+  },
+  {
+    key: "/syslinux/vmlinuz.B init=/usr/lib/systemd/systemd rootwait ro noresume loglevel=7 console=tty1 console=ttyS0,115200 security=apparmor virtio_net.napi_tx=1 nmi_watchdog=0 csm.disabled=1 loadpin.exclude=kernel-module,firmware modules-load=loadpin_trigger firmware_class.path=/var/lib/nvidia/firmware module.sig_enforce=1 dm_verity.error_behavior=3 dm_verity.max_bios=-1 dm_verity.dev_wait=1 i915.modeset=1 cros_efi systemd.mask=update-engine.service confidential-space.hardened=false systemd.default_timeout_start_sec=900s cos.protected_stateful_partition=m ds=nocloud;s=/usr/share/oem/ root=/dev/dm-0 \"dm-mod.create=vroot,,,ro,0 4077568 verity 0 PARTUUID=3214333B-3277-C64E-A09B-76BA60357243 PARTUUID=3214333B-3277-C64E-A09B-76BA60357243 4096 4096 509696 509696 sha256 c53f4aa15954f35b72ca2d2f50cc609fe649bd45dfc67294e9c507a0a5a47816 b92636bb48c5cf81e4ca05017590b367c6ed536f7ab2dd34fdf7d70239adae7d;oemroot,,,ro,0 1024000 verity 0 PARTUUID=6aebd20f-2494-2e46-aaab-55412e3cb51a PARTUUID=6aebd20f-2494-2e46-aaab-55412e3cb51a 4096 4096 128000 128000 sha256 16282c2c05fd7f71619ba7215f98a2036dd01283e7bdde687e5d621701591315 56a314b5d21aa178b88889ffc5d12d21b61af246139893022ecbe2cce6596be4\""
+    value: {
+      image_release_name: "confidential-space-debug-250301"
+      is_hardened: false
+      image_base_version: 1
+      swversion: 250301
+      attribute_labels: []
+    }
+  },
+  {
+    key: "/syslinux/vmlinuz.B init=/usr/lib/systemd/systemd rootwait ro noresume loglevel=7 console=tty1 console=ttyS0,115200 security=apparmor virtio_net.napi_tx=1 nmi_watchdog=0 csm.disabled=1 loadpin.exclude=kernel-module,firmware modules-load=loadpin_trigger firmware_class.path=/var/lib/nvidia/firmware module.sig_enforce=1 dm_verity.error_behavior=3 dm_verity.max_bios=-1 dm_verity.dev_wait=1 i915.modeset=1 cros_efi systemd.mask=update-engine.service confidential-space.hardened=true systemd.mask=var-lib-toolbox.mount systemd.mask=sshd.service systemd.mask=docker-events-collector-fluent-bit.service systemd.mask=device_policy_manager.service systemd.mask=crash-reporter.service systemd.mask=konlet-startup.service systemd.mask=google-shutdown-scripts.service systemd.mask=google-startup-scripts.service systemd.mask=google-osconfig-agent.service systemd.mask=google-osconfig-init.service systemd.mask=google-guest-agent.service systemd.mask=docker.service systemd.mask=var-lib-docker.mount systemd.unit=cloud-final.service systemd.wants=gcr-online.target systemd.wants=network-online.target systemd.wants=systemd-resolved.service systemd.wants=basic.target systemd.default_timeout_start_sec=900s cos.protected_stateful_partition=m ds=nocloud;s=/usr/share/oem/ root=/dev/dm-0 \"dm-mod.create=vroot,,,ro,0 4077568 verity 0 PARTUUID=66B6349B-836C-4A4B-A68C-33A786C90EA4 PARTUUID=66B6349B-836C-4A4B-A68C-33A786C90EA4 4096 4096 509696 509696 sha256 f55950127d15fe45a06abe5fba06599ed07e0052b252fc27c80a736b398ca9a5 97adbacf3635195c3e4510fcdf4a1d54c59d8e64d527106a8fd37ca54bc87217;oemroot,,,ro,0 1024000 verity 0 PARTUUID=7751efc7-085a-464e-a469-5aa966b1519a PARTUUID=7751efc7-085a-464e-a469-5aa966b1519a 4096 4096 128000 128000 sha256 f2f1dc4989e5469563053def1775058f57e9b5aeb9c748053edae6171e331421 fa6029413d0a8474fc088d2a4525920c451224ea64d870edd00f4df2146a7dc8\""
+    value: {
+      image_release_name: "confidential-space-hardened-250300"
+      is_hardened: true
+      image_base_version: 1
+      swversion: 250300
+      attribute_labels: [STABLE, USABLE]
+    }
+  },
+  {
+    key: "/syslinux/vmlinuz.B init=/usr/lib/systemd/systemd rootwait ro noresume loglevel=7 console=tty1 console=ttyS0,115200 security=apparmor virtio_net.napi_tx=1 nmi_watchdog=0 csm.disabled=1 loadpin.exclude=kernel-module,firmware modules-load=loadpin_trigger firmware_class.path=/var/lib/nvidia/firmware module.sig_enforce=1 dm_verity.error_behavior=3 dm_verity.max_bios=-1 dm_verity.dev_wait=1 i915.modeset=1 cros_efi systemd.mask=update-engine.service confidential-space.hardened=false systemd.default_timeout_start_sec=900s cos.protected_stateful_partition=m ds=nocloud;s=/usr/share/oem/ root=/dev/dm-0 \"dm-mod.create=vroot,,,ro,0 4077568 verity 0 PARTUUID=66B6349B-836C-4A4B-A68C-33A786C90EA4 PARTUUID=66B6349B-836C-4A4B-A68C-33A786C90EA4 4096 4096 509696 509696 sha256 f55950127d15fe45a06abe5fba06599ed07e0052b252fc27c80a736b398ca9a5 97adbacf3635195c3e4510fcdf4a1d54c59d8e64d527106a8fd37ca54bc87217;oemroot,,,ro,0 1024000 verity 0 PARTUUID=7751efc7-085a-464e-a469-5aa966b1519a PARTUUID=7751efc7-085a-464e-a469-5aa966b1519a 4096 4096 128000 128000 sha256 9391a721fae1e6c7d3427fad1d754721c6c970ba7495e38eb0d42379bed752ca b47c251cb7a73e1a19fd68c2e1e42758a0fea0d182a628a2b12c388d52b50472\""
+    value: {
+      image_release_name: "confidential-space-debug-250300"
+      is_hardened: false
+      image_base_version: 1
+      swversion: 250300
+      attribute_labels: []
+    }
+  },
+  {
+    key: "/syslinux/vmlinuz.B init=/usr/lib/systemd/systemd rootwait ro noresume loglevel=7 console=tty1 console=ttyS0,115200 security=apparmor virtio_net.napi_tx=1 nmi_watchdog=0 csm.disabled=1 loadpin.exclude=kernel-module,firmware modules-load=loadpin_trigger firmware_class.path=/var/lib/nvidia/firmware module.sig_enforce=1 dm_verity.error_behavior=3 dm_verity.max_bios=-1 dm_verity.dev_wait=1 i915.modeset=1 cros_efi systemd.mask=update-engine.service confidential-space.hardened=true systemd.mask=var-lib-toolbox.mount systemd.mask=sshd.service systemd.mask=docker-events-collector-fluent-bit.service systemd.mask=device_policy_manager.service systemd.mask=crash-reporter.service systemd.mask=konlet-startup.service systemd.mask=google-shutdown-scripts.service systemd.mask=google-startup-scripts.service systemd.mask=google-osconfig-agent.service systemd.mask=google-osconfig-init.service systemd.mask=google-guest-agent.service systemd.mask=docker.service systemd.mask=var-lib-docker.mount systemd.unit=cloud-final.service systemd.wants=gcr-online.target systemd.wants=network-online.target systemd.wants=systemd-resolved.service systemd.wants=basic.target systemd.default_timeout_start_sec=900s cos.protected_stateful_partition=m ds=nocloud;s=/usr/share/oem/ root=/dev/dm-0 \"dm-mod.create=vroot,,,ro,0 4077568 verity 0 PARTUUID=F3DE0B93-6547-9644-B2F2-D17D5A4EE34C PARTUUID=F3DE0B93-6547-9644-B2F2-D17D5A4EE34C 4096 4096 509696 509696 sha256 918837bd93b81e73c91c516cfb0dbb29eac2c953ac3de1854314200d39692784 1a4f8a5a885541b9adc9937db72e24f7ff8dbebd421cf950621aee9f3f0340b8;oemroot,,,ro,0 1024000 verity 0 PARTUUID=5aacfedb-31e6-e24b-bb8f-3ee2a7af1589 PARTUUID=5aacfedb-31e6-e24b-bb8f-3ee2a7af1589 4096 4096 128000 128000 sha256 bfc2e7d213474e34169d7bf3f1116cb959aab1c4eda0e30689b1fe8266473bff 13e4a1c66e90c4912f5df91f71737f985418f14166b4b54b88fee61d2c23cae0\""
+    value: {
+      image_release_name: "confidential-space-hardened-250101"
+      is_hardened: true
+      image_base_version: 1
+      swversion: 250101
+      attribute_labels: [STABLE, USABLE]
+    }
+  },
+  {
+    key: "/syslinux/vmlinuz.B init=/usr/lib/systemd/systemd rootwait ro noresume loglevel=7 console=tty1 console=ttyS0,115200 security=apparmor virtio_net.napi_tx=1 nmi_watchdog=0 csm.disabled=1 loadpin.exclude=kernel-module,firmware modules-load=loadpin_trigger firmware_class.path=/var/lib/nvidia/firmware module.sig_enforce=1 dm_verity.error_behavior=3 dm_verity.max_bios=-1 dm_verity.dev_wait=1 i915.modeset=1 cros_efi systemd.mask=update-engine.service confidential-space.hardened=false systemd.default_timeout_start_sec=900s cos.protected_stateful_partition=m ds=nocloud;s=/usr/share/oem/ root=/dev/dm-0 \"dm-mod.create=vroot,,,ro,0 4077568 verity 0 PARTUUID=F3DE0B93-6547-9644-B2F2-D17D5A4EE34C PARTUUID=F3DE0B93-6547-9644-B2F2-D17D5A4EE34C 4096 4096 509696 509696 sha256 918837bd93b81e73c91c516cfb0dbb29eac2c953ac3de1854314200d39692784 1a4f8a5a885541b9adc9937db72e24f7ff8dbebd421cf950621aee9f3f0340b8;oemroot,,,ro,0 1024000 verity 0 PARTUUID=5aacfedb-31e6-e24b-bb8f-3ee2a7af1589 PARTUUID=5aacfedb-31e6-e24b-bb8f-3ee2a7af1589 4096 4096 128000 128000 sha256 c3b670d6ff6d030bbb0e8a1cbaca0c185c44a832b124bea15016175c642ae388 46f70c3e187236a2476dddfa720d500aeff183fa0d9c0525552c72be0a44ae09\""
+    value: {
+      image_release_name: "confidential-space-debug-250101"
+      is_hardened: false
+      image_base_version: 1
+      swversion: 250101
+      attribute_labels: []
+    }
+  },
+  {
+    key: "/syslinux/vmlinuz.B init=/usr/lib/systemd/systemd rootwait ro noresume loglevel=7 console=tty1 console=ttyS0,115200 security=apparmor virtio_net.napi_tx=1 nmi_watchdog=0 csm.disabled=1 loadpin.exclude=kernel-module,firmware modules-load=loadpin_trigger firmware_class.path=/var/lib/nvidia/firmware module.sig_enforce=1 dm_verity.error_behavior=3 dm_verity.max_bios=-1 dm_verity.dev_wait=1 i915.modeset=1 cros_efi systemd.mask=update-engine.service confidential-space.hardened=true systemd.mask=var-lib-toolbox.mount systemd.mask=sshd.service systemd.mask=docker-events-collector-fluent-bit.service systemd.mask=device_policy_manager.service systemd.mask=crash-reporter.service systemd.mask=konlet-startup.service systemd.mask=google-shutdown-scripts.service systemd.mask=google-startup-scripts.service systemd.mask=google-osconfig-agent.service systemd.mask=google-osconfig-init.service systemd.mask=google-guest-agent.service systemd.mask=docker.service systemd.mask=var-lib-docker.mount systemd.unit=cloud-final.service systemd.wants=gcr-online.target systemd.wants=network-online.target systemd.wants=systemd-resolved.service systemd.wants=basic.target systemd.default_timeout_start_sec=900s cos.protected_stateful_partition=m ds=nocloud;s=/usr/share/oem/ root=/dev/dm-0 \"dm-mod.create=vroot,,,ro,0 4077568 verity 0 PARTUUID=8DBBA480-3A3E-D346-8CC7-E4CBBB7A3C71 PARTUUID=8DBBA480-3A3E-D346-8CC7-E4CBBB7A3C71 4096 4096 509696 509696 sha256 dadcc86a3ea8e2fb6ad1d480efb03bc112a68a60e5d6daf2e9b603b5ee73b89a b9c2c7cb635e5c738da939f7cb73f54ebd03c80667509e7a7b3a120dc3d68137;oemroot,,,ro,0 1024000 verity 0 PARTUUID=5d1140a8-23c2-ef40-a2c5-026925aad00e PARTUUID=5d1140a8-23c2-ef40-a2c5-026925aad00e 4096 4096 128000 128000 sha256 8b1c228f35f7c7f1c86e23b44d5df0e5a9c8cdb20d2aa7decf2afc6e4cbb4ae8 4be097f0d2af8040e410806daa216ce7c8bdbc823b40e0d624d6862fca24e462\""
+    value: {
+      image_release_name: "confidential-space-hardened-250100"
+      is_hardened: true
+      image_base_version: 1
+      swversion: 250100
+      attribute_labels: [STABLE, USABLE]
+    }
+  },
+  {
+    key: "/syslinux/vmlinuz.B init=/usr/lib/systemd/systemd rootwait ro noresume loglevel=7 console=tty1 console=ttyS0,115200 security=apparmor virtio_net.napi_tx=1 nmi_watchdog=0 csm.disabled=1 loadpin.exclude=kernel-module,firmware modules-load=loadpin_trigger firmware_class.path=/var/lib/nvidia/firmware module.sig_enforce=1 dm_verity.error_behavior=3 dm_verity.max_bios=-1 dm_verity.dev_wait=1 i915.modeset=1 cros_efi systemd.mask=update-engine.service confidential-space.hardened=false systemd.default_timeout_start_sec=900s cos.protected_stateful_partition=m ds=nocloud;s=/usr/share/oem/ root=/dev/dm-0 \"dm-mod.create=vroot,,,ro,0 4077568 verity 0 PARTUUID=8DBBA480-3A3E-D346-8CC7-E4CBBB7A3C71 PARTUUID=8DBBA480-3A3E-D346-8CC7-E4CBBB7A3C71 4096 4096 509696 509696 sha256 dadcc86a3ea8e2fb6ad1d480efb03bc112a68a60e5d6daf2e9b603b5ee73b89a b9c2c7cb635e5c738da939f7cb73f54ebd03c80667509e7a7b3a120dc3d68137;oemroot,,,ro,0 1024000 verity 0 PARTUUID=5d1140a8-23c2-ef40-a2c5-026925aad00e PARTUUID=5d1140a8-23c2-ef40-a2c5-026925aad00e 4096 4096 128000 128000 sha256 d290534d6204671cadb48e73773fab334e1e0f36b1c1a895930424dd7d9a241c 9256ee47f5cf1132a5d68e66549df2682c7d86f7d659756aaa7adf0dddcc09a0\""
+    value: {
+      image_release_name: "confidential-space-debug-250100"
+      is_hardened: false
+      image_base_version: 1
+      swversion: 250100
+      attribute_labels: []
+    }
+  },
+  {
+    key: "/syslinux/vmlinuz.B init=/usr/lib/systemd/systemd rootwait ro noresume loglevel=7 console=tty1 console=ttyS0,115200 security=apparmor virtio_net.napi_tx=1 nmi_watchdog=0 csm.disabled=1 loadpin.exclude=kernel-module,firmware modules-load=loadpin_trigger firmware_class.path=/var/lib/nvidia/firmware module.sig_enforce=1 dm_verity.error_behavior=3 dm_verity.max_bios=-1 dm_verity.dev_wait=1 i915.modeset=1 cros_efi systemd.mask=update-engine.service confidential-space.hardened=true systemd.mask=var-lib-toolbox.mount systemd.mask=sshd.service systemd.mask=docker-events-collector-fluent-bit.service systemd.mask=device_policy_manager.service systemd.mask=crash-reporter.service systemd.mask=konlet-startup.service systemd.mask=google-shutdown-scripts.service systemd.mask=google-startup-scripts.service systemd.mask=google-osconfig-agent.service systemd.mask=google-osconfig-init.service systemd.mask=google-guest-agent.service systemd.mask=docker.service systemd.mask=var-lib-docker.mount systemd.unit=cloud-final.service systemd.wants=gcr-online.target systemd.wants=network-online.target systemd.wants=systemd-resolved.service systemd.wants=basic.target systemd.default_timeout_start_sec=900s cos.protected_stateful_partition=m ds=nocloud;s=/usr/share/oem/ root=/dev/dm-0 \"dm-mod.create=vroot,,,ro,0 4077568 verity 0 PARTUUID=84A75149-4BBD-E340-95E6-8F9BE4442941 PARTUUID=84A75149-4BBD-E340-95E6-8F9BE4442941 4096 4096 509696 509696 sha256 bee746508e10237b85065037fb28d64f7884fde821aa359fcc6dcf55585becfe 8a7d1f4373e2f706f0ee609f5c31f6dcff74f55c69183f996203aad74c657c19;oemroot,,,ro,0 1024000 verity 0 PARTUUID=e5b15583-d6f0-4b49-ba6b-def8ebbabab5 PARTUUID=e5b15583-d6f0-4b49-ba6b-def8ebbabab5 4096 4096 128000 128000 sha256 170e321efc74bc987e1415e6d10ee90907914e197cf720135ab1dfcb6b320ca9 c5c83d798384618b77e501cb4b1f4ec7f1fd8d9c5f3a7944e13aadeccbfcc599\""
+    value: {
+      image_release_name: "confidential-space-hardened-0-gpupreview-796705b"
+      is_hardened: true
+      image_base_version: 1
+      swversion: 241002
+      attribute_labels: [EXPERIMENTAL]
+    }
+  },
+  {
+    key: "/syslinux/vmlinuz.B init=/usr/lib/systemd/systemd rootwait ro noresume loglevel=7 console=tty1 console=ttyS0,115200 security=apparmor virtio_net.napi_tx=1 nmi_watchdog=0 csm.disabled=1 loadpin.exclude=kernel-module,firmware modules-load=loadpin_trigger firmware_class.path=/var/lib/nvidia/firmware module.sig_enforce=1 dm_verity.error_behavior=3 dm_verity.max_bios=-1 dm_verity.dev_wait=1 i915.modeset=1 cros_efi systemd.mask=update-engine.service confidential-space.hardened=false systemd.default_timeout_start_sec=900s cos.protected_stateful_partition=m ds=nocloud;s=/usr/share/oem/ root=/dev/dm-0 \"dm-mod.create=vroot,,,ro,0 4077568 verity 0 PARTUUID=84A75149-4BBD-E340-95E6-8F9BE4442941 PARTUUID=84A75149-4BBD-E340-95E6-8F9BE4442941 4096 4096 509696 509696 sha256 bee746508e10237b85065037fb28d64f7884fde821aa359fcc6dcf55585becfe 8a7d1f4373e2f706f0ee609f5c31f6dcff74f55c69183f996203aad74c657c19;oemroot,,,ro,0 1024000 verity 0 PARTUUID=e5b15583-d6f0-4b49-ba6b-def8ebbabab5 PARTUUID=e5b15583-d6f0-4b49-ba6b-def8ebbabab5 4096 4096 128000 128000 sha256 7883c1742cfe88ef793d2bcd856cbe6ed393bd56bf46ab8db26a5b79514e3208 6f2fb65fc8cb4b54099edca37a2aa33d48c36573d333022f81c397dae71f81a0\""
+    value: {
+      image_release_name: "confidential-space-debug-0-gpupreview-796705b"
+      is_hardened: false
+      image_base_version: 1
+      swversion: 241002
+      attribute_labels: []
+    }
+  },
+  {
+    key: "/syslinux/vmlinuz.B init=/usr/lib/systemd/systemd rootwait ro noresume loglevel=7 console=tty1 console=ttyS0,115200 security=apparmor virtio_net.napi_tx=1 nmi_watchdog=0 csm.disabled=1 loadpin.exclude=kernel-module,firmware modules-load=loadpin_trigger firmware_class.path=/var/lib/nvidia/firmware module.sig_enforce=1 dm_verity.error_behavior=3 dm_verity.max_bios=-1 dm_verity.dev_wait=1 i915.modeset=1 cros_efi systemd.mask=update-engine.service confidential-space.hardened=true systemd.mask=var-lib-toolbox.mount systemd.mask=sshd.service systemd.mask=docker-events-collector-fluent-bit.service systemd.mask=device_policy_manager.service systemd.mask=crash-reporter.service systemd.mask=konlet-startup.service systemd.mask=google-shutdown-scripts.service systemd.mask=google-startup-scripts.service systemd.mask=google-osconfig-agent.service systemd.mask=google-osconfig-init.service systemd.mask=google-guest-agent.service systemd.mask=docker.service systemd.mask=var-lib-docker.mount systemd.unit=cloud-final.service systemd.wants=gcr-online.target systemd.wants=network-online.target systemd.wants=systemd-resolved.service systemd.wants=basic.target systemd.default_timeout_start_sec=900s cos.protected_stateful_partition=m ds=nocloud;s=/usr/share/oem/ root=/dev/dm-0 \"dm-mod.create=vroot,,,ro,0 4077568 verity 0 PARTUUID=C122ED8E-A57E-984B-8AE2-627CFB94D9F0 PARTUUID=C122ED8E-A57E-984B-8AE2-627CFB94D9F0 4096 4096 509696 509696 sha256 f4205ddafe7cfbd080a0a6b2f02a537ac78fae8b141f015a79d8913e0169567c 67d7560427235b7c87d8ce72be34ad4adc8c074de36fe6481d7122eda6c78595;oemroot,,,ro,0 1024000 verity 0 PARTUUID=75935c37-6fa5-9749-94cb-ebe0fadd22e6 PARTUUID=75935c37-6fa5-9749-94cb-ebe0fadd22e6 4096 4096 128000 128000 sha256 598a9d241e88f92ef4c9277b93e364d8164c4aaf5323d9d2afac6d271e11c1a1 58769f8cdc6cd8d8dda1695a9933dbdda79f76c793fcc097f2e2b31e8fd01319\""
+    value: {
+      image_release_name: "confidential-space-hardened-0-tdxpreview-c38b622"
+      is_hardened: true
+      image_base_version: 1
+      swversion: 241001
+      attribute_labels: [EXPERIMENTAL]
+    }
+  },
+  {
+    key: "/syslinux/vmlinuz.B init=/usr/lib/systemd/systemd rootwait ro noresume loglevel=7 console=tty1 console=ttyS0,115200 security=apparmor virtio_net.napi_tx=1 nmi_watchdog=0 csm.disabled=1 loadpin.exclude=kernel-module,firmware modules-load=loadpin_trigger firmware_class.path=/var/lib/nvidia/firmware module.sig_enforce=1 dm_verity.error_behavior=3 dm_verity.max_bios=-1 dm_verity.dev_wait=1 i915.modeset=1 cros_efi systemd.mask=update-engine.service confidential-space.hardened=false systemd.default_timeout_start_sec=900s cos.protected_stateful_partition=m ds=nocloud;s=/usr/share/oem/ root=/dev/dm-0 \"dm-mod.create=vroot,,,ro,0 4077568 verity 0 PARTUUID=C122ED8E-A57E-984B-8AE2-627CFB94D9F0 PARTUUID=C122ED8E-A57E-984B-8AE2-627CFB94D9F0 4096 4096 509696 509696 sha256 f4205ddafe7cfbd080a0a6b2f02a537ac78fae8b141f015a79d8913e0169567c 67d7560427235b7c87d8ce72be34ad4adc8c074de36fe6481d7122eda6c78595;oemroot,,,ro,0 1024000 verity 0 PARTUUID=75935c37-6fa5-9749-94cb-ebe0fadd22e6 PARTUUID=75935c37-6fa5-9749-94cb-ebe0fadd22e6 4096 4096 128000 128000 sha256 7b64525e46bee768a6c5b0d605bf0d36a44dbbbc14ec1c2c880bf1b80542b1a4 d2df3b15607b48dc99b9af685981e260ecfe85da4f2a0f49274a809a7af297c7\""
+    value: {
+      image_release_name: "confidential-space-debug-0-tdxpreview-c38b622"
+      is_hardened: false
+      image_base_version: 1
+      swversion: 241001
+      attribute_labels: []
+    }
+  },
+  {
+    key: "/syslinux/vmlinuz.B init=/usr/lib/systemd/systemd rootwait ro noresume loglevel=7 console=tty1 console=ttyS0,115200 security=apparmor virtio_net.napi_tx=1 nmi_watchdog=0 csm.disabled=1 loadpin.exclude=kernel-module,firmware modules-load=loadpin_trigger firmware_class.path=/var/lib/nvidia/firmware module.sig_enforce=1 dm_verity.error_behavior=3 dm_verity.max_bios=-1 dm_verity.dev_wait=1 i915.modeset=1 cros_efi systemd.mask=update-engine.service confidential-space.hardened=true systemd.mask=var-lib-toolbox.mount systemd.mask=sshd.service systemd.mask=docker-events-collector-fluent-bit.service systemd.mask=device_policy_manager.service systemd.mask=crash-reporter.service systemd.mask=konlet-startup.service systemd.mask=google-shutdown-scripts.service systemd.mask=google-startup-scripts.service systemd.mask=google-osconfig-agent.service systemd.mask=google-osconfig-init.service systemd.mask=google-guest-agent.service systemd.mask=docker.service systemd.mask=var-lib-docker.mount systemd.unit=cloud-final.service systemd.wants=gcr-online.target systemd.wants=network-online.target systemd.wants=systemd-resolved.service systemd.wants=basic.target systemd.default_timeout_start_sec=900s cos.protected_stateful_partition=m ds=nocloud;s=/usr/share/oem/ root=/dev/dm-0 \"dm-mod.create=vroot,,,ro,0 4077568 verity 0 PARTUUID=84A75149-4BBD-E340-95E6-8F9BE4442941 PARTUUID=84A75149-4BBD-E340-95E6-8F9BE4442941 4096 4096 509696 509696 sha256 bee746508e10237b85065037fb28d64f7884fde821aa359fcc6dcf55585becfe 8a7d1f4373e2f706f0ee609f5c31f6dcff74f55c69183f996203aad74c657c19;oemroot,,,ro,0 1024000 verity 0 PARTUUID=e5b15583-d6f0-4b49-ba6b-def8ebbabab5 PARTUUID=e5b15583-d6f0-4b49-ba6b-def8ebbabab5 4096 4096 128000 128000 sha256 9fa172ed9aacd3016c0330a5210552e2ffe5cb8ca543ea40438a7fe93afb423e 398a56991b3d8020a5933ff3cd0a16acc954923d8a40a1c6b5d52ad58a90bdf5\""
+    value: {
+      image_release_name: "confidential-space-hardened-241000"
+      is_hardened: true
+      image_base_version: 1
+      swversion: 241000
+      attribute_labels: [STABLE, USABLE]
+    }
+  },
+  {
+    key: "/syslinux/vmlinuz.B init=/usr/lib/systemd/systemd rootwait ro noresume loglevel=7 console=tty1 console=ttyS0,115200 security=apparmor virtio_net.napi_tx=1 nmi_watchdog=0 csm.disabled=1 loadpin.exclude=kernel-module,firmware modules-load=loadpin_trigger firmware_class.path=/var/lib/nvidia/firmware module.sig_enforce=1 dm_verity.error_behavior=3 dm_verity.max_bios=-1 dm_verity.dev_wait=1 i915.modeset=1 cros_efi systemd.mask=update-engine.service confidential-space.hardened=false systemd.default_timeout_start_sec=900s cos.protected_stateful_partition=m ds=nocloud;s=/usr/share/oem/ root=/dev/dm-0 \"dm-mod.create=vroot,,,ro,0 4077568 verity 0 PARTUUID=84A75149-4BBD-E340-95E6-8F9BE4442941 PARTUUID=84A75149-4BBD-E340-95E6-8F9BE4442941 4096 4096 509696 509696 sha256 bee746508e10237b85065037fb28d64f7884fde821aa359fcc6dcf55585becfe 8a7d1f4373e2f706f0ee609f5c31f6dcff74f55c69183f996203aad74c657c19;oemroot,,,ro,0 1024000 verity 0 PARTUUID=e5b15583-d6f0-4b49-ba6b-def8ebbabab5 PARTUUID=e5b15583-d6f0-4b49-ba6b-def8ebbabab5 4096 4096 128000 128000 sha256 17b733ed1954c77bb876df895c4d9958b407ed06ef611dcd253e150038866f92 d59614464e9e869741671635d1940ff89ac093935df92cdbdbc665b15c248ca0\""
+    value: {
+      image_release_name: "confidential-space-debug-241000"
+      is_hardened: false
+      image_base_version: 1
+      swversion: 241000
+      attribute_labels: []
+    }
+  },
+  {
+    key: "/syslinux/vmlinuz.B init=/usr/lib/systemd/systemd rootwait ro noresume loglevel=7 console=tty1 console=ttyS0,115200 security=apparmor virtio_net.napi_tx=1 nmi_watchdog=0 csm.disabled=1 loadpin.exclude=kernel-module,firmware modules-load=loadpin_trigger firmware_class.path=/var/lib/nvidia/firmware module.sig_enforce=1 dm_verity.error_behavior=3 dm_verity.max_bios=-1 dm_verity.dev_wait=1 i915.modeset=1 cros_efi systemd.mask=update-engine.service confidential-space.hardened=true systemd.mask=var-lib-toolbox.mount systemd.mask=sshd.service systemd.mask=docker-events-collector-fluent-bit.service systemd.mask=device_policy_manager.service systemd.mask=crash-reporter.service systemd.mask=konlet-startup.service systemd.mask=google-shutdown-scripts.service systemd.mask=google-startup-scripts.service systemd.mask=google-osconfig-agent.service systemd.mask=google-osconfig-init.service systemd.mask=google-guest-agent.service systemd.mask=docker.service systemd.mask=var-lib-docker.mount systemd.unit=cloud-final.service systemd.wants=gcr-online.target systemd.wants=network-online.target systemd.wants=systemd-resolved.service systemd.wants=basic.target systemd.default_timeout_start_sec=900s cos.protected_stateful_partition=m ds=nocloud;s=/usr/share/oem/ root=/dev/dm-0 \"dm-mod.create=vroot,,,ro,0 4077568 verity 0 PARTUUID=D892BE53-B3BD-B642-ACB9-DAA27E4A87F8 PARTUUID=D892BE53-B3BD-B642-ACB9-DAA27E4A87F8 4096 4096 509696 509696 sha256 2e0b080baf48b69dc1763cbb9359a89611d1322eb632569b53a43862f078f8e3 24b77cda8e3d4a710ad10f01a387807d82f570c5eba0b0096d2857ad244cd33d;oemroot,,,ro,0 1024000 verity 0 PARTUUID=ca0ebb70-d213-5a47-aac6-5a6938c11c5e PARTUUID=ca0ebb70-d213-5a47-aac6-5a6938c11c5e 4096 4096 128000 128000 sha256 6e5842a2da80c3dbabdb45f10084ab9124b1cd7716e61b02587459ea36c3e6bc b65a3837941ae9bcbee3714cfc3efe123f9722a46d0e56df64a3ae11aa113fec\""
+    value: {
+      image_release_name: "confidential-space-hardened-240900"
+      is_hardened: true
+      image_base_version: 1
+      swversion: 240900
+      attribute_labels: [STABLE, USABLE]
+    }
+  },
+  {
+    key: "/syslinux/vmlinuz.B init=/usr/lib/systemd/systemd rootwait ro noresume loglevel=7 console=tty1 console=ttyS0,115200 security=apparmor virtio_net.napi_tx=1 nmi_watchdog=0 csm.disabled=1 loadpin.exclude=kernel-module,firmware modules-load=loadpin_trigger firmware_class.path=/var/lib/nvidia/firmware module.sig_enforce=1 dm_verity.error_behavior=3 dm_verity.max_bios=-1 dm_verity.dev_wait=1 i915.modeset=1 cros_efi systemd.mask=update-engine.service confidential-space.hardened=false systemd.default_timeout_start_sec=900s cos.protected_stateful_partition=m ds=nocloud;s=/usr/share/oem/ root=/dev/dm-0 \"dm-mod.create=vroot,,,ro,0 4077568 verity 0 PARTUUID=D892BE53-B3BD-B642-ACB9-DAA27E4A87F8 PARTUUID=D892BE53-B3BD-B642-ACB9-DAA27E4A87F8 4096 4096 509696 509696 sha256 2e0b080baf48b69dc1763cbb9359a89611d1322eb632569b53a43862f078f8e3 24b77cda8e3d4a710ad10f01a387807d82f570c5eba0b0096d2857ad244cd33d;oemroot,,,ro,0 1024000 verity 0 PARTUUID=ca0ebb70-d213-5a47-aac6-5a6938c11c5e PARTUUID=ca0ebb70-d213-5a47-aac6-5a6938c11c5e 4096 4096 128000 128000 sha256 0db4834b798e84dc7f5e43aaf7c97a5583eca46eb066c42d959d683f69f9c8ae 52dea549764cd1185fdb7310e655a7153374c52c98bc8ef3b30a2e6fd47180f3\""
+    value: {
+      image_release_name: "confidential-space-debug-240900"
+      is_hardened: false
+      image_base_version: 1
+      swversion: 240900
+      attribute_labels: []
+    }
+  },
+  {
+    key: "/syslinux/vmlinuz.B init=/usr/lib/systemd/systemd rootwait ro noresume loglevel=7 console=tty1 console=ttyS0,115200 security=apparmor virtio_net.napi_tx=1 nmi_watchdog=0 csm.disabled=1 loadpin.exclude=kernel-module,firmware modules-load=loadpin_trigger firmware_class.path=/var/lib/nvidia/firmware module.sig_enforce=1 dm_verity.error_behavior=3 dm_verity.max_bios=-1 dm_verity.dev_wait=1 i915.modeset=1 cros_efi systemd.mask=update-engine.service confidential-space.hardened=true systemd.mask=var-lib-toolbox.mount systemd.mask=sshd.service systemd.mask=docker-events-collector-fluent-bit.service systemd.mask=device_policy_manager.service systemd.mask=crash-reporter.service systemd.mask=konlet-startup.service systemd.mask=google-shutdown-scripts.service systemd.mask=google-startup-scripts.service systemd.mask=google-osconfig-agent.service systemd.mask=google-osconfig-init.service systemd.mask=google-guest-agent.service systemd.mask=docker.service systemd.mask=var-lib-docker.mount systemd.unit=cloud-final.service systemd.wants=gcr-online.target systemd.wants=network-online.target systemd.wants=systemd-resolved.service systemd.wants=basic.target systemd.default_timeout_start_sec=900s cos.protected_stateful_partition=m ds=nocloud;s=/usr/share/oem/ root=/dev/dm-0 \"dm-mod.create=vroot,,,ro,0 4077568 verity 0 PARTUUID=F6C3E696-9F69-2F45-A3EA-B1C7F6394CA4 PARTUUID=F6C3E696-9F69-2F45-A3EA-B1C7F6394CA4 4096 4096 509696 509696 sha256 c707729bcbeb9eccf3953e8df1ad1fc5fe6931e20dcb1e73eae2bbf2d6d4f91b eeaef9a8a04eb4098b7936cf082108d7bcf7c386a38deb0d3021df6e07e7580a;oemroot,,,ro,0 1024000 verity 0 PARTUUID=fcf1751d-c652-294d-b0a1-93d7cdebbe2e PARTUUID=fcf1751d-c652-294d-b0a1-93d7cdebbe2e 4096 4096 128000 128000 sha256 19373e08c68fa9062cf9d37fa821f588947e421e08aeb6803b54b8abbbb6b2d0 7b8b6a0bba60589e6ce8932cc1bf4ddd2ea1931c68d6bd8871173544910d6d54\""
+    value: {
+      image_release_name: "confidential-space-hardened-240800"
+      is_hardened: true
+      image_base_version: 1
+      swversion: 240800
+      attribute_labels: [STABLE, USABLE]
+    }
+  },
+  {
+    key: "/syslinux/vmlinuz.B init=/usr/lib/systemd/systemd rootwait ro noresume loglevel=7 console=tty1 console=ttyS0,115200 security=apparmor virtio_net.napi_tx=1 nmi_watchdog=0 csm.disabled=1 loadpin.exclude=kernel-module,firmware modules-load=loadpin_trigger firmware_class.path=/var/lib/nvidia/firmware module.sig_enforce=1 dm_verity.error_behavior=3 dm_verity.max_bios=-1 dm_verity.dev_wait=1 i915.modeset=1 cros_efi systemd.mask=update-engine.service confidential-space.hardened=false systemd.default_timeout_start_sec=900s cos.protected_stateful_partition=m ds=nocloud;s=/usr/share/oem/ root=/dev/dm-0 \"dm-mod.create=vroot,,,ro,0 4077568 verity 0 PARTUUID=F6C3E696-9F69-2F45-A3EA-B1C7F6394CA4 PARTUUID=F6C3E696-9F69-2F45-A3EA-B1C7F6394CA4 4096 4096 509696 509696 sha256 c707729bcbeb9eccf3953e8df1ad1fc5fe6931e20dcb1e73eae2bbf2d6d4f91b eeaef9a8a04eb4098b7936cf082108d7bcf7c386a38deb0d3021df6e07e7580a;oemroot,,,ro,0 1024000 verity 0 PARTUUID=fcf1751d-c652-294d-b0a1-93d7cdebbe2e PARTUUID=fcf1751d-c652-294d-b0a1-93d7cdebbe2e 4096 4096 128000 128000 sha256 e2e7037ef4995909caa41df1d71bc6c83676e960fc8ab1716b5b226c41c409de 9044513aeea4a3e34939b4ba4ae7872c4a737d188b93f6fd7820d7693f17ce5a\""
+    value: {
+      image_release_name: "confidential-space-debug-240800"
+      is_hardened: false
+      image_base_version: 1
+      swversion: 240800
+      attribute_labels: []
+    }
+  },
+  {
+    key: "/syslinux/vmlinuz.B init=/usr/lib/systemd/systemd rootwait ro noresume loglevel=7 console=tty1 console=ttyS0,115200 security=apparmor virtio_net.napi_tx=1 nmi_watchdog=0 csm.disabled=1 loadpin.exclude=kernel-module,firmware modules-load=loadpin_trigger firmware_class.path=/var/lib/nvidia/firmware module.sig_enforce=1 dm_verity.error_behavior=3 dm_verity.max_bios=-1 dm_verity.dev_wait=1 i915.modeset=1 cros_efi systemd.mask=update-engine.service confidential-space.hardened=true systemd.mask=var-lib-toolbox.mount systemd.mask=sshd.service systemd.mask=docker-events-collector-fluent-bit.service systemd.mask=device_policy_manager.service systemd.mask=crash-reporter.service systemd.mask=konlet-startup.service systemd.mask=google-shutdown-scripts.service systemd.mask=google-startup-scripts.service systemd.mask=google-osconfig-agent.service systemd.mask=google-osconfig-init.service systemd.mask=google-guest-agent.service systemd.mask=docker.service systemd.mask=var-lib-docker.mount systemd.unit=cloud-final.service systemd.wants=gcr-online.target systemd.wants=network-online.target systemd.wants=systemd-resolved.service systemd.wants=basic.target systemd.default_timeout_start_sec=900s cos.protected_stateful_partition=m ds=nocloud;s=/usr/share/oem/ root=/dev/dm-0 \"dm-mod.create=vroot,,,ro,0 4077568 verity 0 PARTUUID=C9264C5F-D8B8-7B4D-8DF2-F8B77BB67A2C PARTUUID=C9264C5F-D8B8-7B4D-8DF2-F8B77BB67A2C 4096 4096 509696 509696 sha256 bf7c5dc7b77357fd317807e98670d985257e4a3e4e223e6013f77477df8d35e3 77782794fa6e8c1bc4d1fe3a447383280d45e4a33b3ba01555ea9cf6406bbab3;oemroot,,,ro,0 1024000 verity 0 PARTUUID=6cb7ab14-27a4-f84c-9258-894f9c730d2f PARTUUID=6cb7ab14-27a4-f84c-9258-894f9c730d2f 4096 4096 128000 128000 sha256 a37ffe073d22b7b91143624b7ad412ced154cfd69ea788ee8068b472f3701f43 5dfdb0e64bc6f8d5ca94d21bf1362839eee32738466dcf819849e4712065616c\""
+    value: {
+      image_release_name: "confidential-space-hardened-240700"
+      is_hardened: true
+      image_base_version: 1
+      swversion: 240700
+      attribute_labels: [STABLE, USABLE]
+    }
+  },
+  {
+    key: "/syslinux/vmlinuz.B init=/usr/lib/systemd/systemd rootwait ro noresume loglevel=7 console=tty1 console=ttyS0,115200 security=apparmor virtio_net.napi_tx=1 nmi_watchdog=0 csm.disabled=1 loadpin.exclude=kernel-module,firmware modules-load=loadpin_trigger firmware_class.path=/var/lib/nvidia/firmware module.sig_enforce=1 dm_verity.error_behavior=3 dm_verity.max_bios=-1 dm_verity.dev_wait=1 i915.modeset=1 cros_efi systemd.mask=update-engine.service confidential-space.hardened=false systemd.default_timeout_start_sec=900s cos.protected_stateful_partition=m ds=nocloud;s=/usr/share/oem/ root=/dev/dm-0 \"dm-mod.create=vroot,,,ro,0 4077568 verity 0 PARTUUID=C9264C5F-D8B8-7B4D-8DF2-F8B77BB67A2C PARTUUID=C9264C5F-D8B8-7B4D-8DF2-F8B77BB67A2C 4096 4096 509696 509696 sha256 bf7c5dc7b77357fd317807e98670d985257e4a3e4e223e6013f77477df8d35e3 77782794fa6e8c1bc4d1fe3a447383280d45e4a33b3ba01555ea9cf6406bbab3;oemroot,,,ro,0 1024000 verity 0 PARTUUID=6cb7ab14-27a4-f84c-9258-894f9c730d2f PARTUUID=6cb7ab14-27a4-f84c-9258-894f9c730d2f 4096 4096 128000 128000 sha256 8ed12e94ec8b61a9a2bf8eb8aebd4989c08e1d19da2155388e0d2b12ada2d3e7 fa06eca5d232111bd60c50495325a20bb691343214ab1ca6d4bf8dfef1768aaf\""
+    value: {
+      image_release_name: "confidential-space-debug-240700"
+      is_hardened: false
+      image_base_version: 1
+      swversion: 240700
+      attribute_labels: []
+    }
+  },
+  {
+    key: "/syslinux/vmlinuz.B init=/usr/lib/systemd/systemd rootwait ro noresume loglevel=7 console=tty1 console=ttyS0,115200 security=apparmor virtio_net.napi_tx=1 nmi_watchdog=0 csm.disabled=1 loadpin.exclude=kernel-module,firmware modules-load=loadpin_trigger firmware_class.path=/var/lib/nvidia/firmware module.sig_enforce=1 dm_verity.error_behavior=3 dm_verity.max_bios=-1 dm_verity.dev_wait=1 i915.modeset=1 cros_efi systemd.mask=update-engine.service confidential-space.hardened=true systemd.mask=var-lib-toolbox.mount systemd.mask=sshd.service systemd.mask=docker-events-collector-fluent-bit.service systemd.mask=device_policy_manager.service systemd.mask=crash-reporter.service systemd.mask=konlet-startup.service systemd.mask=google-shutdown-scripts.service systemd.mask=google-startup-scripts.service systemd.mask=google-osconfig-agent.service systemd.mask=google-osconfig-init.service systemd.mask=google-guest-agent.service systemd.mask=docker.service systemd.mask=var-lib-docker.mount systemd.unit=cloud-final.service systemd.wants=gcr-online.target systemd.wants=network-online.target systemd.wants=systemd-resolved.service systemd.wants=basic.target systemd.default_timeout_start_sec=900s cos.protected_stateful_partition=m ds=nocloud;s=/usr/share/oem/ root=/dev/dm-0 \"dm-mod.create=vroot,,,ro,0 4077568 verity 0 PARTUUID=B9B14975-6459-FD40-AAEB-823D13AE9CB2 PARTUUID=B9B14975-6459-FD40-AAEB-823D13AE9CB2 4096 4096 509696 509696 sha256 b98fecd015c870b27c203ac41c34aa9ce88a597a96164766b4aeb72541846743 9d4c1d6aabe7ec902ba12b51c4531813b29ec5768e4f2aeee79b9b1285e5c214;oemroot,,,ro,0 1024000 verity 0 PARTUUID=61a3effc-a875-3045-9750-68d3b139fad3 PARTUUID=61a3effc-a875-3045-9750-68d3b139fad3 4096 4096 128000 128000 sha256 95312e99a2c7b30bfb5cf5d613fa4035cd93f79bb21aa7d221f1b51f4e413d01 31d0a22cb572dc259b19d46d2fc038c549fa9e943571c065d07c9d37217a9619\""
+    value: {
+      image_release_name: "confidential-space-hardened-240500"
+      is_hardened: true
+      image_base_version: 1
+      swversion: 240500
+      attribute_labels: [STABLE, USABLE]
+    }
+  },
+  {
+    key: "/syslinux/vmlinuz.B init=/usr/lib/systemd/systemd rootwait ro noresume loglevel=7 console=tty1 console=ttyS0,115200 security=apparmor virtio_net.napi_tx=1 nmi_watchdog=0 csm.disabled=1 loadpin.exclude=kernel-module,firmware modules-load=loadpin_trigger firmware_class.path=/var/lib/nvidia/firmware module.sig_enforce=1 dm_verity.error_behavior=3 dm_verity.max_bios=-1 dm_verity.dev_wait=1 i915.modeset=1 cros_efi systemd.mask=update-engine.service confidential-space.hardened=false systemd.default_timeout_start_sec=900s cos.protected_stateful_partition=m ds=nocloud;s=/usr/share/oem/ root=/dev/dm-0 \"dm-mod.create=vroot,,,ro,0 4077568 verity 0 PARTUUID=B9B14975-6459-FD40-AAEB-823D13AE9CB2 PARTUUID=B9B14975-6459-FD40-AAEB-823D13AE9CB2 4096 4096 509696 509696 sha256 b98fecd015c870b27c203ac41c34aa9ce88a597a96164766b4aeb72541846743 9d4c1d6aabe7ec902ba12b51c4531813b29ec5768e4f2aeee79b9b1285e5c214;oemroot,,,ro,0 1024000 verity 0 PARTUUID=61a3effc-a875-3045-9750-68d3b139fad3 PARTUUID=61a3effc-a875-3045-9750-68d3b139fad3 4096 4096 128000 128000 sha256 4fed83055851d25092b7db85b02ea8c215b37fa4cfdcc39e042923b98a05a8c5 c8128e435592c70bc631c516252705b5361ce4bd2a4ba66679ee10c28b2a4d6d\""
+    value: {
+      image_release_name: "confidential-space-debug-240500"
+      is_hardened: false
+      image_base_version: 1
+      swversion: 240500
+      attribute_labels: []
+    }
+  },
+  {
+    key: "/syslinux/vmlinuz.B init=/usr/lib/systemd/systemd rootwait ro noresume loglevel=7 console=tty1 console=ttyS0,115200 security=apparmor virtio_net.napi_tx=1 nmi_watchdog=0 csm.disabled=1 loadpin.exclude=kernel-module,firmware modules-load=loadpin_trigger firmware_class.path=/var/lib/nvidia/firmware module.sig_enforce=1 dm_verity.error_behavior=3 dm_verity.max_bios=-1 dm_verity.dev_wait=1 i915.modeset=1 cros_efi systemd.mask=update-engine.service confidential-space.hardened=true systemd.mask=var-lib-toolbox.mount systemd.mask=sshd.service systemd.mask=docker-events-collector-fluent-bit.service systemd.mask=device_policy_manager.service systemd.mask=crash-reporter.service systemd.mask=konlet-startup.service systemd.mask=google-shutdown-scripts.service systemd.mask=google-startup-scripts.service systemd.mask=google-osconfig-agent.service systemd.mask=google-osconfig-init.service systemd.mask=google-guest-agent.service systemd.mask=docker.service systemd.mask=var-lib-docker.mount systemd.unit=cloud-final.service systemd.wants=gcr-online.target systemd.wants=network-online.target systemd.wants=systemd-resolved.service systemd.wants=basic.target systemd.default_timeout_start_sec=900s cos.protected_stateful_partition=m ds=nocloud;s=/usr/share/oem/ root=/dev/dm-0 \"dm-mod.create=vroot,,,ro,0 4077568 verity 0 PARTUUID=7BD5C647-6615-0E43-9AF5-880287D46CD0 PARTUUID=7BD5C647-6615-0E43-9AF5-880287D46CD0 4096 4096 509696 509696 sha256 a69c385427542f97fe8f3bfa31d37f1066b129aff1cc378367d12158ceb1374b e7f2360b65b3443c04ddd147cc9ea3ebb2a87517edc7c1e8eba206137e6a11d7;oemroot,,,ro,0 1024000 verity 0 PARTUUID=a153a87a-35f4-f648-a73e-bd9e4dae4a54 PARTUUID=a153a87a-35f4-f648-a73e-bd9e4dae4a54 4096 4096 128000 128000 sha256 ab23b5fee60cf05e66f1f55a973a7efda96680cefe4a043d274e8eabca48c444 7951d53d35c763213de21dafc70ba2eea633a68f0cd18fae996ffd83a73aa206\""
+    value: {
+      image_release_name: "confidential-space-hardened-240402"
+      is_hardened: true
+      image_base_version: 1
+      swversion: 240402
+      attribute_labels: [STABLE, USABLE]
+    }
+  },
+  {
+    key: "/syslinux/vmlinuz.B init=/usr/lib/systemd/systemd rootwait ro noresume loglevel=7 console=tty1 console=ttyS0,115200 security=apparmor virtio_net.napi_tx=1 nmi_watchdog=0 csm.disabled=1 loadpin.exclude=kernel-module,firmware modules-load=loadpin_trigger firmware_class.path=/var/lib/nvidia/firmware module.sig_enforce=1 dm_verity.error_behavior=3 dm_verity.max_bios=-1 dm_verity.dev_wait=1 i915.modeset=1 cros_efi systemd.mask=update-engine.service confidential-space.hardened=false systemd.default_timeout_start_sec=900s cos.protected_stateful_partition=m ds=nocloud;s=/usr/share/oem/ root=/dev/dm-0 \"dm-mod.create=vroot,,,ro,0 4077568 verity 0 PARTUUID=7BD5C647-6615-0E43-9AF5-880287D46CD0 PARTUUID=7BD5C647-6615-0E43-9AF5-880287D46CD0 4096 4096 509696 509696 sha256 a69c385427542f97fe8f3bfa31d37f1066b129aff1cc378367d12158ceb1374b e7f2360b65b3443c04ddd147cc9ea3ebb2a87517edc7c1e8eba206137e6a11d7;oemroot,,,ro,0 1024000 verity 0 PARTUUID=a153a87a-35f4-f648-a73e-bd9e4dae4a54 PARTUUID=a153a87a-35f4-f648-a73e-bd9e4dae4a54 4096 4096 128000 128000 sha256 7c18ae163c5e09d56be4621c88c6b5997d0997b3bbb815c64e5a8513644f52b7 3ae60c45097d69fbd95a12427841a7cae450ec801b48703baa0aa31922d7b537\""
+    value: {
+      image_release_name: "confidential-space-debug-240402"
+      is_hardened: false
+      image_base_version: 1
+      swversion: 240402
+      attribute_labels: []
+    }
+  },
+  {
+    key: "/syslinux/vmlinuz.B init=/usr/lib/systemd/systemd rootwait ro noresume loglevel=7 console=tty1 console=ttyS0,115200 security=apparmor virtio_net.napi_tx=1 nmi_watchdog=0 csm.disabled=1 loadpin.exclude=kernel-module,firmware modules-load=loadpin_trigger firmware_class.path=/var/lib/nvidia/firmware module.sig_enforce=1 dm_verity.error_behavior=3 dm_verity.max_bios=-1 dm_verity.dev_wait=1 i915.modeset=1 cros_efi systemd.mask=update-engine.service confidential-space.hardened=true systemd.mask=var-lib-toolbox.mount systemd.mask=sshd.service systemd.mask=docker-events-collector-fluent-bit.service systemd.mask=device_policy_manager.service systemd.mask=crash-reporter.service systemd.mask=konlet-startup.service systemd.mask=google-shutdown-scripts.service systemd.mask=google-startup-scripts.service systemd.mask=google-osconfig-agent.service systemd.mask=google-osconfig-init.service systemd.mask=google-guest-agent.service systemd.mask=docker.service systemd.mask=var-lib-docker.mount systemd.unit=cloud-final.service systemd.wants=gcr-online.target systemd.wants=network-online.target systemd.wants=systemd-resolved.service systemd.wants=basic.target systemd.default_timeout_start_sec=900s cos.protected_stateful_partition=m ds=nocloud;s=/usr/share/oem/ root=/dev/dm-0 \"dm-mod.create=vroot,,,ro,0 4077568 verity 0 PARTUUID=7BD5C647-6615-0E43-9AF5-880287D46CD0 PARTUUID=7BD5C647-6615-0E43-9AF5-880287D46CD0 4096 4096 509696 509696 sha256 a69c385427542f97fe8f3bfa31d37f1066b129aff1cc378367d12158ceb1374b e7f2360b65b3443c04ddd147cc9ea3ebb2a87517edc7c1e8eba206137e6a11d7;oemroot,,,ro,0 1024000 verity 0 PARTUUID=a153a87a-35f4-f648-a73e-bd9e4dae4a54 PARTUUID=a153a87a-35f4-f648-a73e-bd9e4dae4a54 4096 4096 128000 128000 sha256 1b4ae7d8e64b40725c77d5909333e6fb1525c8e97eccea6621fa4fad264bc396 c43cb745fb9e55604e87699a279b20a4766f3ad8436e1466cc8ebfd3ebafee97\""
+    value: {
+      image_release_name: "confidential-space-hardened-0-preview-8c9ef50"
+      is_hardened: true
+      image_base_version: 1
+      swversion: 240401
+      attribute_labels: [EXPERIMENTAL]
+    }
+  },
+  # Limited claim AWS token Private Preview debug image.
+  # source image: confidential-space-images-dev/global/images/confidential-space-debug-0-dev-8c9ef50
+  {
+    key: "/syslinux/vmlinuz.B init=/usr/lib/systemd/systemd rootwait ro noresume loglevel=7 console=tty1 console=ttyS0,115200 security=apparmor virtio_net.napi_tx=1 nmi_watchdog=0 csm.disabled=1 loadpin.exclude=kernel-module,firmware modules-load=loadpin_trigger firmware_class.path=/var/lib/nvidia/firmware module.sig_enforce=1 dm_verity.error_behavior=3 dm_verity.max_bios=-1 dm_verity.dev_wait=1 i915.modeset=1 cros_efi systemd.mask=update-engine.service confidential-space.hardened=false systemd.default_timeout_start_sec=900s cos.protected_stateful_partition=m ds=nocloud;s=/usr/share/oem/ root=/dev/dm-0 \"dm-mod.create=vroot,,,ro,0 4077568 verity 0 PARTUUID=7BD5C647-6615-0E43-9AF5-880287D46CD0 PARTUUID=7BD5C647-6615-0E43-9AF5-880287D46CD0 4096 4096 509696 509696 sha256 a69c385427542f97fe8f3bfa31d37f1066b129aff1cc378367d12158ceb1374b e7f2360b65b3443c04ddd147cc9ea3ebb2a87517edc7c1e8eba206137e6a11d7;oemroot,,,ro,0 1024000 verity 0 PARTUUID=a153a87a-35f4-f648-a73e-bd9e4dae4a54 PARTUUID=a153a87a-35f4-f648-a73e-bd9e4dae4a54 4096 4096 128000 128000 sha256 359b8777d877db93b026eba3fe3067d2e17f65b5068fe3373debded6355a9b0c 7ce08a048f55c92fdfeffe4c75b01807999b2136defae23fed15748dcab98e7a\""
+    value: {
+      image_release_name: "confidential-space-debug-0-preview-8c9ef50"
+      is_hardened: false
+      image_base_version: 1
+      swversion: 240401
+      attribute_labels: []
+    }
+  },
+  {
+    key: "/syslinux/vmlinuz.B init=/usr/lib/systemd/systemd boot=local rootwait ro noresume loglevel=7 console=tty1 console=ttyS0 security=apparmor virtio_net.napi_tx=1 nmi_watchdog=0 csm.disabled=1 loadpin.exclude=kernel-module,firmware modules-load=loadpin_trigger firmware_class.path=/var/lib/nvidia/firmware module.sig_enforce=1 dm_verity.error_behavior=3 dm_verity.max_bios=-1 dm_verity.dev_wait=1 i915.modeset=1 cros_efi systemd.mask=update-engine.service confidential-space.hardened=true systemd.mask=var-lib-toolbox.mount systemd.mask=sshd.service systemd.mask=docker-events-collector-fluent-bit.service systemd.mask=device_policy_manager.service systemd.mask=crash-reporter.service systemd.mask=konlet-startup.service systemd.mask=google-shutdown-scripts.service systemd.mask=google-startup-scripts.service systemd.mask=google-osconfig-agent.service systemd.mask=google-osconfig-init.service systemd.mask=google-guest-agent.service systemd.mask=docker.service systemd.mask=var-lib-docker.mount systemd.unit=cloud-final.service systemd.wants=gcr-online.target systemd.wants=network-online.target systemd.wants=systemd-resolved.service systemd.wants=basic.target systemd.default_timeout_start_sec=900s cos.protected_stateful_partition=e ds=nocloud;s=/usr/share/oem/ root=/dev/dm-0 \"dm-mod.create=vroot,,,ro,0 4077568 verity 0 PARTUUID=E9CC3C0C-60D6-CD46-9B69-A1BAFCD939AC PARTUUID=E9CC3C0C-60D6-CD46-9B69-A1BAFCD939AC 4096 4096 509696 509696 sha256 e3159f36d37c4b49056c92ef5b98cccff8f929f361285cf921b1c0944e02ee01 1190b4eb3c0b364f60f7b61c85afbc55f4a6957a999c27367d68cfb2bd87e156;oemroot,,,ro,0 1024000 verity 0 PARTUUID=cdb0c057-2376-3e49-a56d-fd3481a17a96 PARTUUID=cdb0c057-2376-3e49-a56d-fd3481a17a96 4096 4096 128000 128000 sha256 dae2f31d8f22f311fafc2c60ee6fdcb3983448fc4124dfa9898ca267072a8082 266ad1ee402a5b1805c02023aafe4e9e9e186ab24a253360739c2b2852681034\""
+    value: {
+      image_release_name: "confidential-space-hardened-240200"
+      is_hardened: true
+      image_base_version: 1
+      swversion: 240200
+      attribute_labels: [STABLE, USABLE]
+    }
+  },
+  {
+    key: "/syslinux/vmlinuz.B init=/usr/lib/systemd/systemd boot=local rootwait ro noresume loglevel=7 console=tty1 console=ttyS0 security=apparmor virtio_net.napi_tx=1 nmi_watchdog=0 csm.disabled=1 loadpin.exclude=kernel-module,firmware modules-load=loadpin_trigger firmware_class.path=/var/lib/nvidia/firmware module.sig_enforce=1 dm_verity.error_behavior=3 dm_verity.max_bios=-1 dm_verity.dev_wait=1 i915.modeset=1 cros_efi systemd.mask=update-engine.service confidential-space.hardened=false systemd.default_timeout_start_sec=900s cos.protected_stateful_partition=e ds=nocloud;s=/usr/share/oem/ root=/dev/dm-0 \"dm-mod.create=vroot,,,ro,0 4077568 verity 0 PARTUUID=E9CC3C0C-60D6-CD46-9B69-A1BAFCD939AC PARTUUID=E9CC3C0C-60D6-CD46-9B69-A1BAFCD939AC 4096 4096 509696 509696 sha256 e3159f36d37c4b49056c92ef5b98cccff8f929f361285cf921b1c0944e02ee01 1190b4eb3c0b364f60f7b61c85afbc55f4a6957a999c27367d68cfb2bd87e156;oemroot,,,ro,0 1024000 verity 0 PARTUUID=cdb0c057-2376-3e49-a56d-fd3481a17a96 PARTUUID=cdb0c057-2376-3e49-a56d-fd3481a17a96 4096 4096 128000 128000 sha256 a0199cb4fceb58a4dcd9715b9cbc67cf3bde3c14b3029a8033a87d68aaf378a2 b49170617d4aea7abccc09a0a2743503159cd770f96ffcaab98c711c704be4c6\""
+    value: {
+      image_release_name: "confidential-space-debug-240200"
+      is_hardened: false
+      image_base_version: 1
+      swversion: 240200
+      attribute_labels: []
+    }
+  },
+  {
+    key: "/syslinux/vmlinuz.B init=/usr/lib/systemd/systemd boot=local rootwait ro noresume loglevel=7 console=tty1 console=ttyS0 security=apparmor virtio_net.napi_tx=1 nmi_watchdog=0 csm.disabled=1 loadpin.exclude=kernel-module,firmware modules-load=loadpin_trigger firmware_class.path=/var/lib/nvidia/firmware module.sig_enforce=1 dm_verity.error_behavior=3 dm_verity.max_bios=-1 dm_verity.dev_wait=1 i915.modeset=1 cros_efi systemd.mask=update-engine.service confidential-space.hardened=true systemd.mask=var-lib-toolbox.mount systemd.mask=sshd.service systemd.mask=docker-events-collector-fluent-bit.service systemd.mask=device_policy_manager.service systemd.mask=crash-reporter.service systemd.mask=konlet-startup.service systemd.mask=google-shutdown-scripts.service systemd.mask=google-startup-scripts.service systemd.mask=google-osconfig-agent.service systemd.mask=google-osconfig-init.service systemd.mask=google-guest-agent.service systemd.mask=docker.service systemd.mask=var-lib-docker.mount systemd.unit=cloud-final.service systemd.wants=gcr-online.target systemd.wants=network-online.target systemd.wants=systemd-resolved.service systemd.wants=basic.target systemd.default_timeout_start_sec=900s cos.protected_stateful_partition=e ds=nocloud;s=/usr/share/oem/ root=/dev/dm-0 \"dm-mod.create=vroot,,,ro,0 4077568 verity 0 PARTUUID=4DB2C578-5A34-B743-A2CB-0BCE706E0AEE PARTUUID=4DB2C578-5A34-B743-A2CB-0BCE706E0AEE 4096 4096 509696 509696 sha256 cea301c10954afa39cdf77b89a131d15e1bb4d5169c16db67aa1ff6d68ae10a6 a51877b21c0fc5bf3b782fee0636a747c286ba2d0f05ab5201159e7d7e9ace35;oemroot,,,ro,0 1024000 verity 0 PARTUUID=91c8f940-ad01-e449-967a-113b3f54224d PARTUUID=91c8f940-ad01-e449-967a-113b3f54224d 4096 4096 128000 128000 sha256 b715d53af9fb8bb93b11fce5dc079892d07b3e300899d8c047ce4169bc075acf cd3af757c9f29ecf7c12e3d7131d7229e450ed3db4503070df97a31101a37909\""
+    value: {
+      image_release_name: "confidential-space-hardened-231201"
+      is_hardened: true
+      image_base_version: 1
+      swversion: 231201
+      attribute_labels: [STABLE, USABLE]
+    }
+  },
+  {
+    key: "/syslinux/vmlinuz.B init=/usr/lib/systemd/systemd boot=local rootwait ro noresume loglevel=7 console=tty1 console=ttyS0 security=apparmor virtio_net.napi_tx=1 nmi_watchdog=0 csm.disabled=1 loadpin.exclude=kernel-module,firmware modules-load=loadpin_trigger firmware_class.path=/var/lib/nvidia/firmware module.sig_enforce=1 dm_verity.error_behavior=3 dm_verity.max_bios=-1 dm_verity.dev_wait=1 i915.modeset=1 cros_efi systemd.mask=update-engine.service confidential-space.hardened=false systemd.default_timeout_start_sec=900s cos.protected_stateful_partition=e ds=nocloud;s=/usr/share/oem/ root=/dev/dm-0 \"dm-mod.create=vroot,,,ro,0 4077568 verity 0 PARTUUID=4DB2C578-5A34-B743-A2CB-0BCE706E0AEE PARTUUID=4DB2C578-5A34-B743-A2CB-0BCE706E0AEE 4096 4096 509696 509696 sha256 cea301c10954afa39cdf77b89a131d15e1bb4d5169c16db67aa1ff6d68ae10a6 a51877b21c0fc5bf3b782fee0636a747c286ba2d0f05ab5201159e7d7e9ace35;oemroot,,,ro,0 1024000 verity 0 PARTUUID=91c8f940-ad01-e449-967a-113b3f54224d PARTUUID=91c8f940-ad01-e449-967a-113b3f54224d 4096 4096 128000 128000 sha256 5474b98939d30f44c7a1f2276e812cf86a948f96533d3afbda2f367192248e30 9e1a7f7a7392a540a48a9844af902fd722e650751bbe473d888d49dc894c513d\""
+    value: {
+      image_release_name: "confidential-space-debug-231201"
+      is_hardened: false
+      image_base_version: 1
+      swversion: 231201
+      attribute_labels: []
+    }
+  },
+  {
+    key: "/syslinux/vmlinuz.B init=/usr/lib/systemd/systemd boot=local rootwait ro noresume loglevel=7 console=tty1 console=ttyS0 security=apparmor virtio_net.napi_tx=1 nmi_watchdog=0 csm.disabled=1 loadpin.exclude=kernel-module,firmware modules-load=loadpin_trigger firmware_class.path=/var/lib/nvidia/firmware module.sig_enforce=1 dm_verity.error_behavior=3 dm_verity.max_bios=-1 dm_verity.dev_wait=1 i915.modeset=1 cros_efi systemd.mask=update-engine.service confidential-space.hardened=true systemd.mask=var-lib-toolbox.mount systemd.mask=sshd.service systemd.mask=docker-events-collector-fluent-bit.service systemd.mask=node-problem-detector.service systemd.mask=device_policy_manager.service systemd.mask=crash-reporter.service systemd.mask=konlet-startup.service systemd.mask=google-shutdown-scripts.service systemd.mask=google-startup-scripts.service systemd.mask=google-osconfig-agent.service systemd.mask=google-osconfig-init.service systemd.mask=google-guest-agent.service systemd.mask=docker.service systemd.mask=var-lib-docker.mount systemd.unit=cloud-final.service systemd.wants=gcr-online.target systemd.wants=network-online.target systemd.wants=systemd-resolved.service systemd.wants=basic.target systemd.default_timeout_start_sec=900s cos.protected_stateful_partition=e ds=nocloud;s=/usr/share/oem/ root=/dev/dm-0 \"dm-mod.create=vroot,,,ro,0 4077568 verity 0 PARTUUID=694A2ABE-F296-CA48-82D8-9C3D40DEEF22 PARTUUID=694A2ABE-F296-CA48-82D8-9C3D40DEEF22 4096 4096 509696 509696 sha256 8cfd89f312aea8e9b5a502264654a8752ab0569c75081de6f43fb8feeb82b6fc 7afbb27844f46a378ec9bb5a07c6223a8080eaa5ec40ed59537aa84c94c4ab1a;oemroot,,,ro,0 1024000 verity 0 PARTUUID=4afc215d-3dea-cb48-a7a8-8d0d6b1c3f13 PARTUUID=4afc215d-3dea-cb48-a7a8-8d0d6b1c3f13 4096 4096 128000 128000 sha256 86430bc1d88c443810f1fb13902251ed40e318b82990422e41cf33cd1774735a a18bf600a278518235f1d38820077ab05ba31a537d12feb8be3b3e33b387fdea\""
+    value: {
+      image_release_name: "confidential-space-hardened-231200"
+      is_hardened: true
+      image_base_version: 1
+      swversion: 231200
+      attribute_labels: [STABLE, USABLE]
+    }
+  },
+  {
+    key: "/syslinux/vmlinuz.B init=/usr/lib/systemd/systemd boot=local rootwait ro noresume loglevel=7 console=tty1 console=ttyS0 security=apparmor virtio_net.napi_tx=1 nmi_watchdog=0 csm.disabled=1 loadpin.exclude=kernel-module,firmware modules-load=loadpin_trigger firmware_class.path=/var/lib/nvidia/firmware module.sig_enforce=1 dm_verity.error_behavior=3 dm_verity.max_bios=-1 dm_verity.dev_wait=1 i915.modeset=1 cros_efi systemd.mask=update-engine.service confidential-space.hardened=false systemd.default_timeout_start_sec=900s cos.protected_stateful_partition=e ds=nocloud;s=/usr/share/oem/ root=/dev/dm-0 \"dm-mod.create=vroot,,,ro,0 4077568 verity 0 PARTUUID=694A2ABE-F296-CA48-82D8-9C3D40DEEF22 PARTUUID=694A2ABE-F296-CA48-82D8-9C3D40DEEF22 4096 4096 509696 509696 sha256 8cfd89f312aea8e9b5a502264654a8752ab0569c75081de6f43fb8feeb82b6fc 7afbb27844f46a378ec9bb5a07c6223a8080eaa5ec40ed59537aa84c94c4ab1a;oemroot,,,ro,0 1024000 verity 0 PARTUUID=4afc215d-3dea-cb48-a7a8-8d0d6b1c3f13 PARTUUID=4afc215d-3dea-cb48-a7a8-8d0d6b1c3f13 4096 4096 128000 128000 sha256 21fb7cc88c068ad171f5d3e67fe6aa6f4166e386bb4d1024dd31e14fa22f3cc1 e8745a5a859601f8dd2d8c03b311b2d95353b6f273dcea3fd3b9ea539f4825ea\""
+    value: {
+      image_release_name: "confidential-space-debug-231200"
+      is_hardened: false
+      image_base_version: 1
+      swversion: 231200
+      attribute_labels: []
+    }
+  },
+  {
+    key: "/syslinux/vmlinuz.B init=/usr/lib/systemd/systemd boot=local rootwait ro noresume loglevel=7 console=tty1 console=ttyS0 security=apparmor virtio_net.napi_tx=1 nmi_watchdog=0 csm.disabled=1 loadpin.exclude=kernel-module,firmware modules-load=loadpin_trigger firmware_class.path=/var/lib/nvidia/firmware module.sig_enforce=1 dm_verity.error_behavior=3 dm_verity.max_bios=-1 dm_verity.dev_wait=1 i915.modeset=1 cros_efi systemd.mask=update-engine.service confidential-space.hardened=true systemd.mask=var-lib-toolbox.mount systemd.mask=sshd.service systemd.mask=docker-events-collector-fluent-bit.service systemd.mask=node-problem-detector.service systemd.mask=device_policy_manager.service systemd.mask=crash-reporter.service systemd.mask=konlet-startup.service systemd.mask=google-shutdown-scripts.service systemd.mask=google-startup-scripts.service systemd.mask=google-osconfig-agent.service systemd.mask=google-osconfig-init.service systemd.mask=google-guest-agent.service systemd.mask=docker.service systemd.mask=var-lib-docker.mount systemd.unit=cloud-final.service systemd.wants=gcr-online.target systemd.wants=network-online.target systemd.wants=systemd-resolved.service systemd.wants=basic.target systemd.default_timeout_start_sec=900s cos.protected_stateful_partition=e ds=nocloud;s=/usr/share/oem/ root=/dev/dm-0 \"dm-mod.create=vroot,,,ro,0 4077568 verity 0 PARTUUID=F3D1D215-4D7A-2A4A-BCD7-1A0237F84C46 PARTUUID=F3D1D215-4D7A-2A4A-BCD7-1A0237F84C46 4096 4096 509696 509696 sha256 55df503559412e20eb05d0fa4a079930b14f695f5e5c468975543f00033b9f43 a354d6516e49d89d932b1bbee846702c73d351c39aadb21a8e5fe9f045f6cfeb;oemroot,,,ro,0 1024000 verity 0 PARTUUID=c98d69d2-8911-794b-9d2f-1c30d673def6 PARTUUID=c98d69d2-8911-794b-9d2f-1c30d673def6 4096 4096 128000 128000 sha256 00282172a463fe38181b70ec50c0596f6c37d74138b03f146b60e73d0bcc678a 6ece52e20702af621352269600b3a0c98666025a8767c7828e093a3e7c78cbf4\""
+    value: {
+      image_release_name: "confidential-space-hardened-231100"
+      is_hardened: true
+      image_base_version: 1
+      swversion: 231100
+      attribute_labels: [STABLE, USABLE]
+    }
+  },
+  {
+    key: "/syslinux/vmlinuz.B init=/usr/lib/systemd/systemd boot=local rootwait ro noresume loglevel=7 console=tty1 console=ttyS0 security=apparmor virtio_net.napi_tx=1 nmi_watchdog=0 csm.disabled=1 loadpin.exclude=kernel-module,firmware modules-load=loadpin_trigger firmware_class.path=/var/lib/nvidia/firmware module.sig_enforce=1 dm_verity.error_behavior=3 dm_verity.max_bios=-1 dm_verity.dev_wait=1 i915.modeset=1 cros_efi systemd.mask=update-engine.service confidential-space.hardened=false systemd.default_timeout_start_sec=900s cos.protected_stateful_partition=e ds=nocloud;s=/usr/share/oem/ root=/dev/dm-0 \"dm-mod.create=vroot,,,ro,0 4077568 verity 0 PARTUUID=F3D1D215-4D7A-2A4A-BCD7-1A0237F84C46 PARTUUID=F3D1D215-4D7A-2A4A-BCD7-1A0237F84C46 4096 4096 509696 509696 sha256 55df503559412e20eb05d0fa4a079930b14f695f5e5c468975543f00033b9f43 a354d6516e49d89d932b1bbee846702c73d351c39aadb21a8e5fe9f045f6cfeb;oemroot,,,ro,0 1024000 verity 0 PARTUUID=c98d69d2-8911-794b-9d2f-1c30d673def6 PARTUUID=c98d69d2-8911-794b-9d2f-1c30d673def6 4096 4096 128000 128000 sha256 b251fd7c91509b636c4f660f3e8ee138f614d1d76b92bde69cca8cdfe5b5ae01 29144f6f0dbfe480d433b8ae5b77f504deba990a02da36144011a8c6d4460156\""
+    value: {
+      image_release_name: "confidential-space-debug-231100"
+      is_hardened: false
+      image_base_version: 1
+      swversion: 231100
+      attribute_labels: []
+    }
+  },
+  {
+    key: "/syslinux/vmlinuz.B init=/usr/lib/systemd/systemd boot=local rootwait ro noresume loglevel=7 console=tty1 console=ttyS0 security=apparmor virtio_net.napi_tx=1 nmi_watchdog=0 csm.disabled=1 loadpin.exclude=kernel-module,firmware modules-load=loadpin_trigger firmware_class.path=/var/lib/nvidia/firmware module.sig_enforce=1 dm_verity.error_behavior=3 dm_verity.max_bios=-1 dm_verity.dev_wait=1 i915.modeset=1 cros_efi systemd.mask=update-engine.service confidential-space.hardened=true systemd.mask=var-lib-toolbox.mount systemd.mask=sshd.service systemd.mask=docker-events-collector-fluent-bit.service systemd.mask=node-problem-detector.service systemd.mask=device_policy_manager.service systemd.mask=crash-reporter.service systemd.mask=konlet-startup.service systemd.mask=google-shutdown-scripts.service systemd.mask=google-startup-scripts.service systemd.mask=google-osconfig-agent.service systemd.mask=google-osconfig-init.service systemd.mask=google-guest-agent.service systemd.mask=docker.service systemd.mask=var-lib-docker.mount systemd.unit=cloud-final.service systemd.wants=gcr-online.target systemd.wants=network-online.target systemd.wants=systemd-resolved.service systemd.wants=basic.target systemd.default_timeout_start_sec=900s cos.protected_stateful_partition=e ds=nocloud;s=/usr/share/oem/ root=/dev/dm-0 \"dm-mod.create=vroot,,,ro,0 4077568 verity 0 PARTUUID=7685B710-C5E4-3B49-92C6-5373C7D9AED4 PARTUUID=7685B710-C5E4-3B49-92C6-5373C7D9AED4 4096 4096 509696 509696 sha256 2ef02bf538eec472223b876ec54813b00208faf17f385498a9dacb0b1f9d3c9a c485c5c2ebc355cdaaff1545258dc0d3eaf59982d8999cc9a2bffa7cede41b45;oemroot,,,ro,0 1024000 verity 0 PARTUUID=a18e126f-16d0-a644-9dcb-6081712ed3ce PARTUUID=a18e126f-16d0-a644-9dcb-6081712ed3ce 4096 4096 128000 128000 sha256 136231fd2b3543e15ff7630149c99c3bd021407a9adcabdb911e2f16a57baa55 7031f928ec8d65a1936f1d0f6f14815286383d26a0ce66a628fb1b26c8ee088b\""
+    value: {
+      image_release_name: "confidential-space-hardened-231001"
+      is_hardened: true
+      image_base_version: 1
+      swversion: 231001
+      attribute_labels: [STABLE, USABLE]
+    }
+  },
+  {
+    key: "/syslinux/vmlinuz.B init=/usr/lib/systemd/systemd boot=local rootwait ro noresume loglevel=7 console=tty1 console=ttyS0 security=apparmor virtio_net.napi_tx=1 nmi_watchdog=0 csm.disabled=1 loadpin.exclude=kernel-module,firmware modules-load=loadpin_trigger firmware_class.path=/var/lib/nvidia/firmware module.sig_enforce=1 dm_verity.error_behavior=3 dm_verity.max_bios=-1 dm_verity.dev_wait=1 i915.modeset=1 cros_efi systemd.mask=update-engine.service confidential-space.hardened=false systemd.default_timeout_start_sec=900s cos.protected_stateful_partition=e ds=nocloud;s=/usr/share/oem/ root=/dev/dm-0 \"dm-mod.create=vroot,,,ro,0 4077568 verity 0 PARTUUID=7685B710-C5E4-3B49-92C6-5373C7D9AED4 PARTUUID=7685B710-C5E4-3B49-92C6-5373C7D9AED4 4096 4096 509696 509696 sha256 2ef02bf538eec472223b876ec54813b00208faf17f385498a9dacb0b1f9d3c9a c485c5c2ebc355cdaaff1545258dc0d3eaf59982d8999cc9a2bffa7cede41b45;oemroot,,,ro,0 1024000 verity 0 PARTUUID=a18e126f-16d0-a644-9dcb-6081712ed3ce PARTUUID=a18e126f-16d0-a644-9dcb-6081712ed3ce 4096 4096 128000 128000 sha256 60d59671429dae63ccca4458471c47dd44c00a89bfe7190421c65ae06a2ed046 21f04d0cbfe625bbc5b132ad3893801659dc2ce6e034f6e6950fb7e1f5c05377\""
+    value: {
+      image_release_name: "confidential-space-debug-231001"
+      is_hardened: false
+      image_base_version: 1
+      swversion: 231001
+      attribute_labels: []
+    }
+  },
+  {
+    key: "/syslinux/vmlinuz.B init=/usr/lib/systemd/systemd boot=local rootwait ro noresume loglevel=7 console=tty1 console=ttyS0 security=apparmor virtio_net.napi_tx=1 nmi_watchdog=0 csm.disabled=1 loadpin.exclude=kernel-module,firmware modules-load=loadpin_trigger firmware_class.path=/var/lib/nvidia/firmware module.sig_enforce=1 dm_verity.error_behavior=3 dm_verity.max_bios=-1 dm_verity.dev_wait=1 i915.modeset=1 cros_efi systemd.mask=update-engine.service confidential-space.hardened=true systemd.mask=var-lib-toolbox.mount systemd.mask=sshd.service systemd.mask=docker-events-collector-fluent-bit.service systemd.mask=node-problem-detector.service systemd.mask=device_policy_manager.service systemd.mask=crash-reporter.service systemd.mask=konlet-startup.service systemd.mask=google-shutdown-scripts.service systemd.mask=google-startup-scripts.service systemd.mask=google-osconfig-agent.service systemd.mask=google-osconfig-init.service systemd.mask=google-guest-agent.service systemd.mask=docker.service systemd.mask=var-lib-docker.mount systemd.unit=cloud-final.service systemd.wants=gcr-online.target systemd.wants=network-online.target systemd.wants=systemd-resolved.service systemd.wants=basic.target systemd.default_timeout_start_sec=900s cos.protected_stateful_partition=e ds=nocloud;s=/usr/share/oem/ root=/dev/dm-0 \"dm-mod.create=vroot,,,ro,0 4077568 verity 0 PARTUUID=BB9B8A60-4F64-6249-A43D-4CDF1961053E PARTUUID=BB9B8A60-4F64-6249-A43D-4CDF1961053E 4096 4096 509696 509696 sha256 caecd2edba8a45f7bba72c9cfd367fbd9f1379e251b8cf4cb6cf26e946951a98 0a500b809457d9cd25c7f3fd3c6049a08e59065a076aa165d4eb47aa97889476;oemroot,,,ro,0 1024000 verity 0 PARTUUID=72aea0d6-d8f4-304a-9daf-9af9b6cf5460 PARTUUID=72aea0d6-d8f4-304a-9daf-9af9b6cf5460 4096 4096 128000 128000 sha256 59cd338573ec5d936eb8235c826d649f96540ee0a3c0157ff3c09ca9b4f7ea5d c77e04e8ce1f9a9ed3ed3980f1c27fb234211d9b8a1b0ae02617103717ea2eed\""
+    value: {
+      image_release_name: "confidential-space-hardened-0-preview-7f60076"
+      is_hardened: true
+      image_base_version: 1
+      swversion: 231000
+      attribute_labels: [EXPERIMENTAL]
+    }
+  },
+  {
+    key: "/syslinux/vmlinuz.B init=/usr/lib/systemd/systemd boot=local rootwait ro noresume loglevel=7 console=tty1 console=ttyS0 security=apparmor virtio_net.napi_tx=1 nmi_watchdog=0 csm.disabled=1 loadpin.exclude=kernel-module,firmware modules-load=loadpin_trigger firmware_class.path=/var/lib/nvidia/firmware module.sig_enforce=1 dm_verity.error_behavior=3 dm_verity.max_bios=-1 dm_verity.dev_wait=1 i915.modeset=1 cros_efi systemd.mask=update-engine.service confidential-space.hardened=false systemd.default_timeout_start_sec=900s cos.protected_stateful_partition=e ds=nocloud;s=/usr/share/oem/ root=/dev/dm-0 \"dm-mod.create=vroot,,,ro,0 4077568 verity 0 PARTUUID=BB9B8A60-4F64-6249-A43D-4CDF1961053E PARTUUID=BB9B8A60-4F64-6249-A43D-4CDF1961053E 4096 4096 509696 509696 sha256 caecd2edba8a45f7bba72c9cfd367fbd9f1379e251b8cf4cb6cf26e946951a98 0a500b809457d9cd25c7f3fd3c6049a08e59065a076aa165d4eb47aa97889476;oemroot,,,ro,0 1024000 verity 0 PARTUUID=72aea0d6-d8f4-304a-9daf-9af9b6cf5460 PARTUUID=72aea0d6-d8f4-304a-9daf-9af9b6cf5460 4096 4096 128000 128000 sha256 bba7be09326e0d370936ea9d9715f81dcc4f82471ba657752274d5a2962bd3fc cd6c22a04e6f5d19c110e97bf1089d7a83e7896d51621b4e2b4198b9f37f1234\""
+    value: {
+      image_release_name: "confidential-space-debug-0-preview-7f60076"
+      is_hardened: false
+      image_base_version: 1
+      swversion: 231000
+      attribute_labels: []
+    }
+  },
+  {
+    key: "/syslinux/vmlinuz.B init=/usr/lib/systemd/systemd boot=local rootwait ro noresume loglevel=7 console=tty1 console=ttyS0 security=apparmor virtio_net.napi_tx=1 nmi_watchdog=0 csm.disabled=1 loadpin.exclude=kernel-module,firmware modules-load=loadpin_trigger firmware_class.path=/var/lib/nvidia/firmware module.sig_enforce=1 dm_verity.error_behavior=3 dm_verity.max_bios=-1 dm_verity.dev_wait=1 i915.modeset=1 cros_efi systemd.mask=update-engine.service confidential-space.hardened=true systemd.mask=var-lib-toolbox.mount systemd.mask=sshd.service systemd.mask=docker-events-collector-fluent-bit.service systemd.mask=node-problem-detector.service systemd.mask=device_policy_manager.service systemd.mask=crash-reporter.service systemd.mask=konlet-startup.service systemd.mask=google-shutdown-scripts.service systemd.mask=google-startup-scripts.service systemd.mask=google-osconfig-agent.service systemd.mask=google-osconfig-init.service systemd.mask=google-guest-agent.service systemd.mask=docker.service systemd.mask=var-lib-docker.mount systemd.unit=cloud-final.service systemd.wants=gcr-online.target systemd.wants=network-online.target systemd.wants=systemd-resolved.service systemd.wants=basic.target systemd.default_timeout_start_sec=900s cos.protected_stateful_partition=e ds=nocloud;s=/usr/share/oem/ root=/dev/dm-0 \"dm-mod.create=vroot,,,ro,0 4077568 verity 0 PARTUUID=A1B98B67-C7C0-C44F-B0B4-41E9EB8ECF2B PARTUUID=A1B98B67-C7C0-C44F-B0B4-41E9EB8ECF2B 4096 4096 509696 509696 sha256 a09274bea865dec67c0a2bf38b91eb3878ee56cbd14f92bab28ce5ebcab50182 8bd5f4ee3a836e060dbb868f39012df5032c1d73eccd49e3d5f29e5af88f5ba4;oemroot,,,ro,0 1024000 verity 0 PARTUUID=c279fd0a-0f41-1447-bead-57fcae6a2e8b PARTUUID=c279fd0a-0f41-1447-bead-57fcae6a2e8b 4096 4096 128000 128000 sha256 19a11f83c080d12e03a4f5a0025c02e33b83ee467e5eda3a2bcaefe4cf43c084 d7a0d7a42c03a3240c4d17cfa647229f6eee8caca9d0552a19bc9a7c7379dffb\""
+    value: {
+      image_release_name: "confidential-space-hardened-0-preview-f3f419d"
+      is_hardened: true
+      image_base_version: 1
+      swversion: 230902
+      attribute_labels: [EXPERIMENTAL]
+    }
+  },
+  {
+    key: "/syslinux/vmlinuz.B init=/usr/lib/systemd/systemd boot=local rootwait ro noresume loglevel=7 console=tty1 console=ttyS0 security=apparmor virtio_net.napi_tx=1 nmi_watchdog=0 csm.disabled=1 loadpin.exclude=kernel-module,firmware modules-load=loadpin_trigger firmware_class.path=/var/lib/nvidia/firmware module.sig_enforce=1 dm_verity.error_behavior=3 dm_verity.max_bios=-1 dm_verity.dev_wait=1 i915.modeset=1 cros_efi systemd.mask=update-engine.service confidential-space.hardened=false systemd.default_timeout_start_sec=900s cos.protected_stateful_partition=e ds=nocloud;s=/usr/share/oem/ root=/dev/dm-0 \"dm-mod.create=vroot,,,ro,0 4077568 verity 0 PARTUUID=A1B98B67-C7C0-C44F-B0B4-41E9EB8ECF2B PARTUUID=A1B98B67-C7C0-C44F-B0B4-41E9EB8ECF2B 4096 4096 509696 509696 sha256 a09274bea865dec67c0a2bf38b91eb3878ee56cbd14f92bab28ce5ebcab50182 8bd5f4ee3a836e060dbb868f39012df5032c1d73eccd49e3d5f29e5af88f5ba4;oemroot,,,ro,0 1024000 verity 0 PARTUUID=c279fd0a-0f41-1447-bead-57fcae6a2e8b PARTUUID=c279fd0a-0f41-1447-bead-57fcae6a2e8b 4096 4096 128000 128000 sha256 c895bc29a33307a39632aa9323525e11ff68297e7598a4ece762bc3a86f8d44e 043d224abfe318ff58c866c533a94521da4ca0ff95a97713e597f3cd6eb88c7b\""
+    value: {
+      image_release_name: "confidential-space-debug-0-preview-f3f419d"
+      is_hardened: false
+      image_base_version: 1
+      swversion: 230902
+      attribute_labels: []
+    }
+  },
+  {
+    key: "/syslinux/vmlinuz.B init=/usr/lib/systemd/systemd boot=local rootwait ro noresume loglevel=7 console=tty1 console=ttyS0 security=apparmor virtio_net.napi_tx=1 nmi_watchdog=0 csm.disabled=1 loadpin.exclude=kernel-module,firmware modules-load=loadpin_trigger firmware_class.path=/var/lib/nvidia/firmware module.sig_enforce=1 dm_verity.error_behavior=3 dm_verity.max_bios=-1 dm_verity.dev_wait=1 i915.modeset=1 cros_efi systemd.mask=update-engine.service confidential-space.hardened=true systemd.mask=var-lib-toolbox.mount systemd.mask=sshd.service systemd.mask=docker-events-collector-fluent-bit.service systemd.mask=node-problem-detector.service systemd.mask=device_policy_manager.service systemd.mask=crash-reporter.service systemd.mask=konlet-startup.service systemd.mask=google-shutdown-scripts.service systemd.mask=google-startup-scripts.service systemd.mask=google-osconfig-agent.service systemd.mask=google-osconfig-init.service systemd.mask=google-guest-agent.service systemd.mask=docker.service systemd.mask=var-lib-docker.mount systemd.unit=cloud-final.service systemd.wants=gcr-online.target systemd.wants=network-online.target systemd.wants=systemd-resolved.service systemd.wants=basic.target systemd.default_timeout_start_sec=900s cos.protected_stateful_partition=e ds=nocloud;s=/usr/share/oem/ root=/dev/dm-0 \"dm-mod.create=vroot,,,ro,0 4077568 verity 0 PARTUUID=9A137F7E-514D-FA45-A52C-45CFA3205C3C PARTUUID=9A137F7E-514D-FA45-A52C-45CFA3205C3C 4096 4096 509696 509696 sha256 6e31b9345ba0deab13bdda4714ac25a74587034a04f783205d7724819f74fd3a eb62308589c790dec0d112cb18ab33bb4a63dc198839060759026e5b042e7a8e;oemroot,,,ro,0 1024000 verity 0 PARTUUID=eda684fe-86a1-6540-8db4-4f8b767c3694 PARTUUID=eda684fe-86a1-6540-8db4-4f8b767c3694 4096 4096 128000 128000 sha256 7cba7f405978db2af4012508bcc8d1aa3164290b3e55f58982ca7bc12a2c1942 19d8bf1e40172945d8a2042d82afae16d2aaa2a3c97db7900bb44ac6dbbb69c6\""
+    value: {
+      image_release_name: "confidential-space-hardened-230901"
+      is_hardened: true
+      image_base_version: 1
+      swversion: 230901
+      attribute_labels: [STABLE, USABLE]
+    }
+  },
+  {
+    key: "/syslinux/vmlinuz.B init=/usr/lib/systemd/systemd boot=local rootwait ro noresume loglevel=7 console=tty1 console=ttyS0 security=apparmor virtio_net.napi_tx=1 nmi_watchdog=0 csm.disabled=1 loadpin.exclude=kernel-module,firmware modules-load=loadpin_trigger firmware_class.path=/var/lib/nvidia/firmware module.sig_enforce=1 dm_verity.error_behavior=3 dm_verity.max_bios=-1 dm_verity.dev_wait=1 i915.modeset=1 cros_efi systemd.mask=update-engine.service confidential-space.hardened=false systemd.default_timeout_start_sec=900s cos.protected_stateful_partition=e ds=nocloud;s=/usr/share/oem/ root=/dev/dm-0 \"dm-mod.create=vroot,,,ro,0 4077568 verity 0 PARTUUID=9A137F7E-514D-FA45-A52C-45CFA3205C3C PARTUUID=9A137F7E-514D-FA45-A52C-45CFA3205C3C 4096 4096 509696 509696 sha256 6e31b9345ba0deab13bdda4714ac25a74587034a04f783205d7724819f74fd3a eb62308589c790dec0d112cb18ab33bb4a63dc198839060759026e5b042e7a8e;oemroot,,,ro,0 1024000 verity 0 PARTUUID=eda684fe-86a1-6540-8db4-4f8b767c3694 PARTUUID=eda684fe-86a1-6540-8db4-4f8b767c3694 4096 4096 128000 128000 sha256 032e403003f97ac2e50908e20d8407c080a69718cf2c6c6fad5167913f550105 5c7d4e46e6c2eded60fb0ccbe6134e391cb61b6f35380c3851b34e3739fccb4f\""
+    value: {
+      image_release_name: "confidential-space-debug-230901"
+      is_hardened: false
+      image_base_version: 1
+      swversion: 230901
+      attribute_labels: []
+    }
+  },
+  {
+    key: "/syslinux/vmlinuz.B init=/usr/lib/systemd/systemd boot=local rootwait ro noresume loglevel=7 console=tty1 console=ttyS0 security=apparmor virtio_net.napi_tx=1 nmi_watchdog=0 csm.disabled=1 loadpin.exclude=kernel-module,firmware modules-load=loadpin_trigger firmware_class.path=/var/lib/nvidia/firmware module.sig_enforce=1 dm_verity.error_behavior=3 dm_verity.max_bios=-1 dm_verity.dev_wait=1 i915.modeset=1 cros_efi systemd.mask=update-engine.service confidential-space.hardened=true systemd.mask=var-lib-toolbox.mount systemd.mask=sshd.service systemd.mask=konlet-startup.service systemd.mask=google-shutdown-scripts.service systemd.mask=google-startup-scripts.service systemd.mask=google-osconfig-agent.service systemd.mask=google-osconfig-init.service systemd.mask=google-guest-agent.service systemd.mask=docker.service systemd.mask=var-lib-docker.mount systemd.unit=cloud-final.service systemd.wants=gcr-online.target systemd.wants=network-online.target systemd.wants=systemd-resolved.service systemd.wants=basic.target systemd.default_timeout_start_sec=900s cos.protected_stateful_partition=e ds=nocloud;s=/usr/share/oem/ root=/dev/dm-0 \"dm-mod.create=vroot,,,ro,0 4077568 verity 0 PARTUUID=898B989E-A63D-5341-B792-1F9DE0CBF78C PARTUUID=898B989E-A63D-5341-B792-1F9DE0CBF78C 4096 4096 509696 509696 sha256 9473aa427ad32921d6b168cdd2c78ec744d4efc52dee482ea51f499dc7da770f 7e00db140e5ef975119c17e94fba15b073b5fd5462e415e1a0c7063a76a83bb8;oemroot,,,ro,0 1024000 verity 0 PARTUUID=acb66ae7-d520-2242-be2f-f98f2eb9cfa4 PARTUUID=acb66ae7-d520-2242-be2f-f98f2eb9cfa4 4096 4096 128000 128000 sha256 5c0116766257ba1edae5466c013830f1bdfc9e108c01d2eebc2ffb4bae808917 3c4752a0960675bff6041fb5338a9511e742dd5aff7d2ed3e88dd5d5dc947d92\""
+    value: {
+      image_release_name: "confidential-space-hardened-230600"
+      is_hardened: true
+      image_base_version: 1
+      swversion: 230600
+      attribute_labels: [STABLE, USABLE]
+    }
+  },
+  {
+    key: "/syslinux/vmlinuz.B init=/usr/lib/systemd/systemd boot=local rootwait ro noresume loglevel=7 console=tty1 console=ttyS0 security=apparmor virtio_net.napi_tx=1 nmi_watchdog=0 csm.disabled=1 loadpin.exclude=kernel-module,firmware modules-load=loadpin_trigger firmware_class.path=/var/lib/nvidia/firmware module.sig_enforce=1 dm_verity.error_behavior=3 dm_verity.max_bios=-1 dm_verity.dev_wait=1 i915.modeset=1 cros_efi systemd.mask=update-engine.service confidential-space.hardened=false systemd.default_timeout_start_sec=900s cos.protected_stateful_partition=e ds=nocloud;s=/usr/share/oem/ root=/dev/dm-0 \"dm-mod.create=vroot,,,ro,0 4077568 verity 0 PARTUUID=898B989E-A63D-5341-B792-1F9DE0CBF78C PARTUUID=898B989E-A63D-5341-B792-1F9DE0CBF78C 4096 4096 509696 509696 sha256 9473aa427ad32921d6b168cdd2c78ec744d4efc52dee482ea51f499dc7da770f 7e00db140e5ef975119c17e94fba15b073b5fd5462e415e1a0c7063a76a83bb8;oemroot,,,ro,0 1024000 verity 0 PARTUUID=acb66ae7-d520-2242-be2f-f98f2eb9cfa4 PARTUUID=acb66ae7-d520-2242-be2f-f98f2eb9cfa4 4096 4096 128000 128000 sha256 17791392680eeb80b6701b4ada58be8bb7ee809e36c359c808bfdda5d817e63b 613882f35038ad55d8bca152bc97ea4f0f357751c8a7554f69b99c750535eb12\""
+    value: {
+      image_release_name: "confidential-space-debug-230600"
+      is_hardened: false
+      image_base_version: 1
+      swversion: 230600
+      attribute_labels: []
+    }
+  },
+  {
+    key: "/syslinux/vmlinuz.B init=/usr/lib/systemd/systemd boot=local rootwait ro noresume loglevel=7 console=tty1 console=ttyS0 security=apparmor virtio_net.napi_tx=1 nmi_watchdog=0 csm.disabled=1 loadpin.exclude=kernel-module,firmware modules-load=loadpin_trigger firmware_class.path=/var/lib/nvidia/firmware module.sig_enforce=1 dm_verity.error_behavior=3 dm_verity.max_bios=-1 dm_verity.dev_wait=1 i915.modeset=1 cros_efi systemd.mask=update-engine.service confidential-space.hardened=true systemd.mask=var-lib-toolbox.mount systemd.mask=sshd.service systemd.mask=konlet-startup.service systemd.mask=google-shutdown-scripts.service systemd.mask=google-startup-scripts.service systemd.mask=google-osconfig-agent.service systemd.mask=google-osconfig-init.service systemd.mask=google-guest-agent.service systemd.mask=docker.service systemd.mask=var-lib-docker.mount systemd.unit=cloud-final.service systemd.wants=gcr-online.target systemd.wants=network-online.target systemd.wants=systemd-resolved.service systemd.wants=basic.target systemd.default_timeout_start_sec=900s cos.protected_stateful_partition=e ds=nocloud;s=/usr/share/oem/ root=/dev/dm-0 \"dm-mod.create=vroot,,,ro,0 4077568 verity 0 PARTUUID=A473B348-6B1F-5C4C-9B4C-8A404A64FAB4 PARTUUID=A473B348-6B1F-5C4C-9B4C-8A404A64FAB4 4096 4096 509696 509696 sha256 4bcfa308aa0b66371fdc074e08de94cab79a045fc50eb1f705b2c47e473a7c10 a5ad085724d130cfd58252000d4c5a5c01113e1910154e0a6c4c47877106352f;oemroot,,,ro,0 1024000 verity 0 PARTUUID=078bbd71-4543-7a43-ba7a-f0a1d76dee21 PARTUUID=078bbd71-4543-7a43-ba7a-f0a1d76dee21 4096 4096 128000 128000 sha256 09161f5410f0bda73f6ed14d35ad09ae3dbbae5a2472b142f18f3827f1d0e907 64aa192122d33017909d840efce311df055f02da2033a5fd74204ae3f4de9f60\""
+    value: {
+      image_release_name: "confidential-space-hardened-230300"
+      is_hardened: true
+      image_base_version: 1
+      swversion: 230300
+      attribute_labels: [STABLE, USABLE]
+    }
+  },
+  {
+    key: "/syslinux/vmlinuz.B init=/usr/lib/systemd/systemd boot=local rootwait ro noresume loglevel=7 console=tty1 console=ttyS0 security=apparmor virtio_net.napi_tx=1 nmi_watchdog=0 csm.disabled=1 loadpin.exclude=kernel-module,firmware modules-load=loadpin_trigger firmware_class.path=/var/lib/nvidia/firmware module.sig_enforce=1 dm_verity.error_behavior=3 dm_verity.max_bios=-1 dm_verity.dev_wait=1 i915.modeset=1 cros_efi systemd.mask=update-engine.service confidential-space.hardened=false systemd.default_timeout_start_sec=900s cos.protected_stateful_partition=e ds=nocloud;s=/usr/share/oem/ root=/dev/dm-0 \"dm-mod.create=vroot,,,ro,0 4077568 verity 0 PARTUUID=A473B348-6B1F-5C4C-9B4C-8A404A64FAB4 PARTUUID=A473B348-6B1F-5C4C-9B4C-8A404A64FAB4 4096 4096 509696 509696 sha256 4bcfa308aa0b66371fdc074e08de94cab79a045fc50eb1f705b2c47e473a7c10 a5ad085724d130cfd58252000d4c5a5c01113e1910154e0a6c4c47877106352f;oemroot,,,ro,0 1024000 verity 0 PARTUUID=078bbd71-4543-7a43-ba7a-f0a1d76dee21 PARTUUID=078bbd71-4543-7a43-ba7a-f0a1d76dee21 4096 4096 128000 128000 sha256 e72b6325160a1e93d9df30252df80e2f59a9834ef7e548e1b93811de26a98f86 c06374a30b6930251e013a41b52e3ef598d6132a11de0f64d1cd139ab2b135bf\""
+    value: {
+      image_release_name: "confidential-space-debug-230300"
+      is_hardened: false
+      image_base_version: 1
+      swversion: 230300
+    }
+  },
+  {
+    key: "/syslinux/vmlinuz.B init=/usr/lib/systemd/systemd boot=local rootwait ro noresume loglevel=7 console=tty1 console=ttyS0 security=apparmor virtio_net.napi_tx=1 nmi_watchdog=0 csm.disabled=1 loadpin.exclude=kernel-module modules-load=loadpin_trigger module.sig_enforce=1 dm_verity.error_behavior=3 dm_verity.max_bios=-1 dm_verity.dev_wait=1 i915.modeset=1 cros_efi systemd.mask=update-engine.service confidential-space.hardened=true systemd.mask=var-lib-toolbox.mount systemd.mask=sshd.service systemd.mask=konlet-startup.service systemd.mask=google-shutdown-scripts.service systemd.mask=google-startup-scripts.service systemd.mask=google-osconfig-agent.service systemd.mask=google-osconfig-init.service systemd.mask=google-guest-agent.service systemd.mask=docker.service systemd.mask=var-lib-docker.mount systemd.unit=cloud-final.service systemd.wants=gcr-online.target systemd.wants=network-online.target systemd.wants=systemd-resolved.service systemd.wants=basic.target systemd.default_timeout_start_sec=900s cos.protected_stateful_partition=e ds=nocloud;s=/usr/share/oem/ root=/dev/dm-0 \"dm=2 vroot none ro 1,0 4077568 verity payload=PARTUUID=7E694F87-DBAA-6D42-A2E4-87D5BF6D35FA hashtree=PARTUUID=7E694F87-DBAA-6D42-A2E4-87D5BF6D35FA hashstart=4077568 alg=sha256 root_hexdigest=035773a9e2752e565de075ce1dcdcb3f5395996fb2020057393287c8507f96cb salt=7b77fd84161ae17d8c7e594f13042b5a4da3d76c7c5c9fbe50c969dd557169a5,oemroot none ro 1, 0 1024000 verity payload=PARTUUID=62534ce9-2ba5-074e-87b0-55a2a2f030b9 hashtree=PARTUUID=62534ce9-2ba5-074e-87b0-55a2a2f030b9 hashstart=1024000 alg=sha256 root_hexdigest=914fa0daa8f6030274169f937cbfbfc3320f155afd4eda5f2126e5eef6a34b1d salt=8dc5b827ab0948d5380df3ce6f156efce6da3a0ffc3eef2880437568343b509d\""
+    value: {
+      image_release_name: "confidential-space-hardened-2302-0"
+      is_hardened: true
+      image_base_version: 1
+      swversion: 1
+      attribute_labels: [STABLE, USABLE]
+    }
+  },
+  {
+    key: "/syslinux/vmlinuz.B init=/usr/lib/systemd/systemd boot=local rootwait ro noresume loglevel=7 console=tty1 console=ttyS0 security=apparmor virtio_net.napi_tx=1 nmi_watchdog=0 csm.disabled=1 loadpin.exclude=kernel-module modules-load=loadpin_trigger module.sig_enforce=1 dm_verity.error_behavior=3 dm_verity.max_bios=-1 dm_verity.dev_wait=1 i915.modeset=1 cros_efi systemd.mask=update-engine.service confidential-space.hardened=false systemd.default_timeout_start_sec=900s cos.protected_stateful_partition=e ds=nocloud;s=/usr/share/oem/ root=/dev/dm-0 \"dm=2 vroot none ro 1,0 4077568 verity payload=PARTUUID=7E694F87-DBAA-6D42-A2E4-87D5BF6D35FA hashtree=PARTUUID=7E694F87-DBAA-6D42-A2E4-87D5BF6D35FA hashstart=4077568 alg=sha256 root_hexdigest=035773a9e2752e565de075ce1dcdcb3f5395996fb2020057393287c8507f96cb salt=7b77fd84161ae17d8c7e594f13042b5a4da3d76c7c5c9fbe50c969dd557169a5,oemroot none ro 1, 0 1024000 verity payload=PARTUUID=62534ce9-2ba5-074e-87b0-55a2a2f030b9 hashtree=PARTUUID=62534ce9-2ba5-074e-87b0-55a2a2f030b9 hashstart=1024000 alg=sha256 root_hexdigest=6a05c2bae10877aa8c905ad1cab830ec5da2b5fc4365f7c271b770f2681847f7 salt=c16173c1b1f900b7c50e43019f42364696797d7e13cc13ef60053eea915c0bc1\""
+    value: {
+      image_release_name: "confidential-space-debug-2302-0"
+      is_hardened: false
+      image_base_version: 1
+      swversion: 0
+    }
+  },
+  {
+    key: "/syslinux/vmlinuz.B init=/usr/lib/systemd/systemd boot=local rootwait ro noresume loglevel=7 console=tty1 console=ttyS0 security=apparmor virtio_net.napi_tx=1 nmi_watchdog=0 csm.disabled=1 loadpin.exclude=kernel-module modules-load=loadpin_trigger module.sig_enforce=1 dm_verity.error_behavior=3 dm_verity.max_bios=-1 dm_verity.dev_wait=1 i915.modeset=1 cros_efi systemd.mask=update-engine.service confidential-space.hardened=false systemd.default_timeout_start_sec=900s cos.protected_stateful_partition=e ds=nocloud;s=/usr/share/oem/ root=/dev/dm-0 \"dm=2 vroot none ro 1,0 4077568 verity payload=PARTUUID=7E694F87-DBAA-6D42-A2E4-87D5BF6D35FA hashtree=PARTUUID=7E694F87-DBAA-6D42-A2E4-87D5BF6D35FA hashstart=4077568 alg=sha256 root_hexdigest=035773a9e2752e565de075ce1dcdcb3f5395996fb2020057393287c8507f96cb salt=7b77fd84161ae17d8c7e594f13042b5a4da3d76c7c5c9fbe50c969dd557169a5,oemroot none ro 1, 0 1024000 verity payload=PARTUUID=62534ce9-2ba5-074e-87b0-55a2a2f030b9 hashtree=PARTUUID=62534ce9-2ba5-074e-87b0-55a2a2f030b9 hashstart=1024000 alg=sha256 root_hexdigest=19c4260fd7b2a80431dba89691895fdca8c5e7f71d71e7e6af121a8ec569ecd4 salt=cf28271c06a710fef3888263831215fbf40f0a5896833830a0c4ee721e53c546\""
+    value: {
+      image_release_name: "confidential-space-debug-bb5328d-presubmit"
+      is_hardened: false
+      image_base_version: 1
+      swversion: 230301
+      attribute_labels: []
+    }
+  },
+  {
+    key: "/syslinux/vmlinuz.B init=/usr/lib/systemd/systemd boot=local rootwait ro noresume loglevel=7 console=tty1 console=ttyS0 security=apparmor virtio_net.napi_tx=1 nmi_watchdog=0 csm.disabled=1 loadpin.exclude=kernel-module modules-load=loadpin_trigger module.sig_enforce=1 dm_verity.error_behavior=3 dm_verity.max_bios=-1 dm_verity.dev_wait=1 i915.modeset=1 cros_efi systemd.mask=update-engine.service confidential-space.hardened=false systemd.default_timeout_start_sec=900s cos.protected_stateful_partition=e ds=nocloud;s=/usr/share/oem/ root=/dev/dm-0 \"dm=2 vroot none ro 1,0 4077568 verity payload=PARTUUID=7E694F87-DBAA-6D42-A2E4-87D5BF6D35FA hashtree=PARTUUID=7E694F87-DBAA-6D42-A2E4-87D5BF6D35FA hashstart=4077568 alg=sha256 root_hexdigest=035773a9e2752e565de075ce1dcdcb3f5395996fb2020057393287c8507f96cb salt=7b77fd84161ae17d8c7e594f13042b5a4da3d76c7c5c9fbe50c969dd557169a5,oemroot none ro 1, 0 1024000 verity payload=PARTUUID=62534ce9-2ba5-074e-87b0-55a2a2f030b9 hashtree=PARTUUID=62534ce9-2ba5-074e-87b0-55a2a2f030b9 hashstart=1024000 alg=sha256 root_hexdigest=f3c0c0c8f851330b54503a46a8fd264b4332647b01833f5072f137f2074c9017 salt=5a4ffd2c6321c0002469550cff98fbc482486c7971db3d6bf14c1c0571acbfc2\""
+    value: {
+      image_release_name: "confidential-space-debug-0a0f2f6-presubmit"
+      is_hardened: false
+      image_base_version: 1
+      swversion: 230400
+      attribute_labels: []
+    }
+  },
+  {
+    key: "/syslinux/vmlinuz.B init=/usr/lib/systemd/systemd boot=local rootwait ro noresume loglevel=7 console=tty1 console=ttyS0 security=apparmor virtio_net.napi_tx=1 nmi_watchdog=0 csm.disabled=1 loadpin.exclude=kernel-module modules-load=loadpin_trigger module.sig_enforce=1 dm_verity.error_behavior=3 dm_verity.max_bios=-1 dm_verity.dev_wait=1 i915.modeset=1 cros_efi systemd.mask=update-engine.service confidential-space.hardened=false cos.protected_stateful_partition=e ds=nocloud;s=/usr/share/oem/ root=/dev/dm-0 \"dm=2 vroot none ro 1,0 4077568 verity payload=PARTUUID=F13DB633-C251-3B49-A3F8-451E87CAECAA hashtree=PARTUUID=F13DB633-C251-3B49-A3F8-451E87CAECAA hashstart=4077568 alg=sha256 root_hexdigest=d97f018c661b5140d1584c8581de91288183761e72e7f54aea1ddf5df14d3f71 salt=06803c90e76e2db1461382ebac4d4e6f67076cfde0512ffce67f101a960bf94f,oemroot none ro 1, 0 1024000 verity payload=PARTUUID=1fb98649-21b1-1e42-a4c3-34ffc0c637df hashtree=PARTUUID=1fb98649-21b1-1e42-a4c3-34ffc0c637df hashstart=1024000 alg=sha256 root_hexdigest=541d5769a156650d60aaa1a912489002fd79a0ea488a8438baa17f9d494e0b18 salt=64602ea1b88c092912ad9ba4bb63c129765029a068bee34c7e8147d58822bd38\""
+    value: {
+      image_release_name: "unreleased public preview test debug image"
+      is_hardened: false
+      image_base_version: 1
+      swversion: 0
+      attribute_labels: [TEST]
+    }
+  }
+]
+image_base_values: [
+  {
+    key: 1
+    value: {
+      db: {
+        known_certificates: [COS_DB_V10]
+      }
+    }
+  },
+  {
+    key: 2
+    value: {
+      db: {
+        known_certificates: [COS_DB_V20250203]
+      }
+    }
+  }
+]
+
+service_base_policy: {
+  earliest_cert_issue_time: {
+    seconds: 1681689600
+  }
+  firmware_policy: {
+    platform: {
+      minimum_technology: NONE
+      minimum_gce_firmware_version: 2
+    }
+  }
+}
+cs_base_policy: {
+  firmware_policy: {
+    platform: {
+      # LINT.IfChange
+      minimum_gce_firmware_version: 2
+      minimum_technology: AMD_SEV
+    }
+  }
+}
