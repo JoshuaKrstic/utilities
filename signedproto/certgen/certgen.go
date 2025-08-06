@@ -56,13 +56,13 @@ func parsePrivateKeyFromFile(filePath string) (*rsa.PrivateKey, error) {
 	if blockPriv == nil {
 		return nil, fmt.Errorf("failed to decode private key PEM")
 	}
-	privateKey, err := x509.ParsePKCS1PrivateKey(blockPriv.Bytes)
+	privateKey, err := x509.ParsePKCS8PrivateKey(blockPriv.Bytes)
 	if err != nil {
 		return nil, fmt.Errorf("failed to parse private key: %v", err)
 	}
 	log.Println("Successfully read and parsed private key")
 
-	return privateKey, nil
+	return privateKey.(*rsa.PrivateKey), nil
 }
 
 func main() {

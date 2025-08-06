@@ -54,12 +54,12 @@ func parsePrivateKeyFromFile(filePath string) (*rsa.PrivateKey, error) {
 	if blockPriv == nil {
 		return nil, fmt.Errorf("failed to decode private key PEM")
 	}
-	privateKey, err := x509.ParsePKCS1PrivateKey(blockPriv.Bytes)
+	privateKey, err := x509.ParsePKCS8PrivateKey(blockPriv.Bytes)
 	if err != nil {
 		return nil, fmt.Errorf("failed to parse private key: %w", err)
 	}
 
-	return privateKey, nil
+	return privateKey.(*rsa.PrivateKey), nil
 }
 
 func imageDbTextProtoToBinary(filePath string) (*rimproto.ImageDatabase, error) {
@@ -80,11 +80,20 @@ func imageDbTextProtoToBinary(filePath string) (*rimproto.ImageDatabase, error) 
 }
 
 func generateWrapperBinProto(rimProto *rimproto.ImageDatabase, leafCert []byte, rootCert []byte) ([]byte, error) {
+	// Expect a PEM leaf cert
+	block, _ := pem.Decode(leafCert)
+	if block == nil || block.Type != "CERTIFICATE" {
+		return nil, fmt.Errorf("failed to decode leaf certificate PEM")
+	}
+	leaf, err := x509.ParseCertificate(block.Bytes)
+	if err != nil {
+		return nil, fmt.Errorf("failed to parse leaf certificate: %w", err)
+	}
 	wrapperProto := &rimproto.ConfidentialSpacePlatformRims{
 		ImageDatabase: rimProto,
 		Timestamp:     timestamppb.Now(),
 		Exp:           timestamppb.New(time.Now().Add(60 * 25 * time.Hour)), // 60 day expiration
-		Cert:          leafCert,
+		Cert:          leaf.Raw,
 		CaBundle:      rootCert,
 	}
 

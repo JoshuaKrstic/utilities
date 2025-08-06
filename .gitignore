@@ -6,3 +6,12 @@
 # Go Build Files
 go.mod
 go.sum
+
+mykey.pem
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
