@@ -22,8 +22,8 @@ import (
 )
 
 const (
-	leafCertPath       = "leafCertPath"
-	rootCertPath       = "rootCertPath"
+	leafCertPathFlag   = "leafCertPath"
+	rootCertPathFlag   = "rootCertPath"
 	privateKeyPathFlag = "privateKeyPath"
 	textprotoPathFlag  = "textprotoPath"
 	outputPathFlag     = "outputPath"
@@ -117,8 +117,8 @@ func generateRimBinProto(wrapperBin []byte, privateKey *rsa.PrivateKey) ([]byte,
 
 func main() {
 	privateKeyPath := flag.String(privateKeyPathFlag, ".", "File containing the private key that will be used to sign the serialized proto data")
-	leafCertPath := flag.String(leafCertPath, ".", "File containing leaf cert corresponding to the private key used to sign")
-	rootCertPath := flag.String(rootCertPath, ".", "File containing the root certificate that signed the leaf cert")
+	leafCertPath := flag.String(leafCertPathFlag, ".", "File containing leaf cert corresponding to the private key used to sign")
+	rootCertPath := flag.String(rootCertPathFlag, ".", "File containing the root certificate that signed the leaf cert")
 	textprotoPath := flag.String(textprotoPathFlag, ".", "File containing the serialized proto data to be signed")
 	outputPath := flag.String(outputPathFlag, ".", "File path to write the signed RIM binary proto")
 	flag.Parse()
