@@ -18,7 +18,8 @@ import (
 	"google.golang.org/protobuf/proto"
 	"google.golang.org/protobuf/types/known/timestamppb"
 
-	rimproto "josh.com/rimsign/proto/confidential_space_platform_rims"
+	commonpb "josh.com/rimsign/proto/gen/common"
+	rimpb "josh.com/rimsign/proto/gen/confidential_space_platform_rims"
 )
 
 const (
@@ -62,14 +63,14 @@ func parsePrivateKeyFromFile(filePath string) (*rsa.PrivateKey, error) {
 	return privateKey.(*rsa.PrivateKey), nil
 }
 
-func imageDbTextProtoToBinary(filePath string) (*rimproto.ImageDatabase, error) {
+func imageDbTextProtoToBinary(filePath string) (*rimpb.ImageDatabase, error) {
 	data, err := os.ReadFile(filePath)
 	if err != nil {
 		return nil, fmt.Errorf("failed to read text proto file at path %s: %w", filePath, err)
 	}
 
 	// Unmarshal the textproto
-	imageDbRim := rimproto.ImageDatabase{}
+	imageDbRim := rimpb.ImageDatabase{}
 	err = prototext.Unmarshal(data, &imageDbRim)
 	if err != nil {
 		return nil, fmt.Errorf("failed to unmarshal text proto: %w", err)
@@ -79,7 +80,7 @@ func imageDbTextProtoToBinary(filePath string) (*rimproto.ImageDatabase, error) 
 	return &imageDbRim, nil
 }
 
-func generateWrapperBinProto(rimProto *rimproto.ImageDatabase, leafCert []byte, rootCert []byte) ([]byte, error) {
+func generateWrapperBinProto(rimProto *rimpb.ImageDatabase, leafCert []byte, rootCert []byte) ([]byte, error) {
 	// Expect a PEM leaf cert
 	block, _ := pem.Decode(leafCert)
 	if block == nil || block.Type != "CERTIFICATE" {
@@ -89,7 +90,7 @@ func generateWrapperBinProto(rimProto *rimproto.ImageDatabase, leafCert []byte, 
 	if err != nil {
 		return nil, fmt.Errorf("failed to parse leaf certificate: %w", err)
 	}
-	wrapperProto := &rimproto.ConfidentialSpacePlatformRims{
+	wrapperProto := &rimpb.ConfidentialSpacePlatformRims{
 		ImageDatabase: rimProto,
 		Timestamp:     timestamppb.Now(),
 		Exp:           timestamppb.New(time.Now().Add(60 * 25 * time.Hour)), // 60 day expiration
@@ -106,10 +107,10 @@ func generateRimBinProto(wrapperBin []byte, privateKey *rsa.PrivateKey) ([]byte,
 		return nil, fmt.Errorf("failed to sign wrapper binary: %w", err)
 	}
 	log.Println("Successfully signed the wrapper binary proto")
-	rim := &rimproto.CSImageGoldenMeasurement{
+	rim := &rimpb.CSImageGoldenMeasurement{
 		ConfidentialSpacePlatformRims: wrapperBin,
 		Signature:                     signature,
-		SignatureAlgorithm:            rimproto.SignatureAlgorithm_ECDSA_P256_SHA256,
+		SignatureAlgorithm:            commonpb.SignatureAlgorithm_ECDSA_P256_SHA256,
 	}
 
 	return proto.Marshal(rim)

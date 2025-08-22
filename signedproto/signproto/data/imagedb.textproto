@@ -1,6 +1,17 @@
 # proto-file: google3/cloud/hosted/confidentialcomputing/clh/service/config/protoconf.proto
 # proto-message:cloud.hosted.confidentialcomputing.clh.service.config.ImageDatabase
 golden_values: [
+   {
+    key: "/syslinux/vmlinuz.B init=/usr/lib/systemd/systemd rootwait ro noresume loglevel=7 console=tty1 console=ttyS0,115200 security=apparmor virtio_net.napi_tx=1 nmi_watchdog=0 csm.disabled=1 loadpin.exclude=kernel-module,firmware modules-load=loadpin_trigger firmware_class.path=/var/lib/nvidia/firmware module.sig_enforce=1 dm_verity.error_behavior=3 dm_verity.max_bios=-1 dm_verity.dev_wait=1 i915.modeset=1 cros_efi systemd.mask=update-engine.service confidential-space.hardened=false systemd.default_timeout_start_sec=900s cos.protected_stateful_partition=m ds=nocloud;s=/usr/share/oem/ cros_debug root=/dev/dm-0 \"dm-mod.create=vroot,,,ro,0 4077568 verity 0 PARTUUID=C7D3449C-2B9A-DF4C-89FD-971BCE57E1E4 PARTUUID=C7D3449C-2B9A-DF4C-89FD-971BCE57E1E4 4096 4096 509696 509696 sha256 77737cd59b7607f6792549841ddb33b63ab687675683f130def20e747a5c36b7 59a72812bfee275b563ae18b7e71137cfd57dab3ae240bac4d03c59a4267d72e;oemroot,,,ro,0 1024000 verity 0 PARTUUID=9d9860f6-efc6-4944-9b8d-b872908e7648 PARTUUID=9d9860f6-efc6-4944-9b8d-b872908e7648 4096 4096 128000 128000 sha256 be63d4e76219d79b30b622ffa2f8cd9938e2899ca1a10a8c68efeac53e545e33 d012fde2d59d7eb8afcc1e23f8e9e54b7602cb6268700e8758f520af30972830\""
+    value: {
+      image_release_name: "confidential-space-debug-0-itapreview-12ecf60"
+      is_hardened: true
+      image_base_version: 1
+      swversion: 654321
+      attribute_labels: [EXPERIMENTAL]
+      obsoleted: false
+    }
+  },
   {
     key: "/syslinux/vmlinuz.B init=/usr/lib/systemd/systemd rootwait ro noresume loglevel=7 console=tty1 console=ttyS0,115200 security=apparmor virtio_net.napi_tx=1 nmi_watchdog=0 csm.disabled=1 loadpin.exclude=kernel-module,firmware modules-load=loadpin_trigger firmware_class.path=/var/lib/nvidia/firmware module.sig_enforce=1 dm_verity.error_behavior=3 dm_verity.max_bios=-1 dm_verity.dev_wait=1 i915.modeset=1 cros_efi systemd.mask=update-engine.service confidential-space.hardened=true systemd.mask=var-lib-toolbox.mount systemd.mask=sshd.service systemd.mask=docker-events-collector-fluent-bit.service systemd.mask=device_policy_manager.service systemd.mask=crash-reporter.service systemd.mask=konlet-startup.service systemd.mask=google-shutdown-scripts.service systemd.mask=google-startup-scripts.service systemd.mask=google-osconfig-agent.service systemd.mask=google-osconfig-init.service systemd.mask=google-guest-agent.service systemd.mask=docker.service systemd.mask=var-lib-docker.mount systemd.unit=cloud-final.service systemd.wants=gcr-online.target systemd.wants=network-online.target systemd.wants=systemd-resolved.service systemd.wants=basic.target systemd.default_timeout_start_sec=900s cos.protected_stateful_partition=m ds=nocloud;s=/usr/share/oem/ root=/dev/dm-0 \"dm-mod.create=vroot,,,ro,0 4077568 verity 0 PARTUUID=7CD0B53E-B968-B449-9959-3434E85827B0 PARTUUID=7CD0B53E-B968-B449-9959-3434E85827B0 4096 4096 509696 509696 sha256 9e8b60b661400d392a9f67258e4acd8fed819e236b59db2588cf0631198f3dcf a2504d02cb693fd1a21e7d2cc765e8952f3d99b2bf06d8715842678fe9b9cea8;oemroot,,,ro,0 1024000 verity 0 PARTUUID=96d8e6b5-db12-f945-9905-cb06e10ce1b1 PARTUUID=96d8e6b5-db12-f945-9905-cb06e10ce1b1 4096 4096 128000 128000 sha256 8aed03968472474626d3f1078a1a2fd02082bcb829accb03e5dc1b03b92c646c 4f8ef988b9329672e167ee7cda215360b151aae85742142b19883e28badbc4e0\""
     value: {
@@ -9,6 +20,7 @@ golden_values: [
       image_base_version: 2
       swversion: 250500
       attribute_labels: [EXPERIMENTAL]
+      obsoleted: false
     }
   },
   {
@@ -19,6 +31,7 @@ golden_values: [
       image_base_version: 2
       swversion: 250500
       attribute_labels: []
+      obsoleted: false
     }
   },
   {
@@ -29,6 +42,7 @@ golden_values: [
       image_base_version: 1
       swversion: 250302
       attribute_labels: [EXPERIMENTAL]
+      obsoleted: false
     }
   },
   {
@@ -39,6 +53,7 @@ golden_values: [
       image_base_version: 1
       swversion: 250302
       attribute_labels: []
+      obsoleted: false
     }
   },
   {
@@ -49,6 +64,7 @@ golden_values: [
       image_base_version: 1
       swversion: 250301
       attribute_labels: [LATEST, STABLE, USABLE]
+      obsoleted: false
     }
   },
   {
@@ -59,6 +75,7 @@ golden_values: [
       image_base_version: 1
       swversion: 250301
       attribute_labels: []
+      obsoleted: false
     }
   },
   {
@@ -69,6 +86,7 @@ golden_values: [
       image_base_version: 1
       swversion: 250300
       attribute_labels: [STABLE, USABLE]
+      obsoleted: false
     }
   },
   {
@@ -79,6 +97,7 @@ golden_values: [
       image_base_version: 1
       swversion: 250300
       attribute_labels: []
+      obsoleted: false
     }
   },
   {
@@ -89,6 +108,7 @@ golden_values: [
       image_base_version: 1
       swversion: 250101
       attribute_labels: [STABLE, USABLE]
+      obsoleted: false
     }
   },
   {
@@ -99,6 +119,7 @@ golden_values: [
       image_base_version: 1
       swversion: 250101
       attribute_labels: []
+      obsoleted: false
     }
   },
   {
@@ -109,6 +130,7 @@ golden_values: [
       image_base_version: 1
       swversion: 250100
       attribute_labels: [STABLE, USABLE]
+      obsoleted: false
     }
   },
   {
@@ -119,6 +141,7 @@ golden_values: [
       image_base_version: 1
       swversion: 250100
       attribute_labels: []
+      obsoleted: false
     }
   },
   {
@@ -129,6 +152,7 @@ golden_values: [
       image_base_version: 1
       swversion: 241002
       attribute_labels: [EXPERIMENTAL]
+      obsoleted: false
     }
   },
   {
@@ -139,6 +163,7 @@ golden_values: [
       image_base_version: 1
       swversion: 241002
       attribute_labels: []
+      obsoleted: false
     }
   },
   {
@@ -149,6 +174,7 @@ golden_values: [
       image_base_version: 1
       swversion: 241001
       attribute_labels: [EXPERIMENTAL]
+      obsoleted: false
     }
   },
   {
@@ -159,6 +185,7 @@ golden_values: [
       image_base_version: 1
       swversion: 241001
       attribute_labels: []
+      obsoleted: false
     }
   },
   {
@@ -169,6 +196,7 @@ golden_values: [
       image_base_version: 1
       swversion: 241000
       attribute_labels: [STABLE, USABLE]
+      obsoleted: false
     }
   },
   {
@@ -179,6 +207,7 @@ golden_values: [
       image_base_version: 1
       swversion: 241000
       attribute_labels: []
+      obsoleted: false
     }
   },
   {
@@ -189,6 +218,7 @@ golden_values: [
       image_base_version: 1
       swversion: 240900
       attribute_labels: [STABLE, USABLE]
+      obsoleted: false
     }
   },
   {
@@ -199,6 +229,7 @@ golden_values: [
       image_base_version: 1
       swversion: 240900
       attribute_labels: []
+      obsoleted: false
     }
   },
   {
@@ -209,6 +240,7 @@ golden_values: [
       image_base_version: 1
       swversion: 240800
       attribute_labels: [STABLE, USABLE]
+      obsoleted: false
     }
   },
   {
@@ -219,6 +251,7 @@ golden_values: [
       image_base_version: 1
       swversion: 240800
       attribute_labels: []
+      obsoleted: false
     }
   },
   {
@@ -229,6 +262,7 @@ golden_values: [
       image_base_version: 1
       swversion: 240700
       attribute_labels: [STABLE, USABLE]
+      obsoleted: false
     }
   },
   {
@@ -239,6 +273,7 @@ golden_values: [
       image_base_version: 1
       swversion: 240700
       attribute_labels: []
+      obsoleted: false
     }
   },
   {
@@ -249,6 +284,7 @@ golden_values: [
       image_base_version: 1
       swversion: 240500
       attribute_labels: [STABLE, USABLE]
+      obsoleted: false
     }
   },
   {
@@ -259,6 +295,7 @@ golden_values: [
       image_base_version: 1
       swversion: 240500
       attribute_labels: []
+      obsoleted: false
     }
   },
   {
@@ -269,6 +306,7 @@ golden_values: [
       image_base_version: 1
       swversion: 240402
       attribute_labels: [STABLE, USABLE]
+      obsoleted: false
     }
   },
   {
@@ -279,6 +317,7 @@ golden_values: [
       image_base_version: 1
       swversion: 240402
       attribute_labels: []
+      obsoleted: false
     }
   },
   {
@@ -289,6 +328,7 @@ golden_values: [
       image_base_version: 1
       swversion: 240401
       attribute_labels: [EXPERIMENTAL]
+      obsoleted: false
     }
   },
   # Limited claim AWS token Private Preview debug image.
@@ -301,6 +341,7 @@ golden_values: [
       image_base_version: 1
       swversion: 240401
       attribute_labels: []
+      obsoleted: false
     }
   },
   {
@@ -311,6 +352,7 @@ golden_values: [
       image_base_version: 1
       swversion: 240200
       attribute_labels: [STABLE, USABLE]
+      obsoleted: false
     }
   },
   {
@@ -321,6 +363,7 @@ golden_values: [
       image_base_version: 1
       swversion: 240200
       attribute_labels: []
+      obsoleted: false
     }
   },
   {
@@ -331,6 +374,7 @@ golden_values: [
       image_base_version: 1
       swversion: 231201
       attribute_labels: [STABLE, USABLE]
+      obsoleted: false
     }
   },
   {
@@ -341,6 +385,7 @@ golden_values: [
       image_base_version: 1
       swversion: 231201
       attribute_labels: []
+      obsoleted: false
     }
   },
   {
@@ -351,6 +396,7 @@ golden_values: [
       image_base_version: 1
       swversion: 231200
       attribute_labels: [STABLE, USABLE]
+      obsoleted: false
     }
   },
   {
@@ -361,6 +407,7 @@ golden_values: [
       image_base_version: 1
       swversion: 231200
       attribute_labels: []
+      obsoleted: false
     }
   },
   {
@@ -371,6 +418,7 @@ golden_values: [
       image_base_version: 1
       swversion: 231100
       attribute_labels: [STABLE, USABLE]
+      obsoleted: false
     }
   },
   {
@@ -381,6 +429,7 @@ golden_values: [
       image_base_version: 1
       swversion: 231100
       attribute_labels: []
+      obsoleted: false
     }
   },
   {
@@ -391,6 +440,7 @@ golden_values: [
       image_base_version: 1
       swversion: 231001
       attribute_labels: [STABLE, USABLE]
+      obsoleted: false
     }
   },
   {
@@ -401,6 +451,7 @@ golden_values: [
       image_base_version: 1
       swversion: 231001
       attribute_labels: []
+      obsoleted: false
     }
   },
   {
@@ -411,6 +462,7 @@ golden_values: [
       image_base_version: 1
       swversion: 231000
       attribute_labels: [EXPERIMENTAL]
+      obsoleted: false
     }
   },
   {
@@ -421,6 +473,7 @@ golden_values: [
       image_base_version: 1
       swversion: 231000
       attribute_labels: []
+      obsoleted: false
     }
   },
   {
@@ -431,6 +484,7 @@ golden_values: [
       image_base_version: 1
       swversion: 230902
       attribute_labels: [EXPERIMENTAL]
+      obsoleted: false
     }
   },
   {
@@ -441,6 +495,7 @@ golden_values: [
       image_base_version: 1
       swversion: 230902
       attribute_labels: []
+      obsoleted: false
     }
   },
   {
@@ -451,6 +506,7 @@ golden_values: [
       image_base_version: 1
       swversion: 230901
       attribute_labels: [STABLE, USABLE]
+      obsoleted: false
     }
   },
   {
@@ -461,6 +517,7 @@ golden_values: [
       image_base_version: 1
       swversion: 230901
       attribute_labels: []
+      obsoleted: false
     }
   },
   {
@@ -471,6 +528,7 @@ golden_values: [
       image_base_version: 1
       swversion: 230600
       attribute_labels: [STABLE, USABLE]
+      obsoleted: false
     }
   },
   {
@@ -481,6 +539,7 @@ golden_values: [
       image_base_version: 1
       swversion: 230600
       attribute_labels: []
+      obsoleted: false
     }
   },
   {
@@ -491,6 +550,7 @@ golden_values: [
       image_base_version: 1
       swversion: 230300
       attribute_labels: [STABLE, USABLE]
+      obsoleted: false
     }
   },
   {
@@ -510,6 +570,7 @@ golden_values: [
       image_base_version: 1
       swversion: 1
       attribute_labels: [STABLE, USABLE]
+      obsoleted: false
     }
   },
   {
@@ -529,6 +590,7 @@ golden_values: [
       image_base_version: 1
       swversion: 230301
       attribute_labels: []
+      obsoleted: false
     }
   },
   {
@@ -539,6 +601,7 @@ golden_values: [
       image_base_version: 1
       swversion: 230400
       attribute_labels: []
+      obsoleted: false
     }
   },
   {
@@ -549,6 +612,7 @@ golden_values: [
       image_base_version: 1
       swversion: 0
       attribute_labels: [TEST]
+      obsoleted: false
     }
   }
 ]
@@ -591,3 +655,13 @@ cs_base_policy: {
     }
   }
 }
+known_certs: [
+  {
+    key: "a7b8c851deb2acba7c7d0e6ec091c93440f942c65d776fdcb58016f8fd1674b0"
+    value: "MIIEDTCCAvWgAwIBAgIQRtEbux4j2WDjYimBMkIBYjANBgkqhkiG9w0BAQsFADCBizELMAkGA1UEBhMCVVMxEzARBgNVBAgTCkNhbGlmb3JuaWExFjAUBgNVBAcTDU1vdW50YWluIFZpZXcxFDASBgNVBAoTC0dvb2dsZSBMTEMuMR8wHQYDVQQLExZDb250YWluZXIgT3B0aW1pemVkIE9TMRgwFgYDVQQDEw9VRUZJIERCIEtleSB2MTAwHhcNMjAwODA2MTk0ODU1WhcNMzAwODA0MTk0ODU1WjCBizELMAkGA1UEBhMCVVMxEzARBgNVBAgTCkNhbGlmb3JuaWExFjAUBgNVBAcTDU1vdW50YWluIFZpZXcxFDASBgNVBAoTC0dvb2dsZSBMTEMuMR8wHQYDVQQLExZDb250YWluZXIgT3B0aW1pemVkIE9TMRgwFgYDVQQDEw9VRUZJIERCIEtleSB2MTAwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDQzJHu5A61uBNU6UUUZ5MiXjXwy8Du44BHhisNBpi6cTVHZddJ85iNldE5cPL7hZFJP9n77KyFRCCLxT2CVDNkwMyE2jvJkTz2x2qWvJ+uIuL25Asfgbrv7t1h2Jn790ZLwb9U3qQvqMLvIh/cTtNLat0DaZJsdnJo1MTnFAWrYZZ19KB4j6JJpG/QBnQ+s8XibeSSoa/bMEQTn2OEQFeEcume3CeuZKzXyytMLKkV/z4z+CYddyRwkOFivWUHWq2nVecQQgdyDNWYxGnY4MNsTMYFfv+mhyRzMwhxBFMwMAaEwhTFWsIP6VNwrwIgQaDw3o1fUEuzavTfdNhULaJLAgMBAAGjazBpMA8GA1UdEwEB/wQFMAMBAf8wKQYDVR0OBCIEIEtOsnFY2N1KW7dg9Wd/GEcIwV/a+U2DCn5ZyUsGWickMCsGA1UdIwQkMCKAIEtOsnFY2N1KW7dg9Wd/GEcIwV/a+U2DCn5ZyUsGWickMA0GCSqGSIb3DQEBCwUAA4IBAQCOd9V3WYv589dVov5ZOYo4zSs5PXpts1/8sYvMwvzLBr46LaejfG7KjjIY665Cnik//Zy9N3ZS9+fEeGKrBPE8ClwC06QhLbWDSFIqj2y9qq5FyBW0k1no2UQBnvx4CnLw/BgU3eae0wjv1lpDIbMwxe3E/aucVmzaIX3O83cw2JL9lLm1Psum0L2VHDZSCTP24vzrWoXXo4USHO/tBt/NkYrdkQH5CqGJYtxzKRwHHKEar3vzsiW4DPzlW8kUjRual1eBOKT5YKGbrOA/PJXV9x/7v1f2uAIrqh3HyppDTaGJ7Lux1MDf/hKuwAFI5QJTy9NEojbuUk1tzB4ys/W8"
+  },
+  {
+    key: "2fa7df82773db7eedb5cbaa88e20d885e4c19f1f24ee8e9930192893c258d0a4"
+    value: "MIIEGTCCAwGgAwIBAgIQP4SpjOkNNYe1A7NusUWPGTANBgkqhkiG9w0BAQsFADCBkTELMAkGA1UEBhMCVVMxEzARBgNVBAgTCkNhbGlmb3JuaWExFjAUBgNVBAcTDU1vdW50YWluIFZpZXcxFDASBgNVBAoTC0dvb2dsZSBMTEMuMR8wHQYDVQQLExZDb250YWluZXIgT3B0aW1pemVkIE9TMR4wHAYDVQQDExVVRUZJIERCIEtleSB2MjAyNTAyMDMwHhcNMjUwMjAzMTgyNzM4WhcNMzUwMjAxMTgyNzM4WjCBkTELMAkGA1UEBhMCVVMxEzARBgNVBAgTCkNhbGlmb3JuaWExFjAUBgNVBAcTDU1vdW50YWluIFZpZXcxFDASBgNVBAoTC0dvb2dsZSBMTEMuMR8wHQYDVQQLExZDb250YWluZXIgT3B0aW1pemVkIE9TMR4wHAYDVQQDExVVRUZJIERCIEtleSB2MjAyNTAyMDMwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQC6vNWUrWlE1MqYhI1qctYGmZkZoTenoSDOY5G3xtW9ddk4fH8SZeoBvY+0QUfybwYg86B2rTYDS+836VrnXqwE6v0dkBCqUWClLSW+b33F+JNAA5sLXGWGPvDfb+omts+ze7pdxpSidR9UepvZwbc6gwtncbGQxD7rx93HwzZLLpb0ejYluYYWDLAA+mn1oC8nKNNN7mZILE8TTIvT4F2WmCdDvC38QtHQeKoRamD4hu6giotgmcke5lF3f0YsndvbGlc4tLwQ+6zO5kwJcBkfCocEH7LKPpXPJRk2lIzaSZ5fUdzwkVWqr52bCMJvbYRl8H3xgE8eTiKtKOfeAsHxAgMBAAGjazBpMA8GA1UdEwEB/wQFMAMBAf8wKQYDVR0OBCIEIG6a+QVNXu6bT1Hv6NzT/3TD8orxJNFbOXGVyNxSwQI5MCsGA1UdIwQkMCKAIG6a+QVNXu6bT1Hv6NzT/3TD8orxJNFbOXGVyNxSwQI5MA0GCSqGSIb3DQEBCwUAA4IBAQAJa7pg23LOQT4Ie2uPbiEH1tHhl/qmSOho97U531IfL2N+jP55T1uaWs0TT4ysBnam/Z0DnqY91JN/2XasUbtxUmPMF/tWoDtBvF4PEnz9jZt3dpCIjOcEZQs4gw2Tuzy7AjAA8qu4Y/yu8Hkvxk1V+SH1fPsou6Iv0YIWheDL0GD5b/kfAkGMzWgARGQOw3kuoazxA094Cv9c4p2ooH+g4IaYa+sLcc2tQ1dNe6t4fDOFqlfnDM+Qfo8XUMKMk3qfv7ToQmLwEWmCeU+i4gA8ygBR+wB9HkQkY/Kv96t1ugcAK2TanJcCjj0Ge4Z5Vfo4OYIK//E7vSXdAHfVFNwb"
+  }
+]

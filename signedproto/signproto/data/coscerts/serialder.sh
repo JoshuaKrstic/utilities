@@ -1,0 +1,1 @@
+openssl base64 -in $1 -A
