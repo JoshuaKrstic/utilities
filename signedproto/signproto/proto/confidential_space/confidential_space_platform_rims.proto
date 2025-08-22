@@ -76,7 +76,7 @@ message ImageDatabase {
     repeated CCKnownCertificates known_certificates = 1;
     
     // List of fingerprints used to look up in the cos_db cert table
-    repeated string known_cert_fingerprint = 3;
+    repeated string known_cert_fingerprints = 3;
   }
 
   message ImageBaseEntry {

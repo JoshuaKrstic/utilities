@@ -450,11 +450,12 @@ func (x *ImageDatabase_ImageGoldenEntry) GetObsoleted() bool {
 }
 
 type ImageDatabase_CCDatabase struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
+	state             protoimpl.MessageState              `protogen:"open.v1"`
+	KnownCertificates []ImageDatabase_CCKnownCertificates `protobuf:"varint,1,rep,packed,name=known_certificates,json=knownCertificates,proto3,enum=confidential_space.ImageDatabase_CCKnownCertificates" json:"known_certificates,omitempty"`
 	// List of fingerprints used to look up in the cos_db cert table
-	KnownCertFingerprint []string `protobuf:"bytes,3,rep,name=known_cert_fingerprint,json=knownCertFingerprint,proto3" json:"known_cert_fingerprint,omitempty"`
-	unknownFields        protoimpl.UnknownFields
-	sizeCache            protoimpl.SizeCache
+	KnownCertFingerprints []string `protobuf:"bytes,3,rep,name=known_cert_fingerprints,json=knownCertFingerprints,proto3" json:"known_cert_fingerprints,omitempty"`
+	unknownFields         protoimpl.UnknownFields
+	sizeCache             protoimpl.SizeCache
 }
 
 func (x *ImageDatabase_CCDatabase) Reset() {
@@ -487,9 +488,16 @@ func (*ImageDatabase_CCDatabase) Descriptor() ([]byte, []int) {
 	return file_confidential_space_platform_rims_proto_rawDescGZIP(), []int{2, 1}
 }
 
-func (x *ImageDatabase_CCDatabase) GetKnownCertFingerprint() []string {
+func (x *ImageDatabase_CCDatabase) GetKnownCertificates() []ImageDatabase_CCKnownCertificates {
 	if x != nil {
-		return x.KnownCertFingerprint
+		return x.KnownCertificates
+	}
+	return nil
+}
+
+func (x *ImageDatabase_CCDatabase) GetKnownCertFingerprints() []string {
+	if x != nil {
+		return x.KnownCertFingerprints
 	}
 	return nil
 }
@@ -658,7 +666,7 @@ const file_confidential_space_platform_rims_proto_rawDesc = "" +
 	"\ttimestamp\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\ttimestamp\x12,\n" +
 	"\x03exp\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\x03exp\x12\x12\n" +
 	"\x04cert\x18\x04 \x01(\fR\x04cert\x12\x1b\n" +
-	"\tca_bundle\x18\x06 \x01(\fR\bcaBundleJ\x04\b\x05\x10\x06\"\x91\x0f\n" +
+	"\tca_bundle\x18\x06 \x01(\fR\bcaBundleJ\x04\b\x05\x10\x06\"\xe0\x0f\n" +
 	"\rImageDatabase\x12X\n" +
 	"\rgolden_values\x18\x01 \x03(\v23.confidential_space.ImageDatabase.GoldenValuesEntryR\fgoldenValues\x12b\n" +
 	"\x11image_base_values\x18\x02 \x03(\v26.confidential_space.ImageDatabase.ImageBaseValuesEntryR\x0fimageBaseValues\x12c\n" +
@@ -673,10 +681,11 @@ const file_confidential_space_platform_rims_proto_rawDesc = "" +
 	"\x12image_base_version\x18\x05 \x01(\rR\x10imageBaseVersion\x12\x1c\n" +
 	"\tswversion\x18\x06 \x01(\rR\tswversion\x12[\n" +
 	"\x10attribute_labels\x18\t \x03(\x0e20.confidential_space.ImageDatabase.AttributeLabelR\x0fattributeLabels\x12\x1c\n" +
-	"\tobsoleted\x18\a \x01(\bR\tobsoletedJ\x04\b\x03\x10\x04J\x04\b\x04\x10\x05R\fgrub_digestsR\vefi_digests\x1ak\n" +
+	"\tobsoleted\x18\a \x01(\bR\tobsoletedJ\x04\b\x03\x10\x04J\x04\b\x04\x10\x05R\fgrub_digestsR\vefi_digests\x1a\xb9\x01\n" +
 	"\n" +
-	"CCDatabase\x124\n" +
-	"\x16known_cert_fingerprint\x18\x03 \x03(\tR\x14knownCertFingerprintJ\x04\b\x01\x10\x02J\x04\b\x02\x10\x03R\x12known_certificatesR\adigests\x1a\xda\x01\n" +
+	"CCDatabase\x12d\n" +
+	"\x12known_certificates\x18\x01 \x03(\x0e25.confidential_space.ImageDatabase.CCKnownCertificatesR\x11knownCertificates\x126\n" +
+	"\x17known_cert_fingerprints\x18\x03 \x03(\tR\x15knownCertFingerprintsJ\x04\b\x02\x10\x03R\adigests\x1a\xda\x01\n" +
 	"\x0eImageBaseEntry\x12<\n" +
 	"\x02db\x18\x01 \x01(\v2,.confidential_space.ImageDatabase.CCDatabaseR\x02db\x12>\n" +
 	"\x03dbx\x18\x02 \x01(\v2,.confidential_space.ImageDatabase.CCDatabaseR\x03dbx\x12J\n" +
@@ -754,18 +763,19 @@ var file_confidential_space_platform_rims_proto_depIdxs = []int32{
 	9,  // 7: confidential_space.ImageDatabase.cs_base_policy:type_name -> confidential_space.ImageDatabase.ConfidentialSpaceBasePolicy
 	12, // 8: confidential_space.ImageDatabase.known_certs:type_name -> confidential_space.ImageDatabase.KnownCertsEntry
 	0,  // 9: confidential_space.ImageDatabase.ImageGoldenEntry.attribute_labels:type_name -> confidential_space.ImageDatabase.AttributeLabel
-	6,  // 10: confidential_space.ImageDatabase.ImageBaseEntry.db:type_name -> confidential_space.ImageDatabase.CCDatabase
-	6,  // 11: confidential_space.ImageDatabase.ImageBaseEntry.dbx:type_name -> confidential_space.ImageDatabase.CCDatabase
-	6,  // 12: confidential_space.ImageDatabase.ImageBaseEntry.authority:type_name -> confidential_space.ImageDatabase.CCDatabase
-	14, // 13: confidential_space.ImageDatabase.ServiceBasePolicy.earliest_cert_issue_time:type_name -> google.protobuf.Timestamp
-	15, // 14: confidential_space.ImageDatabase.ConfidentialSpaceBasePolicy.firmware_policy:type_name -> attest.Policy
-	5,  // 15: confidential_space.ImageDatabase.GoldenValuesEntry.value:type_name -> confidential_space.ImageDatabase.ImageGoldenEntry
-	7,  // 16: confidential_space.ImageDatabase.ImageBaseValuesEntry.value:type_name -> confidential_space.ImageDatabase.ImageBaseEntry
-	17, // [17:17] is the sub-list for method output_type
-	17, // [17:17] is the sub-list for method input_type
-	17, // [17:17] is the sub-list for extension type_name
-	17, // [17:17] is the sub-list for extension extendee
-	0,  // [0:17] is the sub-list for field type_name
+	1,  // 10: confidential_space.ImageDatabase.CCDatabase.known_certificates:type_name -> confidential_space.ImageDatabase.CCKnownCertificates
+	6,  // 11: confidential_space.ImageDatabase.ImageBaseEntry.db:type_name -> confidential_space.ImageDatabase.CCDatabase
+	6,  // 12: confidential_space.ImageDatabase.ImageBaseEntry.dbx:type_name -> confidential_space.ImageDatabase.CCDatabase
+	6,  // 13: confidential_space.ImageDatabase.ImageBaseEntry.authority:type_name -> confidential_space.ImageDatabase.CCDatabase
+	14, // 14: confidential_space.ImageDatabase.ServiceBasePolicy.earliest_cert_issue_time:type_name -> google.protobuf.Timestamp
+	15, // 15: confidential_space.ImageDatabase.ConfidentialSpaceBasePolicy.firmware_policy:type_name -> attest.Policy
+	5,  // 16: confidential_space.ImageDatabase.GoldenValuesEntry.value:type_name -> confidential_space.ImageDatabase.ImageGoldenEntry
+	7,  // 17: confidential_space.ImageDatabase.ImageBaseValuesEntry.value:type_name -> confidential_space.ImageDatabase.ImageBaseEntry
+	18, // [18:18] is the sub-list for method output_type
+	18, // [18:18] is the sub-list for method input_type
+	18, // [18:18] is the sub-list for extension type_name
+	18, // [18:18] is the sub-list for extension extendee
+	0,  // [0:18] is the sub-list for field type_name
 }
 
 func init() { file_confidential_space_platform_rims_proto_init() }
