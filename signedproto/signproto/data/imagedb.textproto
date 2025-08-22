@@ -622,6 +622,7 @@ image_base_values: [
     value: {
       db: {
         known_certificates: [COS_DB_V10]
+        known_cert_fingerprint: ["a7b8c851deb2acba7c7d0e6ec091c93440f942c65d776fdcb58016f8fd1674b0"]
       }
     }
   },
@@ -630,6 +631,7 @@ image_base_values: [
     value: {
       db: {
         known_certificates: [COS_DB_V20250203]
+        known_cert_fingerprint: ["2fa7df82773db7eedb5cbaa88e20d885e4c19f1f24ee8e9930192893c258d0a4"]
       }
     }
   }
